@@ -1,0 +1,39 @@
+<div *ngIf="isLoaded" class="container" [ngClass]="{'container--comment' : getHeights()}" id="topic-container">
+    <h2>{{topic.title}}</h2>
+    <div id="medias" #medias ><img *ngIf="topic.media && !topic.type" src="{{topic.media}}"
+            alt="image de {{topic.title}}" class="image-topic">
+        <video *ngIf="topic.media&&topic.type" controls controlsList="nodownload">
+            <source src="{{topic.media}}" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <div *ngIf="!topic.media" class="no-media">
+            <p *ngFor="let paragraph of topic.content">{{paragraph}}</p>
+        </div>
+    </div>
+    <div class="description" #description>
+        <div class="maker" role="link" (click)="goToUserPage(topic.maker.userID)"><img class="avatar"
+                src="{{topic.maker.avatar}}"
+                alt=""><span>{{topic.maker.nickname}}</span><span>{{topic.createdDate}}</span></div>
+        <div *ngIf="topic.media">
+            <p *ngFor="let paragraph of topic.content">{{paragraph}}</p>
+        </div>
+        <p class="topic-footer"><span>❤️ {{topic.like}}</span><span>💬 {{countComments()}}</span>
+            <mat-icon class="save">star</mat-icon>
+        </p>
+        <div>
+            <app-button [config]="iconSuppr">Supprimer</app-button>
+            <app-button [config]="iconEdit">Editer</app-button>
+        </div>
+        <form><label for="commentThis">Commenter</label><input type="text" placeholder="Commenter ce post"
+                name="commentThis">
+            <app-button [config]="iconSend">Envoyer</app-button>
+        </form>
+
+        <ng-container *ngFor="let comment of topic.comment">
+            <app-comment [comment]="comment"></app-comment>
+        </ng-container>
+    </div>
+    <div class="suggests">
+        <app-resume (whenSuggestIsClicked)="getOnePost()" [data]="topics" [isLoaded]="isLoaded"></app-resume>
+    </div>
+</div>

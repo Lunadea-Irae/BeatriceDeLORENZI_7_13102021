@@ -1,0 +1,12 @@
+@import '../../../../../assets/variables.scss';
+.container {
+    margin-left: 40px;
+}
+label {
+    display: none;
+}
+
+.maker{
+    background-color: transparentize($color: map-get($colors,primary), $amount: 0.7);
+    border-radius: 5px;
+}

@@ -1,0 +1,65 @@
+@import "../../../../../assets/variables.scss";
+header {
+    background-color: transparentize($color: map-get($colors, primary), $amount: 0.3);
+    text-align: left;
+    line-height: 0%;
+    padding: 50px 0 20px 35%;
+    color: map-get($map: $colors, $key: light);
+    justify-self: normal;
+    @media screen and (max-width:640px) {
+        padding-left: 0;
+        text-align: center;
+        h2{ text-decoration: overline underline map-get($map: $colors, $key: secondary) 4px;
+        line-height: normal;}
+    }
+}
+.container {
+    display: grid;
+    grid-template-areas: "aside main";
+    grid-template-columns: 30% 60%;
+    justify-content: center;
+    align-items: start;
+    @media screen and (max-width:640px) {
+            display: block;
+    }
+    aside {
+        box-shadow: 0px 0px 8px black;
+        width: 300px;
+        grid-area: aside;
+        margin-top: -100px;
+        background-color: transparentize($color: map-get($colors, light), $amount: 0.3);
+        justify-self: center;
+        padding-bottom: 20px;
+        @media screen and (max-width:640px) {
+            margin: 12px auto;
+        }
+        
+        img {
+            background-color: map-get($map: $colors, $key: tertiary);
+            width: 100%;
+            object-fit: contain;
+        }
+        & > *:not(img) {
+            margin: 20px;
+        }
+        
+    }
+    main {
+        grid-area: main;
+
+        div#in-short {
+            padding: 20px;
+            background-color: transparentize($color: map-get($colors, light), $amount: 0.3);
+            @media screen and (max-width:640px) {
+                p{
+                    text-align: center;
+                }
+            }
+            #user-brief {
+                margin: 20px;
+                padding: 20px;
+                border: darken($color: map-get($map: $colors, $key: tertiary), $amount: 0) double 4px;
+            }
+        }
+    }
+}

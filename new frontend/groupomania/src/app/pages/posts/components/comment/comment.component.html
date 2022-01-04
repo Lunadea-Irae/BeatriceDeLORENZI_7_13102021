@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="maker" (click)="goToUserPage(comment.user.userID)">
+        <img class="avatar" src="{{comment.user.avatar}}" alt="Avatar de {{comment.user.nickname}}">
+        <span>{{comment.user.nickname}}</span> <span>{{comment.date}}</span>
+    </div>
+    <div class="comment"><p *ngFor="let paragraph of comment.content">{{paragraph}}</p>
+        <p>
+            <app-button [config]="iconSuppr">Supprimer</app-button>
+            <app-button [config]="iconEdit">Editer</app-button>
+            <app-button [config]="iconReply" (click)="this.showReply=true">Répondre</app-button>
+        </p>
+        <form *ngIf="this.showReply"><label for="commentThis">Répondre</label><input type="text" placeholder="Répondre"
+                name="commentThis"><button>Réponde</button></form>
+        <app-comment *ngFor="let reply of comment.reply" [comment]="reply"></app-comment>
+    </div>
+</div>

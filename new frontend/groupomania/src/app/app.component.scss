@@ -1,0 +1,89 @@
+@import "../assets/variables.scss";
+
+#navbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    list-style-type: none;
+    padding-inline: 0 20px;
+    margin: 0;
+    background-color: transparentize($color: map-get($map: $colors, $key: primary), $amount: 0.3);
+    color: map-get($map: $colors, $key: light);
+
+    @media screen and (max-width: 640px) {
+        flex: 100%;
+        justify-content: space-around;
+    }
+    a {
+        color: map-get($map: $colors, $key: light);
+        text-decoration: none;
+    }
+    li {
+        padding: 10px;
+        &.brand {
+            display: flex;
+            flex: 1 0 auto;
+            @media screen and (max-width: 640px) {
+                flex: 100%;
+                justify-content: center;
+            }
+        }
+        &:not(.brand) {
+            &:hover {
+                border-top: 4px solid map-get($map: $colors, $key: secondary);
+                border-bottom: 4px solid map-get($map: $colors, $key: secondary);
+            }
+        }
+    }
+    &.stick > li:not(.brand) {
+        transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        background-color: transparentize($color: map-get($map: $colors, $key: primary), $amount: 0.3);
+        color: map-get($map: $colors, $key: light);
+        position: fixed;
+        z-index: 1;
+        margin: 4px;
+        padding: 4px;
+        font-size: 40px;
+        border-radius: 50%;
+        height: 48px;
+        width: 48px;
+        text-align: center;
+        &:hover {
+            border: 1px solid map-get($map: $colors, $key: secondary);
+            box-shadow: 0 0px 12px rgba(0, 0, 0, 0.4);
+        }
+        &:nth-child(2) {
+            bottom: 124px;
+            right: 0;
+            @media screen and (max-width: 640px) {
+                bottom: 0;
+                right: 124px;
+            }
+        }
+        &:nth-child(3) {
+            bottom: 62px;
+            right: 0;
+            @media screen and (max-width: 640px) {
+                bottom: 0;
+                right: 62px;
+            }
+        }
+        &:nth-child(4) {
+            bottom: 0;
+            right: 0;
+            @media screen and (max-width: 640px) {
+            }
+        }
+    }
+}
+
+footer {
+    margin-top: 80px;
+    padding: 0 10px;
+    background-color: transparentize($color: map-get($map: $colors, $key: primary), $amount: 0.3);
+    color: map-get($map: $colors, $key: light);
+    text-align: center;
+    li {
+        display: block;
+    }
+}

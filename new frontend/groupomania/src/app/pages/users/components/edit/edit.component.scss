@@ -1,0 +1,106 @@
+@import "../../../../../assets/variables.scss";
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    @media screen and (max-width: 640px) {
+        flex-direction: column;
+    }
+    h2 {
+        flex: 100%;
+        text-align: center;
+    }
+    aside {
+        border-right: solid black 4px;
+        @media screen and (max-width: 640px) {
+            border-bottom: solid black 4px;
+            border-right: 0px;
+        }
+        ul {
+             @media screen and (max-width : 640px) {
+                 display: flex;
+                 flex-wrap: wrap;
+                 justify-content: center;
+                 padding: 0;
+             }
+            li {
+                cursor: pointer;
+                display: block;
+                border: 1px solid map-get($map: $colors, $key: tertiary);
+                background-color: map-get($map: $colors, $key: light);
+                padding: 12px;
+                margin: 20px;
+                transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+                @media screen and (max-width : 640px) {
+                    margin: 4px;
+                }
+                &:hover {
+                    box-shadow: 0 7px 14px rgba(0, 0, 0, 0.4), 0 4px 4px rgba(0, 0, 0, 0.4);
+                }
+            }
+        }
+    }
+    main {
+        background-color: map-get($map: $colors, $key: light);
+        border: 4px double map-get($map: $colors, $key: tertiary);
+        padding: 12px;
+        margin: 20px;
+        flex: 1;
+        @media screen and (max-width : 640px) {
+            padding: 4px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center ;
+            text-align: center;
+        }
+        div#picture {
+            float: left;
+            text-align: center;
+            position: relative;
+            margin-right: 20px;
+            label {
+                cursor: pointer;
+                position: relative;
+
+                &:not(:hover) p {
+                    display: none;
+                    @media screen and (max-width: 640px) {
+                        display: block;
+                        color: white;
+                        text-shadow: black 0px 0px 8px, black 0px 0px 8px;
+                        position: absolute;
+                        background-color: rgba(0, 0, 0, 0.411);
+                        text-align: center;
+                        margin: auto;
+                        z-index: 1;
+                        width: 100%;
+                        height: -webkit-fill-available;
+                        height: stretch;
+                        padding: 50% 0;
+                    }
+                }
+
+                &:hover p {
+                    color: white;
+                    text-shadow: black 0px 0px 8px, black 0px 0px 8px;
+                    position: absolute;
+                    background-color: rgba(0, 0, 0, 0.411);
+                    text-align: center;
+                    margin: auto;
+                    z-index: 1;
+                    width: 100%;
+                    height: -webkit-fill-available;
+                    height: stretch;
+                    padding: 50% 0;
+                }
+                img {
+                    width: 300px;
+                    object-fit: contain;
+                }
+            }
+            input {
+                display: none;
+            }
+        }
+    }
+}

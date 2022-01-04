@@ -1,0 +1,11 @@
+<ng-container [ngTemplateOutlet]="config.isBtnIcon === true ? btnIcon : btnDefault"></ng-container>
+
+<ng-template #btnIcon>
+  <button (click)="clicked()" class="btn-icon">
+    <mat-icon>{{config.icon}}</mat-icon>
+  </button>
+</ng-template>
+
+<ng-template #btnDefault>
+  <button (click)="clicked()" class="btn-default" [style]="config.style">{{config.label}}</button>
+</ng-template>

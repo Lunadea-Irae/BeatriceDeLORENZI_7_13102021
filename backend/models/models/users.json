@@ -1,0 +1,151 @@
+[
+    {
+        "userId": 1,
+        "nickname": "BobbyPointu",
+        "email": "bobby-la-pointe@groupomania.com",
+        "brief": [],
+        "level": 1,
+        "favorites": {
+            "posts": [],
+            "hastag": [
+                "chat",
+                "bébé"
+            ],
+            "likes": [
+                1
+            ],
+            "ignores": []
+        },
+        "avatar": "http://localhost:3000/images/profiles/2.png",
+        "birthday": "10/11/1987",
+        "service": "comptabilite",
+        "joinDate":"00/00/0000",
+        "stats":{
+            "posts":[{
+                "id": 1,
+                "title": "Une superbe naissance",
+                "content": "Je vous annonce la naissance de ma petite fille ^^ elle et la maman se portent très bien.",
+                "media": "http://localhost:3000/images/test/1988 02 0602.png",
+                "mediaSize": "vertical",
+                "hashtag": [
+                    "bébé",
+                    "naissance",
+                    "maman",
+                    "petite fille"
+                ],
+                "like": 0,
+                "createdDate": "00/00/0000 à 00h00",
+                "updatedDate": "00/00/0000 à 00h00",
+                "maker": {
+                    "nickname": "BobbyPointu",
+                    "userID": 1,
+                    "avatar": "http://localhost:3000/images/profiles/2.png",
+                    "email": ""
+                },
+                "comment": [
+                    {
+                        "user": {
+                            "nickname": "Vaness",
+                            "userID": 2,
+                            "avatar": "http://localhost:3000/images/profiles/3.png",
+                            "email": "vaness-a@groupomania.com"
+                        },
+                        "date": "00/00/0000 à 00h00",
+                        "content": "Ouaaahhhh ! Elle est magnifique, elle ressemble à son papa. Toutes mes félicitations !",
+                        "reply": [
+                            {
+                                "user": {
+                                    "nickname": "BobbyPointu",
+                                    "userID": 2,
+                                    "avatar": "http://localhost:3000/images/profiles/2.png",
+                                    "email": ""
+                                },
+                                "date": "00/00/0000 à 00h00",
+                                "content": "Merci beaucoup ^^, On vous la présentera bientot.",
+                                "reply": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "title": "Parce que les potis chats c'est toujours mignon",
+                "content": "Comme c'est un réseau social, il FAUT obligatoirement partager des photos de chats. C'est un classique, une obligation \n \n Sinon comment on ferait ? Hein ? Je vous le demande.",
+                "media": "http://localhost:3000/images/test/12052633_1095482467129160_2915692806728300228_o.jpg",
+                "mediaSize": "vertical",
+                "hashtag": [
+                    "Chat",
+                    "mignon",
+                    "photos",
+                    "classique",
+                    "obligation"
+                ],
+                "like": 5,
+                "createdDate": "00/00/0000 à 00h00",
+                "updatedDate": "00/00/0000 à 00h00",
+                "maker": {
+                    "nickname": "BobbyPointu",
+                    "userID": 1,
+                    "avatar": "http://localhost:3000/images/profiles/2.png",
+                    "email": ""
+                },
+                "comment": []
+            }
+        ],
+            "followed":20,
+            "following":12
+        }
+    }
+    ,
+    {
+        "userId": 2,
+        "nickname": "Vaness",
+        "email": "vaness-a@groupomania.com",
+        "brief": ["J'adore les cookies au chocolat"],
+        "level": 1,
+        "favorites": {
+            "posts": [],
+            "hastag": [
+                "voyage"
+            ],
+            "likes": [
+                1,2
+            ],
+            "ignores": []
+        },
+        "avatar": "http://localhost:3000/images/profiles/3.png",
+        "birthday": "7/03/1986",
+        "service": "tech",
+        "joinDate":"00/00/0000",
+        "stats":{
+            "posts":[],
+            "followed":0,
+            "following":2
+        }
+    },
+    {
+        "userId": 3,
+        "nickname": "Adam-Min",
+        "email": "admin@groupomania.com",
+        "brief": ["You shall not pass"],
+        "level": 9,
+        "favorites": {
+            "posts": [],
+            "hastag": [
+            ],
+            "likes": [
+            ],
+            "ignores": []
+        },
+        "avatar": "http://localhost:3000/images/profiles/8.png",
+        "birthday": "19/05/1980",
+        "service": "administration",
+        "joinDate":"00/00/0000",
+        "stats":{
+            "posts":[],
+            "followed":2,
+            "following":1
+        }
+    }
+]

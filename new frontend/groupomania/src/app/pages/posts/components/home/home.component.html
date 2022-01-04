@@ -1,0 +1,14 @@
+<div class="container" (scroll)="onWindowScroll();">
+  <h2>Bienvenue</h2>
+  <div class="new-post">
+    <app-button (whenIsClicked)="displayForm($event)" [config]="defaultConfig"  >
+    </app-button>
+  </div>
+  <form *ngIf="shown" (click)="this.shown=false" #newPostForm>
+    <h3>Nouveau post</h3>
+    <app-form *ngFor="let field of forms" [config]="field" (click)="onTarget($event)"></app-form>
+    <app-button (whenIsClicked)="submitNew()" [config]="sendBtn"></app-button>
+  </form>
+  <app-resume [data]="topics" [isLoaded]="isLoaded"></app-resume>
+</div>
+<div (click)="displayForm($event)" class="hidden" [ngClass]="{'new-post-icon':scrolled}"><mat-icon>add</mat-icon></div>

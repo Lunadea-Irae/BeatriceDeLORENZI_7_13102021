@@ -1,0 +1,71 @@
+<div class="container">
+    <h2>Editer le profil</h2>
+    <aside>
+        <ul>
+            <li (click)="switchTemp(public)">Profil public</li>
+            <li (click)="switchTemp(connexion)">Connexion</li>
+            <li (click)="switchTemp(favourites)">Préférences</li>
+            <li (click)="switchTemp(delete)">Suppression</li>
+            <li (click)="switchTemp(administration)">Administration</li>
+        </ul>
+    </aside>
+    <main>
+        <ng-container [ngTemplateOutlet]="!temp? public : temp"></ng-container>
+        <ng-template #public>
+            <h3>Profil public</h3>
+            <div id="picture"><label for="avatar">
+                    <p>
+                        <mat-icon>photo_camera</mat-icon> Changer d'avatar
+                    </p><img src="{{user.avatar}}" alt="avatar de {{user.nickname}}" style="background-color: black;">
+                </label><input type="file" id="avatar"></div>
+            <p><label for="nickname">Pseudo* : </label><input id="nickname" type="text" value="{{user.nickname}}" required> </p>
+            <p><label for="service">Service : </label><select id="service">
+                    <option *ngFor="let service of services| keyvalue" value="{{service.key}}"
+                        [selected]="service.key===user.service">{{service.value}}</option>
+                </select> </p>
+            <p><label for="brief">Présentation : </label><textarea id="brief" value="{{user.brief}}"></textarea> </p>
+            <p><label for="birthday">Anniversaire : </label><input id="birthday" type="date" value="{{user.birthday}}">
+            </p>
+
+        </ng-template>
+
+
+
+        <ng-template #connexion>
+            <h3>Informations de connexion</h3>
+            <p><label for="email">email* : </label><input id="email" type="email" value="{{user.email}}" required></p>
+            <p><label for="">Mot de passe actuel : </label><input id="" type="password"> </p>
+            <p><label for="">Nouveau mot de passe : </label><input id="" type="password"> </p>
+            <p><label for="">Nouveau mot de passe : </label><input id="" type="password"> </p>
+
+        </ng-template>
+        <ng-template #favourites>
+            <h3>Préférences</h3>
+            <p><label for="public-email">Afficher mon email dans mon profil public : </label><input id="public-email"
+                    type="checkbox"> </p>
+            <p>posts: Topic[]</p>
+            <p>hastag: string[]</p>
+            <p>likes: number[]</p>
+            <p>ignores: string[]</p>
+
+        </ng-template>
+        <ng-template #delete>
+            <h3>Suppression</h3>
+            <p>supprimer mon compte</p>
+            <p>supprimer mes données</p>
+
+        </ng-template>
+
+        <ng-template #administration>
+            <h3>Page d'administration</h3>
+            <p><label for="lvl">Niveau d'autorisations de l'utilisateur : </label><select id="lvl">
+                    <option value="0" [selected]="0===user.level">Banni</option>
+                    <option value="1" [selected]="1===user.level">Utilisateur normal</option>
+                    <option value="8" [selected]="8===user.level">Modérateur</option>
+                    <option value="9" [selected]="9===user.level">Administrateur</option>
+                </select></p>
+
+        </ng-template>
+        <app-button [config]="btnSave" (whenIsClicked)="save()">Enregistrer</app-button>
+    </main>
+</div>
