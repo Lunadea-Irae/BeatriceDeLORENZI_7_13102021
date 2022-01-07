@@ -8,7 +8,7 @@ import { Component, HostListener } from '@angular/core';
 })
 export class AppComponent {
   title = 'groupomania';
-  isAuth: boolean | undefined = false;
+  isAuth: boolean | undefined = true;
 scrolled:boolean=false;
 
 

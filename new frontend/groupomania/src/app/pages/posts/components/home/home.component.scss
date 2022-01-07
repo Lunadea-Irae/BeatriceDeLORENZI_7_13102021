@@ -19,14 +19,15 @@ form {
     z-index: 1;
     position: fixed;
     background-color: map-get($map: $colors, $key: light);
-    padding: 20px;
+    padding: 5vh 5vw;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-items: stretch;
-    left: 40%;
-    top: 30%;
-    width: 20%;
+    width: 60vw;
+    height: 60vh;
+    top: 15vh;
+    left: 15vw;
     border-radius: 20px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.4), 0 10px 10px rgba(0, 0, 0, 0.4);
     @media screen and (max-width: 640px) {
@@ -54,10 +55,11 @@ form {
         flex: 1;
     }
 }
-.hidden{
+.hidden {
     visibility: hidden;
 }
-div.new-post-icon {visibility: visible;
+div.new-post-icon {
+    visibility: visible;
     transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
     background-color: transparentize($color: map-get($map: $colors, $key: primary), $amount: 0.3);
     color: map-get($map: $colors, $key: light);
@@ -72,13 +74,12 @@ div.new-post-icon {visibility: visible;
     text-align: center;
     bottom: 186px;
     right: 0;
-    @media screen and (max-width:640px) {
+    @media screen and (max-width: 640px) {
         right: 186px;
-        bottom: 0; 
+        bottom: 0;
     }
     &:hover {
         border: 1px solid map-get($map: $colors, $key: secondary);
         box-shadow: 0 0px 12px rgba(0, 0, 0, 0.4);
     }
 }
-

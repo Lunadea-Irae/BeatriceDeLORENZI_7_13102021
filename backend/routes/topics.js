@@ -11,6 +11,7 @@ const topicCtrl = require('../controllers/topics');
 
 router.get('/', topicCtrl.getAllTopics);
 router.get('/:id', topicCtrl.getOneTopic);
+router.post('/', multer, topicCtrl.createTopic);
 
 /*router.get('/', auth, topicCtrl.getAllTopics);
 router.get('/:id', auth, topicCtrl.getOneTopic);

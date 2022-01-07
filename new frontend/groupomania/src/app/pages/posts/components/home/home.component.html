@@ -4,7 +4,7 @@
     <app-button (whenIsClicked)="displayForm($event)" [config]="defaultConfig"  >
     </app-button>
   </div>
-  <form *ngIf="shown" (click)="this.shown=false" #newPostForm>
+  <form *ngIf="shown" (click)="this.shown=false" #newPostForm ngNativeValidate enctype="multipart/form-data">
     <h3>Nouveau post</h3>
     <app-form *ngFor="let field of forms" [config]="field" (click)="onTarget($event)"></app-form>
     <app-button (whenIsClicked)="submitNew()" [config]="sendBtn"></app-button>

@@ -28,7 +28,8 @@ module.exports = (sequelize, DataTypes) => {
     level: DataTypes.INTEGER,
     avatar: DataTypes.STRING,
     birthday: DataTypes.DATEONLY,
-    service: DataTypes.STRING
+    service: DataTypes.STRING,
+    showEmail : DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'User',

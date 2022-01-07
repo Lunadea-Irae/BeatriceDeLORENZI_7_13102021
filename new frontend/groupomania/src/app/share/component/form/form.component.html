@@ -1,11 +1,11 @@
 <ng-container [ngTemplateOutlet]="config.type === 'textarea' ? textarea : input"></ng-container>
 
 <ng-template #input>
-  <p><label for="{{config.id}}">{{config.label}}</label><input type="{{config.type}}" name="{{config.id}}" placeholder="{{config.label}}" id="{{config.id}}"></p>
+  <p><label for="{{config.id}}">{{config.label}} : </label><input type="{{config.type}}" name="{{config.id}}" placeholder="{{config.label}}" id="{{config.id}}" required="{{config.required}}" accept="{{config.accept}}"></p>
 </ng-template>
 
 <ng-template #textarea>
-    <p><label for="{{config.id}}">{{config.label}}</label><textarea id="{{config.id}}" placeholder="{{config.label}}"></textarea></p>
+    <p><label for="{{config.id}}">{{config.label}} : </label><textarea id="{{config.id}}" placeholder="{{config.label}}" required="{{config.required}}" rows="20" cols="320"></textarea></p>
 </ng-template>
 
 

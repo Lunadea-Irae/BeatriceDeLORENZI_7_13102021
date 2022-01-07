@@ -21,7 +21,11 @@ module.exports = {
         allowNull: true,
         type: Sequelize.STRING
       },
-      mediaSize: {
+      mediaHeight: {
+        allowNull: true,
+        type: Sequelize.INTEGER
+      }, 
+      mediaWidth: {
         allowNull: true,
         type: Sequelize.INTEGER
       },

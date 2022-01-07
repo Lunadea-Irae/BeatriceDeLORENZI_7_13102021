@@ -16,23 +16,25 @@ export class HomeComponent implements OnInit {
   public scrolled: boolean = false;
 
 
-  public newPostData: any = {};
   public shown: boolean = false;
   public forms = [
     {
       label: "Titre",
       type: "text",
       id: "title",
+      required : true
     },
     {
       label: "Image",
       type: 'file',
-      id: "media"
+      id: "media",
+      accept:".jpg, .jpeg, .png, .mp4, .mov"
     },
     {
       label: "Message",
       type: 'textarea',
-      id: 'description'
+      id: 'description',
+      required : true
     }
   ];
 
@@ -66,6 +68,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private readonly HttpService: HttpService) { }
 
+
   public displayForm(event: unknown) {
     this.shown = true;
   }
@@ -75,10 +78,27 @@ export class HomeComponent implements OnInit {
   }
 
   public submitNew() {
+    
+    const newPostData : FormData = new FormData();
+
     this.forms.forEach(field => {
-      field.id === 'description' ? this.newPostData[field.id] = this.newPostForm.nativeElement.querySelector("#" + field.id).value.split('\n') : this.newPostData[field.id] = this.newPostForm.nativeElement.querySelector("#" + field.id).value;
+      switch (field.id){
+        case 'description':
+         newPostData.append('content',this.newPostForm.nativeElement.querySelector("#" + field.id).value.replace('\n','&#x0A;'));
+          break;
+        case 'media' :
+          
+          const file:File = this.newPostForm.nativeElement.querySelector("#" + field.id).files[0];
+          newPostData.append('file',file);
+          break;
+        default :
+        newPostData.append(field.id,this.newPostForm.nativeElement.querySelector("#" + field.id).value);
+        break;
+      }
+//      field.id === 'description' ? this.newPostData[field.id] = this.newPostForm.nativeElement.querySelector("#" + field.id).value.replace('\n','&#x0A;') : this.newPostData[field.id] = this.newPostForm.nativeElement.querySelector("#" + field.id).value;
     });
-    //this.newPostData;
+
+    this.HttpService.newPost(newPostData).subscribe(data=>console.log(data));
   }
 
   ngOnInit(): void {
@@ -98,7 +118,7 @@ export class HomeComponent implements OnInit {
     this.sub.add(this.HttpService.getAllPosts()
       .pipe(
         map(value => {
-          //js normal
+          //js normal 
           this.topics = value;
           this.topics.forEach((element: any) => {
             if (element.media.slice(-3) === 'mp4') {

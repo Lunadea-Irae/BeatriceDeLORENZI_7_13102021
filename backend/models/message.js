@@ -22,7 +22,8 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     content: DataTypes.STRING,
     media: DataTypes.STRING,
-    mediaSize: DataTypes.INTEGER,
+    mediaHeight: DataTypes.INTEGER,
+    mediaWidth: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Message',

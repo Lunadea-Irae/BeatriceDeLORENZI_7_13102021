@@ -9,7 +9,7 @@ module.exports = (req, res, next) => {
         const text = Object.values(source).join('');
         if (/[^A-z0-9À-ž\s\.\,\!\-]/.test(text)) { //Vérifie que les caractères sont autorisés
             const filename = req.file.filename;
-            fs.unlink(`images/${filename}`, () => { console.log("image supprimée") }); //supprime l'image qui vient d'être up
+            fs.unlink(`medias/${filename}`, () => { console.log("image supprimée") }); //supprime l'image qui vient d'être up
             res.status(401).json({ message: "Caractères non autorisés !" });
         } else {
             next();

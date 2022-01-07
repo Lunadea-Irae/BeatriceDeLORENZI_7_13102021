@@ -10,8 +10,8 @@ require('dotenv').config();
 
 
 app.use(helmet());
-app.use(express.json());
-app.use(express.urlencoded({extended:true}));
+app.use(express.json({limit: '50mb', extended: true}));
+app.use(express.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 }));
 
 //connexion DB
 const sequelize = new Sequelize(process.env.DATABASE_NAME, process.env.DATABASE_USER, process.env.DATABASE_PASSWORD, {
@@ -28,7 +28,7 @@ sequelize.authenticate()
 
 
 app.use(cors());
-app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use('/medias', express.static(path.join(__dirname, 'medias')));
 app.use('/api/topics', topicRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/auth', userRoutes);

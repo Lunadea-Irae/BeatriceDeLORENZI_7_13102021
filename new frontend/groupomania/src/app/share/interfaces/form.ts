@@ -3,4 +3,6 @@ export interface Form {
     type:string;
     id:string;
     value?:unknown;
+    required?:boolean;
+    accept?:string;
 }

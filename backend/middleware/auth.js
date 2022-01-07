@@ -13,7 +13,7 @@ module.exports = (req, res, next) => {
         }
     } catch (e) {
         if (e.name === "TokenExpiredError"&& jwt.verify(req.headers.authorization.refreshToken, process.env.REFRESH_TOKEN_SECRET) && jwt.verify(req.headers.authorization.refreshToken, process.env.REFRESH_TOKEN_SECRET).userId === 1) {
-            models.User.findOne({ id: req.body.userId })
+            models.User.findOne({ id: req.body.userId})
                 .then(user => {
                     if (!user) {
                         res.status(401).json({ error: 'Utilisateur non trouvé' });

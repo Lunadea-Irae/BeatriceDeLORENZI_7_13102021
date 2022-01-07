@@ -7,19 +7,19 @@
         "comments": [
             {
                 "userName": "user 2",
-                "userImg": "http://localhost:3000/images/profiles/2.png",
+                "userImg": "http://localhost:3000/medias/profiles/2.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": [
                     {
                         "userName": "user 7",
-                        "userImg": "http://localhost:3000/images/profiles/7.png",
+                        "userImg": "http://localhost:3000/medias/profiles/7.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                         "replies": [
                             {
                                 "userName": "user 2",
-                                "userImg": "http://localhost:3000/images/profiles/2.png",
+                                "userImg": "http://localhost:3000/medias/profiles/2.png",
                                 "date": "00/00/0000 à 00h00",
                                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif."
                             }
@@ -29,26 +29,26 @@
             },
             {
                 "userName": "user 3",
-                "userImg": "http://localhost:3000/images/profiles/3.png",
+                "userImg": "http://localhost:3000/medias/profiles/3.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 4",
-                "userImg": "http://localhost:3000/images/profiles/4.jpg",
+                "userImg": "http://localhost:3000/medias/profiles/4.jpg",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": [
                     {
                         "userName": "user 7",
-                        "userImg": "http://localhost:3000/images/profiles/7.png",
+                        "userImg": "http://localhost:3000/medias/profiles/7.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif."
                     },
                     {
                         "userName": "user 8",
-                        "userImg": "http://localhost:3000/images/profiles/8.png",
+                        "userImg": "http://localhost:3000/medias/profiles/8.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                         "replies": []
@@ -57,14 +57,14 @@
             },
             {
                 "userName": "user 5",
-                "userImg": "http://localhost:3000/images/profiles/5.jpg",
+                "userImg": "http://localhost:3000/medias/profiles/5.jpg",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 6",
-                "userImg": "http://localhost:3000/images/profiles/6.png",
+                "userImg": "http://localhost:3000/medias/profiles/6.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
@@ -72,7 +72,7 @@
         ],
         "imageUrl": "https://img-9gag-fun.9cache.com/photo/aE8w4yM_700b.jpg",
         "tags": [],
-        "imageMakerUrl": "http://localhost:3000/images/profiles/1.jpg",
+        "imageMakerUrl": "http://localhost:3000/medias/profiles/1.jpg",
         "makerName": "user 1",
         "date": "00/00/0000 à 00h00"
     },
@@ -83,19 +83,19 @@
         "comments": [
             {
                 "userName": "user 2",
-                "userImg": "http://localhost:3000/images/profiles/2.png",
+                "userImg": "http://localhost:3000/medias/profiles/2.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": [
                     {
                         "userName": "user 7",
-                        "userImg": "http://localhost:3000/images/profiles/7.png",
+                        "userImg": "http://localhost:3000/medias/profiles/7.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                         "replies": [
                             {
                                 "userName": "user 2",
-                                "userImg": "http://localhost:3000/images/profiles/2.png",
+                                "userImg": "http://localhost:3000/medias/profiles/2.png",
                                 "date": "00/00/0000 à 00h00",
                                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif."
                             }
@@ -105,26 +105,26 @@
             },
             {
                 "userName": "user 3",
-                "userImg": "http://localhost:3000/images/profiles/3.png",
+                "userImg": "http://localhost:3000/medias/profiles/3.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 4",
-                "userImg": "http://localhost:3000/images/profiles/4.jpg",
+                "userImg": "http://localhost:3000/medias/profiles/4.jpg",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": [
                     {
                         "userName": "user 7",
-                        "userImg": "http://localhost:3000/images/profiles/7.png",
+                        "userImg": "http://localhost:3000/medias/profiles/7.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif."
                     },
                     {
                         "userName": "user 8",
-                        "userImg": "http://localhost:3000/images/profiles/8.png",
+                        "userImg": "http://localhost:3000/medias/profiles/8.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                         "replies": []
@@ -133,107 +133,107 @@
             },
             {
                 "userName": "user 5",
-                "userImg": "http://localhost:3000/images/profiles/5.jpg",
+                "userImg": "http://localhost:3000/medias/profiles/5.jpg",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 6",
-                "userImg": "http://localhost:3000/images/profiles/6.png",
+                "userImg": "http://localhost:3000/medias/profiles/6.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 6",
-                "userImg": "http://localhost:3000/images/profiles/6.png",
+                "userImg": "http://localhost:3000/medias/profiles/6.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 6",
-                "userImg": "http://localhost:3000/images/profiles/6.png",
+                "userImg": "http://localhost:3000/medias/profiles/6.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 6",
-                "userImg": "http://localhost:3000/images/profiles/6.png",
+                "userImg": "http://localhost:3000/medias/profiles/6.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 6",
-                "userImg": "http://localhost:3000/images/profiles/6.png",
+                "userImg": "http://localhost:3000/medias/profiles/6.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 6",
-                "userImg": "http://localhost:3000/images/profiles/6.png",
+                "userImg": "http://localhost:3000/medias/profiles/6.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 6",
-                "userImg": "http://localhost:3000/images/profiles/6.png",
+                "userImg": "http://localhost:3000/medias/profiles/6.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 6",
-                "userImg": "http://localhost:3000/images/profiles/6.png",
+                "userImg": "http://localhost:3000/medias/profiles/6.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 6",
-                "userImg": "http://localhost:3000/images/profiles/6.png",
+                "userImg": "http://localhost:3000/medias/profiles/6.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 6",
-                "userImg": "http://localhost:3000/images/profiles/6.png",
+                "userImg": "http://localhost:3000/medias/profiles/6.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 6",
-                "userImg": "http://localhost:3000/images/profiles/6.png",
+                "userImg": "http://localhost:3000/medias/profiles/6.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 6",
-                "userImg": "http://localhost:3000/images/profiles/6.png",
+                "userImg": "http://localhost:3000/medias/profiles/6.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 6",
-                "userImg": "http://localhost:3000/images/profiles/6.png",
+                "userImg": "http://localhost:3000/medias/profiles/6.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             }
         ],
-        "imageUrl": "http://localhost:3000/images/test/1988 02 0602.png",
+        "imageUrl": "http://localhost:3000/medias/test/1988 02 0602.png",
         "tags": [],
         "id": 2,
-        "imageMakerUrl": "http://localhost:3000/images/profiles/2.png",
+        "imageMakerUrl": "http://localhost:3000/medias/profiles/2.png",
         "makerName": "user 2",
         "date": "00/00/0000 à 00h00"
     },
@@ -244,19 +244,19 @@
         "comments": [
             {
                 "userName": "user 2",
-                "userImg": "http://localhost:3000/images/profiles/2.png",
+                "userImg": "http://localhost:3000/medias/profiles/2.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": [
                     {
                         "userName": "user 7",
-                        "userImg": "http://localhost:3000/images/profiles/7.png",
+                        "userImg": "http://localhost:3000/medias/profiles/7.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                         "replies": [
                             {
                                 "userName": "user 2",
-                                "userImg": "http://localhost:3000/images/profiles/2.png",
+                                "userImg": "http://localhost:3000/medias/profiles/2.png",
                                 "date": "00/00/0000 à 00h00",
                                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif."
                             }
@@ -266,26 +266,26 @@
             },
             {
                 "userName": "user 3",
-                "userImg": "http://localhost:3000/images/profiles/3.png",
+                "userImg": "http://localhost:3000/medias/profiles/3.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 4",
-                "userImg": "http://localhost:3000/images/profiles/4.jpg",
+                "userImg": "http://localhost:3000/medias/profiles/4.jpg",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": [
                     {
                         "userName": "user 7",
-                        "userImg": "http://localhost:3000/images/profiles/7.png",
+                        "userImg": "http://localhost:3000/medias/profiles/7.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif."
                     },
                     {
                         "userName": "user 8",
-                        "userImg": "http://localhost:3000/images/profiles/8.png",
+                        "userImg": "http://localhost:3000/medias/profiles/8.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                         "replies": []
@@ -294,23 +294,23 @@
             },
             {
                 "userName": "user 5",
-                "userImg": "http://localhost:3000/images/profiles/5.jpg",
+                "userImg": "http://localhost:3000/medias/profiles/5.jpg",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 6",
-                "userImg": "http://localhost:3000/images/profiles/6.png",
+                "userImg": "http://localhost:3000/medias/profiles/6.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             }
         ],
-        "imageUrl": "http://localhost:3000/images/test/12052633_1095482467129160_2915692806728300228_o.jpg",
+        "imageUrl": "http://localhost:3000/medias/test/12052633_1095482467129160_2915692806728300228_o.jpg",
         "tags": [],
         "id": 3,
-        "imageMakerUrl": "http://localhost:3000/images/profiles/3.png",
+        "imageMakerUrl": "http://localhost:3000/medias/profiles/3.png",
         "makerName": "user 3",
         "date": "00/00/0000 à 00h00"
     },
@@ -321,19 +321,19 @@
         "comments": [
             {
                 "userName": "user 2",
-                "userImg": "http://localhost:3000/images/profiles/2.png",
+                "userImg": "http://localhost:3000/medias/profiles/2.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": [
                     {
                         "userName": "user 7",
-                        "userImg": "http://localhost:3000/images/profiles/7.png",
+                        "userImg": "http://localhost:3000/medias/profiles/7.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                         "replies": [
                             {
                                 "userName": "user 2",
-                                "userImg": "http://localhost:3000/images/profiles/2.png",
+                                "userImg": "http://localhost:3000/medias/profiles/2.png",
                                 "date": "00/00/0000 à 00h00",
                                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif."
                             }
@@ -343,26 +343,26 @@
             },
             {
                 "userName": "user 3",
-                "userImg": "http://localhost:3000/images/profiles/3.png",
+                "userImg": "http://localhost:3000/medias/profiles/3.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 4",
-                "userImg": "http://localhost:3000/images/profiles/4.jpg",
+                "userImg": "http://localhost:3000/medias/profiles/4.jpg",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": [
                     {
                         "userName": "user 7",
-                        "userImg": "http://localhost:3000/images/profiles/7.png",
+                        "userImg": "http://localhost:3000/medias/profiles/7.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif."
                     },
                     {
                         "userName": "user 8",
-                        "userImg": "http://localhost:3000/images/profiles/8.png",
+                        "userImg": "http://localhost:3000/medias/profiles/8.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                         "replies": []
@@ -371,14 +371,14 @@
             },
             {
                 "userName": "user 5",
-                "userImg": "http://localhost:3000/images/profiles/5.jpg",
+                "userImg": "http://localhost:3000/medias/profiles/5.jpg",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 6",
-                "userImg": "http://localhost:3000/images/profiles/6.png",
+                "userImg": "http://localhost:3000/medias/profiles/6.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
@@ -387,7 +387,7 @@
         "imageUrl": "",
         "tags": [],
         "id": 4,
-        "imageMakerUrl": "http://localhost:3000/images/profiles/4.jpg",
+        "imageMakerUrl": "http://localhost:3000/medias/profiles/4.jpg",
         "makerName": "user 4",
         "date": "00/00/0000 à 00h00"
     },
@@ -398,19 +398,19 @@
         "comments": [
             {
                 "userName": "user 2",
-                "userImg": "http://localhost:3000/images/profiles/2.png",
+                "userImg": "http://localhost:3000/medias/profiles/2.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": [
                     {
                         "userName": "user 7",
-                        "userImg": "http://localhost:3000/images/profiles/7.png",
+                        "userImg": "http://localhost:3000/medias/profiles/7.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                         "replies": [
                             {
                                 "userName": "user 2",
-                                "userImg": "http://localhost:3000/images/profiles/2.png",
+                                "userImg": "http://localhost:3000/medias/profiles/2.png",
                                 "date": "00/00/0000 à 00h00",
                                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif."
                             }
@@ -420,26 +420,26 @@
             },
             {
                 "userName": "user 3",
-                "userImg": "http://localhost:3000/images/profiles/3.png",
+                "userImg": "http://localhost:3000/medias/profiles/3.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 4",
-                "userImg": "http://localhost:3000/images/profiles/4.jpg",
+                "userImg": "http://localhost:3000/medias/profiles/4.jpg",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": [
                     {
                         "userName": "user 7",
-                        "userImg": "http://localhost:3000/images/profiles/7.png",
+                        "userImg": "http://localhost:3000/medias/profiles/7.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif."
                     },
                     {
                         "userName": "user 8",
-                        "userImg": "http://localhost:3000/images/profiles/8.png",
+                        "userImg": "http://localhost:3000/medias/profiles/8.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                         "replies": []
@@ -448,14 +448,14 @@
             },
             {
                 "userName": "user 5",
-                "userImg": "http://localhost:3000/images/profiles/5.jpg",
+                "userImg": "http://localhost:3000/medias/profiles/5.jpg",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 6",
-                "userImg": "http://localhost:3000/images/profiles/6.png",
+                "userImg": "http://localhost:3000/medias/profiles/6.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
@@ -464,7 +464,7 @@
         "imageUrl": "",
         "tags": [],
         "id": 5,
-        "imageMakerUrl": "http://localhost:3000/images/profiles/5.jpg",
+        "imageMakerUrl": "http://localhost:3000/medias/profiles/5.jpg",
         "makerName": "user 5",
         "date": "00/00/0000 à 00h00"
     },
@@ -475,19 +475,19 @@
         "comments": [
             {
                 "userName": "user 2",
-                "userImg": "http://localhost:3000/images/profiles/2.png",
+                "userImg": "http://localhost:3000/medias/profiles/2.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": [
                     {
                         "userName": "user 7",
-                        "userImg": "http://localhost:3000/images/profiles/7.png",
+                        "userImg": "http://localhost:3000/medias/profiles/7.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                         "replies": [
                             {
                                 "userName": "user 2",
-                                "userImg": "http://localhost:3000/images/profiles/2.png",
+                                "userImg": "http://localhost:3000/medias/profiles/2.png",
                                 "date": "00/00/0000 à 00h00",
                                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif."
                             }
@@ -497,26 +497,26 @@
             },
             {
                 "userName": "user 3",
-                "userImg": "http://localhost:3000/images/profiles/3.png",
+                "userImg": "http://localhost:3000/medias/profiles/3.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 4",
-                "userImg": "http://localhost:3000/images/profiles/4.jpg",
+                "userImg": "http://localhost:3000/medias/profiles/4.jpg",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": [
                     {
                         "userName": "user 7",
-                        "userImg": "http://localhost:3000/images/profiles/7.png",
+                        "userImg": "http://localhost:3000/medias/profiles/7.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif."
                     },
                     {
                         "userName": "user 8",
-                        "userImg": "http://localhost:3000/images/profiles/8.png",
+                        "userImg": "http://localhost:3000/medias/profiles/8.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                         "replies": []
@@ -525,14 +525,14 @@
             },
             {
                 "userName": "user 5",
-                "userImg": "http://localhost:3000/images/profiles/5.jpg",
+                "userImg": "http://localhost:3000/medias/profiles/5.jpg",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 6",
-                "userImg": "http://localhost:3000/images/profiles/6.png",
+                "userImg": "http://localhost:3000/medias/profiles/6.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
@@ -541,7 +541,7 @@
         "imageUrl": "",
         "tags": [],
         "id": 6,
-        "imageMakerUrl": "http://localhost:3000/images/profiles/6.png",
+        "imageMakerUrl": "http://localhost:3000/medias/profiles/6.png",
         "makerName": "user 6",
         "date": "00/00/0000 à 00h00"
     },
@@ -552,19 +552,19 @@
         "comments": [
             {
                 "userName": "user 2",
-                "userImg": "http://localhost:3000/images/profiles/2.png",
+                "userImg": "http://localhost:3000/medias/profiles/2.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": [
                     {
                         "userName": "user 7",
-                        "userImg": "http://localhost:3000/images/profiles/7.png",
+                        "userImg": "http://localhost:3000/medias/profiles/7.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                         "replies": [
                             {
                                 "userName": "user 2",
-                                "userImg": "http://localhost:3000/images/profiles/2.png",
+                                "userImg": "http://localhost:3000/medias/profiles/2.png",
                                 "date": "00/00/0000 à 00h00",
                                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif."
                             }
@@ -574,26 +574,26 @@
             },
             {
                 "userName": "user 3",
-                "userImg": "http://localhost:3000/images/profiles/3.png",
+                "userImg": "http://localhost:3000/medias/profiles/3.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 4",
-                "userImg": "http://localhost:3000/images/profiles/4.jpg",
+                "userImg": "http://localhost:3000/medias/profiles/4.jpg",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": [
                     {
                         "userName": "user 7",
-                        "userImg": "http://localhost:3000/images/profiles/7.png",
+                        "userImg": "http://localhost:3000/medias/profiles/7.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif."
                     },
                     {
                         "userName": "user 8",
-                        "userImg": "http://localhost:3000/images/profiles/8.png",
+                        "userImg": "http://localhost:3000/medias/profiles/8.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                         "replies": []
@@ -602,23 +602,23 @@
             },
             {
                 "userName": "user 5",
-                "userImg": "http://localhost:3000/images/profiles/5.jpg",
+                "userImg": "http://localhost:3000/medias/profiles/5.jpg",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 6",
-                "userImg": "http://localhost:3000/images/profiles/6.png",
+                "userImg": "http://localhost:3000/medias/profiles/6.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             }
         ],
-        "imageUrl": "http://localhost:3000/images/test/1983188727_1.jpg",
+        "imageUrl": "http://localhost:3000/medias/test/1983188727_1.jpg",
         "tags": [],
         "id": 7,
-        "imageMakerUrl": "http://localhost:3000/images/profiles/7.png",
+        "imageMakerUrl": "http://localhost:3000/medias/profiles/7.png",
         "makerName": "user 7",
         "date": "00/00/0000 à 00h00"
     },
@@ -629,19 +629,19 @@
         "comments": [
             {
                 "userName": "user 2",
-                "userImg": "http://localhost:3000/images/profiles/2.png",
+                "userImg": "http://localhost:3000/medias/profiles/2.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": [
                     {
                         "userName": "user 7",
-                        "userImg": "http://localhost:3000/images/profiles/7.png",
+                        "userImg": "http://localhost:3000/medias/profiles/7.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                         "replies": [
                             {
                                 "userName": "user 2",
-                                "userImg": "http://localhost:3000/images/profiles/2.png",
+                                "userImg": "http://localhost:3000/medias/profiles/2.png",
                                 "date": "00/00/0000 à 00h00",
                                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif."
                             }
@@ -651,26 +651,26 @@
             },
             {
                 "userName": "user 3",
-                "userImg": "http://localhost:3000/images/profiles/3.png",
+                "userImg": "http://localhost:3000/medias/profiles/3.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 4",
-                "userImg": "http://localhost:3000/images/profiles/4.jpg",
+                "userImg": "http://localhost:3000/medias/profiles/4.jpg",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": [
                     {
                         "userName": "user 7",
-                        "userImg": "http://localhost:3000/images/profiles/7.png",
+                        "userImg": "http://localhost:3000/medias/profiles/7.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif."
                     },
                     {
                         "userName": "user 8",
-                        "userImg": "http://localhost:3000/images/profiles/8.png",
+                        "userImg": "http://localhost:3000/medias/profiles/8.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                         "replies": []
@@ -679,14 +679,14 @@
             },
             {
                 "userName": "user 5",
-                "userImg": "http://localhost:3000/images/profiles/5.jpg",
+                "userImg": "http://localhost:3000/medias/profiles/5.jpg",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 6",
-                "userImg": "http://localhost:3000/images/profiles/6.png",
+                "userImg": "http://localhost:3000/medias/profiles/6.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
@@ -695,7 +695,7 @@
         "imageUrl": "",
         "tags": [],
         "id": 8,
-        "imageMakerUrl": "http://localhost:3000/images/profiles/8.png",
+        "imageMakerUrl": "http://localhost:3000/medias/profiles/8.png",
         "makerName": "user 8",
         "date": "00/00/0000 à 00h00"
     },
@@ -706,19 +706,19 @@
         "comments": [
             {
                 "userName": "user 2",
-                "userImg": "http://localhost:3000/images/profiles/2.png",
+                "userImg": "http://localhost:3000/medias/profiles/2.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": [
                     {
                         "userName": "user 7",
-                        "userImg": "http://localhost:3000/images/profiles/7.png",
+                        "userImg": "http://localhost:3000/medias/profiles/7.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                         "replies": [
                             {
                                 "userName": "user 2",
-                                "userImg": "http://localhost:3000/images/profiles/2.png",
+                                "userImg": "http://localhost:3000/medias/profiles/2.png",
                                 "date": "00/00/0000 à 00h00",
                                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif."
                             }
@@ -728,26 +728,26 @@
             },
             {
                 "userName": "user 3",
-                "userImg": "http://localhost:3000/images/profiles/3.png",
+                "userImg": "http://localhost:3000/medias/profiles/3.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 4",
-                "userImg": "http://localhost:3000/images/profiles/4.jpg",
+                "userImg": "http://localhost:3000/medias/profiles/4.jpg",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": [
                     {
                         "userName": "user 7",
-                        "userImg": "http://localhost:3000/images/profiles/7.png",
+                        "userImg": "http://localhost:3000/medias/profiles/7.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif."
                     },
                     {
                         "userName": "user 8",
-                        "userImg": "http://localhost:3000/images/profiles/8.png",
+                        "userImg": "http://localhost:3000/medias/profiles/8.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                         "replies": []
@@ -756,14 +756,14 @@
             },
             {
                 "userName": "user 5",
-                "userImg": "http://localhost:3000/images/profiles/5.jpg",
+                "userImg": "http://localhost:3000/medias/profiles/5.jpg",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 6",
-                "userImg": "http://localhost:3000/images/profiles/6.png",
+                "userImg": "http://localhost:3000/medias/profiles/6.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
@@ -772,7 +772,7 @@
         "imageUrl": "",
         "tags": [],
         "id": 9,
-        "imageMakerUrl": "http://localhost:3000/images/profiles/1.jpg",
+        "imageMakerUrl": "http://localhost:3000/medias/profiles/1.jpg",
         "makerName": "user 9",
         "date": "00/00/0000 à 00h00"
     },
@@ -783,19 +783,19 @@
         "comments": [
             {
                 "userName": "user 2",
-                "userImg": "http://localhost:3000/images/profiles/2.png",
+                "userImg": "http://localhost:3000/medias/profiles/2.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": [
                     {
                         "userName": "user 7",
-                        "userImg": "http://localhost:3000/images/profiles/7.png",
+                        "userImg": "http://localhost:3000/medias/profiles/7.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                         "replies": [
                             {
                                 "userName": "user 2",
-                                "userImg": "http://localhost:3000/images/profiles/2.png",
+                                "userImg": "http://localhost:3000/medias/profiles/2.png",
                                 "date": "00/00/0000 à 00h00",
                                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif."
                             }
@@ -805,26 +805,26 @@
             },
             {
                 "userName": "user 3",
-                "userImg": "http://localhost:3000/images/profiles/3.png",
+                "userImg": "http://localhost:3000/medias/profiles/3.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 4",
-                "userImg": "http://localhost:3000/images/profiles/4.jpg",
+                "userImg": "http://localhost:3000/medias/profiles/4.jpg",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": [
                     {
                         "userName": "user 7",
-                        "userImg": "http://localhost:3000/images/profiles/7.png",
+                        "userImg": "http://localhost:3000/medias/profiles/7.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif."
                     },
                     {
                         "userName": "user 8",
-                        "userImg": "http://localhost:3000/images/profiles/8.png",
+                        "userImg": "http://localhost:3000/medias/profiles/8.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                         "replies": []
@@ -833,14 +833,14 @@
             },
             {
                 "userName": "user 5",
-                "userImg": "http://localhost:3000/images/profiles/5.jpg",
+                "userImg": "http://localhost:3000/medias/profiles/5.jpg",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 6",
-                "userImg": "http://localhost:3000/images/profiles/6.png",
+                "userImg": "http://localhost:3000/medias/profiles/6.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
@@ -849,7 +849,7 @@
         "imageUrl": "",
         "tags": [],
         "id": 10,
-        "imageMakerUrl": "http://localhost:3000/images/profiles/2.png",
+        "imageMakerUrl": "http://localhost:3000/medias/profiles/2.png",
         "makerName": "user 10",
         "date": "00/00/0000 à 00h00"
     },
@@ -860,19 +860,19 @@
         "comments": [
             {
                 "userName": "user 2",
-                "userImg": "http://localhost:3000/images/profiles/2.png",
+                "userImg": "http://localhost:3000/medias/profiles/2.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": [
                     {
                         "userName": "user 7",
-                        "userImg": "http://localhost:3000/images/profiles/7.png",
+                        "userImg": "http://localhost:3000/medias/profiles/7.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                         "replies": [
                             {
                                 "userName": "user 2",
-                                "userImg": "http://localhost:3000/images/profiles/2.png",
+                                "userImg": "http://localhost:3000/medias/profiles/2.png",
                                 "date": "00/00/0000 à 00h00",
                                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif."
                             }
@@ -882,26 +882,26 @@
             },
             {
                 "userName": "user 3",
-                "userImg": "http://localhost:3000/images/profiles/3.png",
+                "userImg": "http://localhost:3000/medias/profiles/3.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 4",
-                "userImg": "http://localhost:3000/images/profiles/4.jpg",
+                "userImg": "http://localhost:3000/medias/profiles/4.jpg",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": [
                     {
                         "userName": "user 7",
-                        "userImg": "http://localhost:3000/images/profiles/7.png",
+                        "userImg": "http://localhost:3000/medias/profiles/7.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif."
                     },
                     {
                         "userName": "user 8",
-                        "userImg": "http://localhost:3000/images/profiles/8.png",
+                        "userImg": "http://localhost:3000/medias/profiles/8.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                         "replies": []
@@ -910,14 +910,14 @@
             },
             {
                 "userName": "user 5",
-                "userImg": "http://localhost:3000/images/profiles/5.jpg",
+                "userImg": "http://localhost:3000/medias/profiles/5.jpg",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 6",
-                "userImg": "http://localhost:3000/images/profiles/6.png",
+                "userImg": "http://localhost:3000/medias/profiles/6.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
@@ -926,7 +926,7 @@
         "imageUrl": "",
         "tags": [],
         "id": 11,
-        "imageMakerUrl": "http://localhost:3000/images/profiles/3.png",
+        "imageMakerUrl": "http://localhost:3000/medias/profiles/3.png",
         "makerName": "user 11",
         "date": "00/00/0000 à 00h00"
     },
@@ -937,19 +937,19 @@
         "comments": [
             {
                 "userName": "user 2",
-                "userImg": "http://localhost:3000/images/profiles/2.png",
+                "userImg": "http://localhost:3000/medias/profiles/2.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": [
                     {
                         "userName": "user 7",
-                        "userImg": "http://localhost:3000/images/profiles/7.png",
+                        "userImg": "http://localhost:3000/medias/profiles/7.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                         "replies": [
                             {
                                 "userName": "user 2",
-                                "userImg": "http://localhost:3000/images/profiles/2.png",
+                                "userImg": "http://localhost:3000/medias/profiles/2.png",
                                 "date": "00/00/0000 à 00h00",
                                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif."
                             }
@@ -959,26 +959,26 @@
             },
             {
                 "userName": "user 3",
-                "userImg": "http://localhost:3000/images/profiles/3.png",
+                "userImg": "http://localhost:3000/medias/profiles/3.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 4",
-                "userImg": "http://localhost:3000/images/profiles/4.jpg",
+                "userImg": "http://localhost:3000/medias/profiles/4.jpg",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": [
                     {
                         "userName": "user 7",
-                        "userImg": "http://localhost:3000/images/profiles/7.png",
+                        "userImg": "http://localhost:3000/medias/profiles/7.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif."
                     },
                     {
                         "userName": "user 8",
-                        "userImg": "http://localhost:3000/images/profiles/8.png",
+                        "userImg": "http://localhost:3000/medias/profiles/8.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                         "replies": []
@@ -987,14 +987,14 @@
             },
             {
                 "userName": "user 5",
-                "userImg": "http://localhost:3000/images/profiles/5.jpg",
+                "userImg": "http://localhost:3000/medias/profiles/5.jpg",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 6",
-                "userImg": "http://localhost:3000/images/profiles/6.png",
+                "userImg": "http://localhost:3000/medias/profiles/6.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
@@ -1003,7 +1003,7 @@
         "imageUrl": "",
         "tags": [],
         "id": 12,
-        "imageMakerUrl": "http://localhost:3000/images/profiles/4.jpg",
+        "imageMakerUrl": "http://localhost:3000/medias/profiles/4.jpg",
         "makerName": "user 12",
         "date": "00/00/0000 à 00h00"
     },
@@ -1014,19 +1014,19 @@
         "comments": [
             {
                 "userName": "user 2",
-                "userImg": "http://localhost:3000/images/profiles/2.png",
+                "userImg": "http://localhost:3000/medias/profiles/2.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": [
                     {
                         "userName": "user 7",
-                        "userImg": "http://localhost:3000/images/profiles/7.png",
+                        "userImg": "http://localhost:3000/medias/profiles/7.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                         "replies": [
                             {
                                 "userName": "user 2",
-                                "userImg": "http://localhost:3000/images/profiles/2.png",
+                                "userImg": "http://localhost:3000/medias/profiles/2.png",
                                 "date": "00/00/0000 à 00h00",
                                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif."
                             }
@@ -1036,26 +1036,26 @@
             },
             {
                 "userName": "user 3",
-                "userImg": "http://localhost:3000/images/profiles/3.png",
+                "userImg": "http://localhost:3000/medias/profiles/3.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 4",
-                "userImg": "http://localhost:3000/images/profiles/4.jpg",
+                "userImg": "http://localhost:3000/medias/profiles/4.jpg",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": [
                     {
                         "userName": "user 7",
-                        "userImg": "http://localhost:3000/images/profiles/7.png",
+                        "userImg": "http://localhost:3000/medias/profiles/7.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif."
                     },
                     {
                         "userName": "user 8",
-                        "userImg": "http://localhost:3000/images/profiles/8.png",
+                        "userImg": "http://localhost:3000/medias/profiles/8.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                         "replies": []
@@ -1064,14 +1064,14 @@
             },
             {
                 "userName": "user 5",
-                "userImg": "http://localhost:3000/images/profiles/5.jpg",
+                "userImg": "http://localhost:3000/medias/profiles/5.jpg",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 6",
-                "userImg": "http://localhost:3000/images/profiles/6.png",
+                "userImg": "http://localhost:3000/medias/profiles/6.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
@@ -1080,7 +1080,7 @@
         "imageUrl": "",
         "tags": [],
         "id": 13,
-        "imageMakerUrl": "http://localhost:3000/images/profiles/5.jpg",
+        "imageMakerUrl": "http://localhost:3000/medias/profiles/5.jpg",
         "makerName": "user 13",
         "date": "00/00/0000 à 00h00"
     },
@@ -1091,19 +1091,19 @@
         "comments": [
             {
                 "userName": "user 2",
-                "userImg": "http://localhost:3000/images/profiles/2.png",
+                "userImg": "http://localhost:3000/medias/profiles/2.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": [
                     {
                         "userName": "user 7",
-                        "userImg": "http://localhost:3000/images/profiles/7.png",
+                        "userImg": "http://localhost:3000/medias/profiles/7.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                         "replies": [
                             {
                                 "userName": "user 2",
-                                "userImg": "http://localhost:3000/images/profiles/2.png",
+                                "userImg": "http://localhost:3000/medias/profiles/2.png",
                                 "date": "00/00/0000 à 00h00",
                                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif."
                             }
@@ -1113,26 +1113,26 @@
             },
             {
                 "userName": "user 3",
-                "userImg": "http://localhost:3000/images/profiles/3.png",
+                "userImg": "http://localhost:3000/medias/profiles/3.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 4",
-                "userImg": "http://localhost:3000/images/profiles/4.jpg",
+                "userImg": "http://localhost:3000/medias/profiles/4.jpg",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": [
                     {
                         "userName": "user 7",
-                        "userImg": "http://localhost:3000/images/profiles/7.png",
+                        "userImg": "http://localhost:3000/medias/profiles/7.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif."
                     },
                     {
                         "userName": "user 8",
-                        "userImg": "http://localhost:3000/images/profiles/8.png",
+                        "userImg": "http://localhost:3000/medias/profiles/8.png",
                         "date": "00/00/0000 à 00h00",
                         "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                         "replies": []
@@ -1141,14 +1141,14 @@
             },
             {
                 "userName": "user 5",
-                "userImg": "http://localhost:3000/images/profiles/5.jpg",
+                "userImg": "http://localhost:3000/medias/profiles/5.jpg",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
             },
             {
                 "userName": "user 6",
-                "userImg": "http://localhost:3000/images/profiles/6.png",
+                "userImg": "http://localhost:3000/medias/profiles/6.png",
                 "date": "00/00/0000 à 00h00",
                 "comment": "uhdizle gfizeugfi lziufgz iefgl figli fiuglfeiug zliefuglzeiufg lefiug lif.",
                 "replies": []
@@ -1157,7 +1157,7 @@
         "imageUrl": "",
         "tags": [],
         "id": 14,
-        "imageMakerUrl": "http://localhost:3000/images/profiles/7.png",
+        "imageMakerUrl": "http://localhost:3000/medias/profiles/7.png",
         "makerName": "user 14",
         "date": "00/00/0000 à 00h00"
     }

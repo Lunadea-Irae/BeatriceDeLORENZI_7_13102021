@@ -14,6 +14,10 @@ module.exports = {
         allowNull:false,
         unique : true
       },
+      showEmail: {
+        type: Sequelize.BOOLEAN,
+        allowNull:false
+      },
       username: {
         type: Sequelize.STRING,
         allowNull:false,

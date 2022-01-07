@@ -5,7 +5,7 @@
         "content": [
             "Je vous annonce la naissance de ma petite fille ^^ elle et la maman se portent très bien."
         ],
-        "media": "http://localhost:3000/images/test/1988 02 0602.png",
+        "media": "http://localhost:3000/medias/kourou1mp41641473076237.mp4",
         "mediaSize": "vertical",
         "hashtag": [
             "bébé",
@@ -19,7 +19,7 @@
         "maker": {
             "nickname": "BobbyPointu",
             "userID": 1,
-            "avatar": "http://localhost:3000/images/profiles/2.png",
+            "avatar": "http://localhost:3000/medias/profiles/2.png",
             "email": ""
         },
         "comment": [
@@ -27,7 +27,7 @@
                 "user": {
                     "nickname": "Vaness",
                     "userID": 2,
-                    "avatar": "http://localhost:3000/images/profiles/3.png",
+                    "avatar": "http://localhost:3000/medias/profiles/3.png",
                     "email": "vaness-a@groupomania.com"
                 },
                 "date": "00/00/0000 à 00h00",
@@ -39,7 +39,7 @@
                         "user": {
                             "nickname": "BobbyPointu",
                             "userID": 2,
-                            "avatar": "http://localhost:3000/images/profiles/2.png",
+                            "avatar": "http://localhost:3000/medias/profiles/2.png",
                             "email": ""
                         },
                         "date": "00/00/0000 à 00h00",
@@ -70,7 +70,7 @@
         "maker": {
             "nickname": "Vaness",
             "userID": 2,
-            "avatar": "http://localhost:3000/images/profiles/3.png",
+            "avatar": "http://localhost:3000/medias/profiles/3.png",
             "email": "vaness-a@groupomania.com"
         },
         "comment": []
@@ -90,7 +90,7 @@
         "maker": {
             "nickname": "Vaness",
             "userID": 2,
-            "avatar": "http://localhost:3000/images/profiles/3.png",
+            "avatar": "http://localhost:3000/medias/profiles/3.png",
             "email": "vaness-a@groupomania.com"
         },
         "comment": []
@@ -101,7 +101,7 @@
         "content": [
             "Le cadeau d'anniversaire pour mon fils... Qu'il n'aille pas me dire qu'il est pas gaté !"
         ],
-        "media": "http://localhost:3000/images/test/1983188727_1.jpg",
+        "media": "http://localhost:3000/medias/test/1983188727_1.jpg",
         "mediaSize": "horizontal",
         "hashtag": [
             "cheval",
@@ -115,7 +115,7 @@
         "maker": {
             "nickname": "Vaness",
             "userID": 2,
-            "avatar": "http://localhost:3000/images/profiles/3.png",
+            "avatar": "http://localhost:3000/medias/profiles/3.png",
             "email": "vaness-a@groupomania.com"
         },
         "comment": []
@@ -140,7 +140,7 @@
         "maker": {
             "nickname": "Vaness",
             "userID": 2,
-            "avatar": "http://localhost:3000/images/profiles/3.png",
+            "avatar": "http://localhost:3000/medias/profiles/3.png",
             "email": "vaness-a@groupomania.com"
         },
         "comment": []
@@ -152,7 +152,7 @@
             "Comme c'est un réseau social, il FAUT obligatoirement partager des photos de chats. C'est un classique, une obligation \n \n Sinon comment on ferait ? Hein ? ",
             "Je vous le demande."
         ],
-        "media": "http://localhost:3000/images/test/12052633_1095482467129160_2915692806728300228_o.jpg",
+        "media": "http://localhost:3000/medias/test/12052633_1095482467129160_2915692806728300228_o.jpg",
         "mediaSize": "vertical",
         "hashtag": [
             "Chat",
@@ -167,7 +167,7 @@
         "maker": {
             "nickname": "BobbyPointu",
             "userID": 1,
-            "avatar": "http://localhost:3000/images/profiles/2.png",
+            "avatar": "http://localhost:3000/medias/profiles/2.png",
             "email": ""
         },
         "comment": []
@@ -180,7 +180,7 @@
             "",
             "Bonne année."
         ],
-        "media": "http://localhost:3000/images/test/fleur-de-pecher-hanoi-vietnam-tet-800x500.jpg",
+        "media": "http://localhost:3000/medias/test/fleur-de-pecher-hanoi-vietnam-tet-800x500.jpg",
         "mediaSize": "horizontal",
         "hashtag": [
             "année",
@@ -195,7 +195,7 @@
         "maker": {
             "nickname": "Vaness",
             "userID": 2,
-            "avatar": "http://localhost:3000/images/profiles/3.png",
+            "avatar": "http://localhost:3000/medias/profiles/3.png",
             "email": "vaness-a@groupomania.com"
         },
         "comment": []
@@ -238,7 +238,7 @@
         "maker": {
             "nickname": "Vaness",
             "userID": 2,
-            "avatar": "http://localhost:3000/images/profiles/3.png",
+            "avatar": "http://localhost:3000/medias/profiles/3.png",
             "email": "vaness-a@groupomania.com"
         },
         "comment": []
@@ -258,7 +258,7 @@
         "maker": {
             "nickname": "Vaness",
             "userID": 2,
-            "avatar": "http://localhost:3000/images/profiles/3.png",
+            "avatar": "http://localhost:3000/medias/profiles/3.png",
             "email": "vaness-a@groupomania.com"
         },
         "comment": []
@@ -278,7 +278,7 @@
         "maker": {
             "nickname": "Vaness",
             "userID": 2,
-            "avatar": "http://localhost:3000/images/profiles/3.png",
+            "avatar": "http://localhost:3000/medias/profiles/3.png",
             "email": "vaness-a@groupomania.com"
         },
         "comment": []
@@ -298,7 +298,7 @@
         "maker": {
             "nickname": "Vaness",
             "userID": 2,
-            "avatar": "http://localhost:3000/images/profiles/3.png",
+            "avatar": "http://localhost:3000/medias/profiles/3.png",
             "email": "vaness-a@groupomania.com"
         },
         "comment": []
@@ -324,7 +324,7 @@
         "maker": {
             "nickname": "Vaness",
             "userID": 2,
-            "avatar": "http://localhost:3000/images/profiles/3.png",
+            "avatar": "http://localhost:3000/medias/profiles/3.png",
             "email": "vaness-a@groupomania.com"
         },
         "comment": []
@@ -344,7 +344,7 @@
         "maker": {
             "nickname": "Vaness",
             "userID": 2,
-            "avatar": "http://localhost:3000/images/profiles/3.png",
+            "avatar": "http://localhost:3000/medias/profiles/3.png",
             "email": "vaness-a@groupomania.com"
         },
         "comment": []
@@ -364,7 +364,7 @@
         "maker": {
             "nickname": "Vaness",
             "userID": 2,
-            "avatar": "http://localhost:3000/images/profiles/3.png",
+            "avatar": "http://localhost:3000/medias/profiles/3.png",
             "email": "vaness-a@groupomania.com"
         },
         "comment": []
@@ -400,7 +400,7 @@
         "maker": {
             "nickname": "Vaness",
             "userID": 2,
-            "avatar": "http://localhost:3000/images/profiles/3.png",
+            "avatar": "http://localhost:3000/medias/profiles/3.png",
             "email": "vaness-a@groupomania.com"
         },
         "comment": []

@@ -79,10 +79,66 @@ exports.login = (req, res, next) => {
         .catch(error => res.status(500).json({ error: error.message + " ligne 86" }));
 };
 
+//   GET ONE USER
 exports.getOne = (req, res, next) => {
-    user = usersTest.filter(data => data.userId === Number(req.params.id));
-    res.status(200).json(user);
+    models.User.findOne({
+        where: { id: req.params.id },
+        include: { model: models.UserMessages, include: models.Message }
+    })
+        .then((user) => {
+            user.password = undefined;
+            !user.showEmail ? user.email = undefined : "";
+            res.status(200).json(user);
+        })
+        .catch(error => res.status(400).json({ error: error.message }))
 };
+
+exports.refreshToken = (req, res, next) => {
+
+};
+
+//     EDIT USER
+exports.editOne = (req, res, next) => {
+    if (req.file) {
+        models.User.findByPk(req.params.id)
+            //Topic.findById(req.params.id)
+            .then(user => {
+                const filename = user.avatar.split('/avatars/')[1];
+                fs.unlink(`avatars/${filename}`, () => { console.log("Avatar supprimé") });
+            });
+    }
+    let user = { ...req.body };
+    if (req.file) {
+        avatar = `${req.protocol}://${req.get('host')}/avatars/${req.file.filename}`;
+    } else {
+        models.User.update(user, { where: { id: user.id } })
+            .then(res.status(201).json({ message: 'Utilisateur modifié avec succés !' }))
+            .catch((error) => { res.status(400).json({ error: error.message }) })
+    }
+
+};
+
+//    DELETE USER
+exports.deleteOne = (req, res, next) => {
+    models.User.findByPk(req.params.id)
+        .then(user => {
+            const filename = user.avatar.split('/medias/')[1];
+            fs.unlink(`medias/${filename}`, () => {
+                models.User.destroy({ where: { id: req.params.id } })
+                    .then(() => res.status(200).json({ message: 'Topic supprimée !' }))
+                    .catch(error => res.status(400).json({ error }));
+            });
+        })
+        .catch(error => res.status(500).json({ error }));
+}
+
+//   GET ALL USERS
+exports.getAllUsers = (req, res, next) => {
+    models.User.findAll({ attributes: ['id', 'username', 'service', 'avatar'] })
+        .then(userDatas => res.status(200).json(userDatas))
+        .catch(error => res.status(400).json({ error: error.message }))
+}
+
 
 
 
