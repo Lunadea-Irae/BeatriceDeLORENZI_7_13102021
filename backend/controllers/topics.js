@@ -30,33 +30,38 @@ exports.createTopic = (req, res, next) => {
         topic.media = `${req.protocol}://${req.get('host')}/medias/${req.file.filename}`;
         getMediaDimensions(`${req.protocol}://${req.get('host')}/medias/${req.file.filename}`, req.file.mimetype.split('/')[0])
             .then(dimensions => {
-
                 topic.mediaHeight = dimensions.height;
                 topic.mediaWidth = dimensions.width;
-//    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-//    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-//    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-//    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-//    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                models.UserMessages.create({ userId: 2, message: topic }, {
-                    include: [models.Message]
+                //    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                //    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                //    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                //    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                //    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                models.UserMessages.create({ userId: 2, messageId: topic }, {
+                    include: models.User
                 })
                     .then(res.status(201).json({ message: 'Topic enregistrée avec succés !' }))
-                    .catch((error) => { res.status(400).json({ error: error.message }) })
+                    .catch(error => { res.status(400).json({ error: error.message }) })
             })
             .catch(e => { console.error(e); });
     } else {
-        console.log('else');
-        models.UserMessages.create({ 'userId': 2, 'message': topic }, {
+        models.Message.create(topic)
             //    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-//    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-//    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-//    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-//    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-            include: models.Message 
-        })
-            .then(r=>res.status(201).json({ message: 'Topic enregistrée avec succés !' }))
-            .catch((error) => { res.status(400).json({ error: error.message }) })
+            //    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+            //    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+            //    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+            //    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+
+            .then((r) => {
+                r.setUser(2, { save: false });
+                console.log(r.dataValues.id);
+                models.UserMessages.create({ userId: 2, messageId: r.dataValues.id })
+                    .then(rep =>
+                        res.status(201).json({ message: 'Topic enregistrée avec succés !' })
+                            .catch(error => { res.status(400).json({ error: error.message }) }))
+            })
+            .catch(error => { res.status(400).json({ error: error.message }) })
     }
 
 }

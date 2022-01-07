@@ -23,6 +23,13 @@ module.exports = {
       messageId: 3,
       createdAt: new Date(),
       updatedAt: new Date()
+    },
+    {
+      id: 4,
+      userId: 3,
+      messageId: 4,
+      createdAt: new Date(),
+      updatedAt: new Date()
     }
   ], {}),
 
