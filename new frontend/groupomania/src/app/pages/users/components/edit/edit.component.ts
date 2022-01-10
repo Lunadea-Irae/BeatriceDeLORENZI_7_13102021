@@ -32,9 +32,7 @@ export class EditComponent implements OnInit {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     if (this.form.nativeElement[0].id === 'suppr-user' && this.form.nativeElement[0].checked) {
       this.HttpService.deleteUser(id).subscribe(data => console.log(data));
-    } else if (this.form.nativeElement[1].id === 'suppr-user-data' && this.form.nativeElement[1].checked) {
-      console.log('supp-data')
-    } {
+    } else {
       const newPostData: FormData = new FormData();
 
       for (let element of this.form.nativeElement) {

@@ -1,6 +1,7 @@
 import { Component, ElementRef, HostListener, Input, OnInit, QueryList, ViewChild } from '@angular/core';
 import { map, Subscription } from 'rxjs';
 import { Topic } from 'src/app/interfaces/topic';
+import { environment } from 'src/environments/environment';
 import { HttpService } from '../../services/http.service';
 
 @Component({
@@ -126,7 +127,8 @@ export class HomeComponent implements OnInit {
             if (element.media && element.media.slice(-3) === 'mp4') {
               element.type = 'video';
             };
-            element.content = element.content.split('&#x0A;')
+            element.content = element.content.split('&#x0A;');
+            element.UserMessage.User.avatar ? '' : element.UserMessage.User.avatar = environment.images+"/avatars/no-avatar.png";
           });
           this.isLoaded = true;
         })

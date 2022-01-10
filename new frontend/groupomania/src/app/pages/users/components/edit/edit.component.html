@@ -35,9 +35,9 @@
         <ng-template #connexion>
             <h3>Informations de connexion</h3>
             <p><label for="email">email* : </label><input id="email" type="email" value="{{user?.email}}" required></p>
-            <p><label for="">Mot de passe actuel : </label><input id="" type="password"> </p>
-            <p><label for="">Nouveau mot de passe : </label><input id="" type="password"> </p>
-            <p><label for="">Nouveau mot de passe : </label><input id="" type="password"> </p>
+            <p><label for="password">Mot de passe actuel : </label><input id="password" type="password"> </p>
+            <p><label for="newPassword1">Nouveau mot de passe : </label><input id="newPassword1" type="password"> </p>
+            <p><label for="newPassword2">Nouveau mot de passe : </label><input id="newPassword2" type="password"> </p>
 
         </ng-template>
         <ng-template #favourites>
@@ -53,8 +53,6 @@
         <ng-template #delete>
             <h3>Suppression</h3>
             <p><label for="suppr-user">Suppression du compte : </label><input id="suppr-user" type="checkbox"></p>
-            <p><label for="suppr-user-data">Suppression des informations du compte: </label><input id="suppr-user-data"
-                    type="checkbox"></p>
 
         </ng-template>
 

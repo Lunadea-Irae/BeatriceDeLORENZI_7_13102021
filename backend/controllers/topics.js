@@ -96,8 +96,9 @@ exports.deleteTopic = (req, res, next) => {
                 const filename = topic.media.split('/medias/')[1];
                 fs.unlink(`medias/${filename}`, () => { })
             }
+            models.Comment.destroy({where : {messageId : req.params.id}});
             models.UserMessages.destroy({where :{ messageId : req.params.id}});
-            models.Message.destroy({ where: { id: req.params.id },})
+            models.Message.destroy({ where: { id: req.params.id }, })
                 .then(() => res.status(200).json({ message: 'Topic supprimée !' }))
                 .catch(error => res.status(400).json({ error }));
         })

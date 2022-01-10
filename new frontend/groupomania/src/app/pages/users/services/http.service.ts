@@ -8,7 +8,6 @@ import { Users } from '../../../interfaces/users';
 })
 export class HttpService {
   private url= environment.apiUrl+'/users';
-//  private url = 'http://localhost:3000/api/users';
 
 
   constructor(private readonly http: HttpClient) { }

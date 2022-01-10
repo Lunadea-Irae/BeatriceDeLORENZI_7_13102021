@@ -29,6 +29,5 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Message',
     omitNull : true
   });
-  
   return Message;
 };

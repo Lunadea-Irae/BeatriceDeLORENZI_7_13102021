@@ -23,5 +23,6 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Hashtag',
   });
+  //sequelize.sync()
   return Hashtag;
 };

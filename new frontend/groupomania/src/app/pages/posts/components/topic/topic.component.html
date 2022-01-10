@@ -24,7 +24,7 @@
             <app-button [config]="iconSuppr" (whenIsClicked)="deleteTopic(topic?.id)">Supprimer</app-button>
             <app-button [config]="iconEdit" (whenIsClicked)="edition=true;">Editer</app-button>
         </div>
-        <form><label for="commentThis">Commenter</label><input type="text" placeholder="Commenter ce post"
+        <form id="postComment" #postComment><label for="commentThis">Commenter</label><input type="text" placeholder="Commenter ce post"
                 name="commentThis">
             <app-button [config]="iconSend">Envoyer</app-button>
         </form>

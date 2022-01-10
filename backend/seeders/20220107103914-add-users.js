@@ -36,7 +36,7 @@ module.exports = {
       username: 'Toto',
       password: 'test',
       level: 1,
-      avatar: 'http://localhost:3000/medias/avatars/2.jpg',
+      avatar: 'http://localhost:3000/medias/avatars/2.png',
       createdAt:new Date(),
       updatedAt:new Date()
     },{
@@ -46,7 +46,7 @@ module.exports = {
       username: 'Vaness',
       password: 'test',
       level: 1,
-      avatar: 'http://localhost:3000/medias/avatars/3.png',
+      avatar: '',
       createdAt:new Date(),
       updatedAt:new Date()
     },{
@@ -56,7 +56,7 @@ module.exports = {
       username: 'ofdsg4',
       password: 'test',
       level: 1,
-      avatar: 'http://localhost:3000/medias/avatars/4.png',
+      avatar: 'http://localhost:3000/medias/avatars/4.jpg',
       createdAt:new Date(),
       updatedAt:new Date()
     },{
@@ -76,7 +76,7 @@ module.exports = {
       username: 'Fandes6ties',
       password: 'test',
       level: 1,
-      avatar: 'http://localhost:3000/medias/avatars/6.jpg',
+      avatar: '',
       createdAt:new Date(),
       updatedAt:new Date()
     },{
@@ -85,6 +85,7 @@ module.exports = {
       showEmail: false,
       username: 'Chau7',
       password: 'test',
+      avatar: 'http://localhost:3000/medias/avatars/7.png',
       level: 1,
       createdAt:new Date(),
       updatedAt:new Date()
@@ -105,6 +106,7 @@ module.exports = {
       username: 'Invité',
       password: 'nopassword',
       brief : 'Tous les posts de ceux qui nous ont quittés sont là.',
+      avatar: 'http://localhost:3000/medias/avatars/9.png',
       level: 0,
       createdAt:new Date(),
       updatedAt:new Date()

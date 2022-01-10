@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./comment.component.scss']
 })
 export class CommentComponent implements OnInit {
-  @Input() comment: Comment |any;
+  @Input() comment: Comment | any;
 
   public showReply: boolean = false;
 
@@ -26,6 +26,14 @@ export class CommentComponent implements OnInit {
     isBtnIcon: true,
     icon: 'reply'
   }
+
+  public forms = [
+    {
+      label: "Répondre",
+      type: "textarea",
+      id: "comment"
+    },
+  ]
 
   constructor(private readonly router: Router) { }
   public goToUserPage(id: number) {

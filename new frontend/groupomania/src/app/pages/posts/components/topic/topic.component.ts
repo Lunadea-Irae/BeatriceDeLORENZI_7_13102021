@@ -3,6 +3,7 @@ import { Component, OnDestroy, OnInit, Output, ViewChild, ElementRef, ViewChildr
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, Subscription } from 'rxjs';
 import { Topic } from 'src/app/interfaces/topic';
+import { environment } from 'src/environments/environment';
 
 import { HttpService } from '../../services/http.service';
 
@@ -44,6 +45,14 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
       required: true
     }
   ];
+
+  public comment = {
+    label: "commentThis", 
+    type: "text", 
+    placeholder: "Commenter ce post",
+    name: "commentThis", 
+    id: "commentThis"
+  }
 
   public iconSuppr = {
     label: 'Supprimer',
@@ -108,8 +117,8 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
               case 'media':
                 console.log(this.topic[field.id])
                 break;
-                case 'content' :
-                  field.value= this.topic[field.id].replace(/&#x0A;/gi,'\n')
+              case 'content':
+                field.value = this.topic[field.id].replace(/&#x0A;/gi, '\n')
                 break;
               default:
                 field.value = this.topic[field.id];
@@ -118,7 +127,7 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
 
           })
           this.topic.content = this.topic.content.split('&#x0A;');
-          
+
           this.isLoaded = true;
 
         })
@@ -151,7 +160,8 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
             if (element.media && element.media.slice(-3) === 'mp4') {
               element.type = 'video';
             };
-            element.content = element.content.split('&#x0A;')
+            element.content = element.content.split('&#x0A;');
+            element.UserMessage.User.avatar ? '' : element.UserMessage.User.avatar = environment.images + "/avatars/no-avatar.png";
           });
           this.isLoaded = true;
         })

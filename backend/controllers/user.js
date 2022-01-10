@@ -101,7 +101,7 @@ exports.refreshToken = (req, res, next) => {
 
 };
 
-//   GET ONE USER
+//   GET ONE USER TO EDIT
 exports.getOneToEdit = (req, res, next) => {
     models.User.findOne({
         where: { id: req.params.id },
@@ -121,16 +121,40 @@ exports.refreshToken = (req, res, next) => {
 
 //     EDIT USER
 exports.editOne = (req, res, next) => {
-    let user = { ...req.body };
-    user.avatar === '' ? delete user.avatar : '';
-    user.birthday === '' ? delete user.birthday : '';
-    if (req.file) {
-        user.avatar = `${req.protocol}://${req.get('host')}/medias/avatars/${req.file.filename}`;
-    }
-    models.User.update(user, { where: { id: req.params.id } })
-        .then(r => res.status(201).json(r))
-        .catch((error) => { res.status(400).json({ error: error.message }) })
-};
+    if (req.body.password && req.body.password != '') {
+        console.log('il y a un pass');
+        models.User.findByPk(req.params.id, { attributes: ['email', 'password'] })
+            .then(user => {
+                bcrypt.compare(req.body.password, user.password)
+                    .then(valid => {
+                        if (!valid) {
+                            return res.status(401).json({ error: 'Mot de passe incorrect !' });
+                        }else if (req.body.newPassword1!==req.body.newPassword2){
+                            return res.status(401).json({error : 'Les deux nouveaux mots de passe de correspondent pas'})
+                        }
+                        bcrypt.hash(req.body.password, 10)
+                            .then(hash => {
+                                models.User.update({email:req.body.email,password : hash},{where : {id : req.params.id}})
+                                .then(res.status(201).json({message : 'Modifications enregistrées'}))
+                                .catch(error=>res.status(401).json({error : error.message}))
+                            })
+
+                    })
+            })
+    } else {
+        let user = { ...req.body };
+        user.password ==='' ? delete user.password : '';
+        user.avatar === '' ? delete user.avatar : '';
+        user.birthday === '' ? delete user.birthday : '';
+        if (req.file) {
+            user.avatar = `${req.protocol}://${req.get('host')}/medias/avatars/${req.file.filename}`;
+        }
+        models.User.update(user, { where: { id: req.params.id } })
+            .then(r => res.status(201).json(r))
+            .catch((error) => { res.status(400).json({ error: error.message }) })
+    };
+
+}
 
 //    DELETE USER
 exports.deleteOne = (req, res, next) => {
