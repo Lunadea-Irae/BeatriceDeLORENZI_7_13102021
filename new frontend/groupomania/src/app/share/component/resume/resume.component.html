@@ -3,10 +3,10 @@
     <div ngxMasonryItem *ngFor="let item of data" class="grid-item masonry-item"
       [class.grid-item--width2]="item.mediaSize==='horizontal'" #masonry>
       <div class="card text-dark" role="link" (click)="goToTopicPage(item.id)">
-        <div class="maker " (click)="goToUserPage(item.maker.userID);$event.stopPropagation()"><img class="avatar"
-            src="{{item.maker.avatar}}" alt="Avatar de {{item.makerName}}"><span
-            class="text-primary fw-bold">{{item.maker.nickname}}</span><span
-            class="fst-italic">{{item.createdDate}}</span></div>
+        <div *ngIf="item.UserMessage" class="maker " (click)="goToUserPage(item.UserMessage.User.id);$event.stopPropagation()"><img class="avatar"
+            src="{{item.UserMessage.User.avatar}}" alt="Avatar de {{item.UserMessage.User.username}}"><span
+            class="text-primary fw-bold">{{item.UserMessage.User.username}}</span><span
+            class="fst-italic">Posté le {{item.createdAt|date: 'dd/MM/yyyy, h:mm'}}</span></div>
         <img *ngIf="item.media && !item.type" src="{{item.media}}" class="card-img-top" alt="image de {{item.title}}">
         <video *ngIf="item.type" controls controlsList="nodownload nofullscreen">
           <source src="{{item.media}}" type="video/mp4">
@@ -17,7 +17,8 @@
           <div class="card-text" *ngIf="!item.media"><p *ngFor="let paragraph of item.content">{{paragraph}}</p></div>
           <p class="card-footer"><span class="like"
               (click)="like(item.id);$event.stopPropagation()">{{item.like}}</span><span>💬
-              {{item.comment.length}}</span>
+                <!-- ==========  {{item.comment.length}} ========== -->
+             </span>
             <mat-icon class="save">star_border</mat-icon>
           </p>
         </div>

@@ -11,7 +11,6 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER,
         allowNull : false,
-        defaultValue : 0,
         references : {
           model : 'Users',
           key : 'id'
@@ -20,7 +19,6 @@ module.exports = {
       messageId: {
         type: Sequelize.INTEGER,
         allowNull : false,
-        defaultValue : 0,
         references : {
           model : 'Messages',
           key : 'id'

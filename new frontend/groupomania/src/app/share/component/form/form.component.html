@@ -1,14 +1,9 @@
 <ng-container [ngTemplateOutlet]="config.type === 'textarea' ? textarea : input"></ng-container>
 
 <ng-template #input>
-  <p><label for="{{config.id}}">{{config.label}} : </label><input type="{{config.type}}" name="{{config.id}}" placeholder="{{config.label}}" id="{{config.id}}" required="{{config.required}}" accept="{{config.accept}}"></p>
+  <p><label for="{{config.id}}">{{config.label}} : </label><input type="{{config.type}}" name="{{config.id}}" placeholder="{{config.label}}" id="{{config.id}}" required="{{config.required}}" accept="{{config.accept}}" value="{{config.value}}" src="{{config.value}}" alt="Image du post"></p>
 </ng-template>
 
 <ng-template #textarea>
-    <p><label for="{{config.id}}">{{config.label}} : </label><textarea id="{{config.id}}" placeholder="{{config.label}}" required="{{config.required}}" rows="20" cols="320"></textarea></p>
+    <p><label for="{{config.id}}">{{config.label}} : </label><textarea id="{{config.id}}" placeholder="{{config.label}}" required="{{config.required}}" rows="20" value="{{config.value}}"></textarea></p>
 </ng-template>
-
-
-<!-- ========== <ckeditor #myEditor id="{{config.id}}" [editor]="Editor" data="" (focus)="saveArticle()"></ckeditor> ========== -->
-
-<!-- ========== End Section ========== -->

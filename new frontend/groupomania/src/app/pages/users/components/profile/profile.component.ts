@@ -5,6 +5,7 @@ import { HttpService } from '../../services/http.service';
 import { NgxMasonryOptions } from 'ngx-masonry';
 import { Users } from 'src/app/interfaces/users';
 import { Topic } from 'src/app/interfaces/topic';
+import { Service } from 'src/app/enum/service';
 
 @Component({
   selector: 'app-profile',
@@ -13,6 +14,9 @@ import { Topic } from 'src/app/interfaces/topic';
 })
 export class ProfileComponent implements OnInit, OnDestroy {
   @ViewChildren('masonry') masonry!: QueryList<any>;
+  
+  public services: any = Service;
+
   public isLoaded: boolean | undefined;
 
   public masonryOptions: NgxMasonryOptions = {
@@ -33,11 +37,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
   @Output() whenSuggestIsClicked: EventEmitter<unknown> = new EventEmitter();
   @Output() public posts: Topic | any;
   user: Users | any;
+  
 
   constructor(private readonly router: Router, private readonly HttpService: HttpService, private route: ActivatedRoute) { }
 
-  public edit(id:number){
-    console.log(id);
+  public edit(id: number) {
     this.router.navigateByUrl(`user/${id}/edit`)
   }
 
@@ -50,18 +54,25 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   }
 
-  goToUserPage(id: number) {
-    this.router.navigateByUrl(`user/${id}`)
-  }
+  
   like(id: number) {
   }
   public getOneUser() {
     this.isLoaded = false;
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.sub.add(this.HttpService.viewProfile(id)
-      .pipe(map((value: any) => {
-        this.user = value[0];
-        this.posts = this.user.stats.posts;
+      .pipe(map((value: object) => {
+        this.user = value;
+        
+        this.user.service ? this.user.service = this.services[this.user.service] :'';
+        this.user.brief ? this.user.brief = this.user.brief.split('&#x0A;'):'';
+        let messages: object[] = [];
+        this.user.UserMessages.forEach((element: any) => {
+          element.Message.content = element.Message.content.split('&#x0A;');
+          messages.push(element.Message);
+        });
+        this.posts = messages;
+        this.user.stats = { following: 0, followed: 0 };
         this.isLoaded = true;
       }
       )

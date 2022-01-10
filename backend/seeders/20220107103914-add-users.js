@@ -17,7 +17,7 @@ module.exports = {
       createdAt:new Date(),
       updatedAt:new Date()
     },
-    */
+    */ 
     {
       id: 1,
       email: 'admin@groupomania.com',
@@ -26,7 +26,7 @@ module.exports = {
       password: 'the8est4dmin',
       brief: 'Je suis la nuit, je suis... Batman',
       level: 9,
-      avatar: 'http://localhost:3000/medias/avatars/8.png',
+      avatar: 'http://localhost:3000/medias/avatars/1.png',
       createdAt:new Date(),
       updatedAt:new Date()
     },{
@@ -36,7 +36,7 @@ module.exports = {
       username: 'Toto',
       password: 'test',
       level: 1,
-      avatar: 'http://localhost:3000/medias/avatars/1.jpg',
+      avatar: 'http://localhost:3000/medias/avatars/2.jpg',
       createdAt:new Date(),
       updatedAt:new Date()
     },{
@@ -46,7 +46,7 @@ module.exports = {
       username: 'Vaness',
       password: 'test',
       level: 1,
-      avatar: 'http://localhost:3000/medias/avatars/2.png',
+      avatar: 'http://localhost:3000/medias/avatars/3.png',
       createdAt:new Date(),
       updatedAt:new Date()
     },{
@@ -56,7 +56,7 @@ module.exports = {
       username: 'ofdsg4',
       password: 'test',
       level: 1,
-      avatar: 'http://localhost:3000/medias/avatars/3.png',
+      avatar: 'http://localhost:3000/medias/avatars/4.png',
       createdAt:new Date(),
       updatedAt:new Date()
     },{
@@ -66,7 +66,7 @@ module.exports = {
       username: 'user 5',
       password: 'test',
       level: 1,
-      avatar: 'http://localhost:3000/medias/avatars/4.jpg',
+      avatar: 'http://localhost:3000/medias/avatars/5.jpg',
       createdAt:new Date(),
       updatedAt:new Date()
     },{
@@ -76,7 +76,7 @@ module.exports = {
       username: 'Fandes6ties',
       password: 'test',
       level: 1,
-      avatar: 'http://localhost:3000/medias/avatars/5.jpg',
+      avatar: 'http://localhost:3000/medias/avatars/6.jpg',
       createdAt:new Date(),
       updatedAt:new Date()
     },{
@@ -95,7 +95,17 @@ module.exports = {
       username: '888',
       password: 'test',
       level: 1,
-      avatar: 'http://localhost:3000/medias/avatars/7.png',
+      avatar: 'http://localhost:3000/medias/avatars/8.png',
+      createdAt:new Date(),
+      updatedAt:new Date()
+    },{
+      id: 9,
+      email: 'invite@nomail.com',
+      showEmail: false,
+      username: 'Invité',
+      password: 'nopassword',
+      brief : 'Tous les posts de ceux qui nous ont quittés sont là.',
+      level: 0,
       createdAt:new Date(),
       updatedAt:new Date()
     }

@@ -27,6 +27,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'UserMessages',
+    omitNull : true
   });
   return UserMessages;
 };

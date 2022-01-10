@@ -13,6 +13,8 @@ router.get('/', topicCtrl.getAllTopics);
 router.get('/:id', topicCtrl.getOneTopic);
 router.post('/', multer, topicCtrl.createTopic);
 
+router.delete('/:id',topicCtrl.deleteTopic);
+
 /*router.get('/', auth, topicCtrl.getAllTopics);
 router.get('/:id', auth, topicCtrl.getOneTopic);
 router.post('/', auth, multer, regExpValidator, topicCtrl.createTopic);

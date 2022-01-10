@@ -22,19 +22,19 @@ export class HomeComponent implements OnInit {
       label: "Titre",
       type: "text",
       id: "title",
-      required : true
+      required: true
     },
     {
       label: "Image",
       type: 'file',
       id: "media",
-      accept:".jpg, .jpeg, .png, .mp4, .mov"
+      accept: ".jpg, .jpeg, .png, .mp4, .mov"
     },
     {
       label: "Message",
       type: 'textarea',
       id: 'description',
-      required : true
+      required: true
     }
   ];
 
@@ -54,10 +54,10 @@ export class HomeComponent implements OnInit {
     label: 'Créer un nouveau post',
     isBtnIcon: false,
     icon: '',
-    style:{'padding':'16px'}
+    style: { 'padding': '16px' }
   }
 
-  
+
 
 
 
@@ -78,27 +78,29 @@ export class HomeComponent implements OnInit {
   }
 
   public submitNew() {
-    
-    const newPostData : FormData = new FormData();
+
+    const newPostData: FormData = new FormData();
 
     this.forms.forEach(field => {
-      switch (field.id){
+      switch (field.id) {
         case 'description':
-         newPostData.append('content',this.newPostForm.nativeElement.querySelector("#" + field.id).value.replace('\n','&#x0A;'));
+          newPostData.append('content', this.newPostForm.nativeElement.querySelector("#" + field.id).value.replace('\n', '&#x0A;'));
           break;
-        case 'media' :
-          
-          const file:File = this.newPostForm.nativeElement.querySelector("#" + field.id).files[0];
-          newPostData.append('file',file);
+        case 'media':
+
+          const file: File = this.newPostForm.nativeElement.querySelector("#" + field.id).files[0];
+          newPostData.append('file', file);
           break;
-        default :
-        newPostData.append(field.id,this.newPostForm.nativeElement.querySelector("#" + field.id).value);
-        break;
+        default:
+          newPostData.append(field.id, this.newPostForm.nativeElement.querySelector("#" + field.id).value);
+          break;
       }
-//      field.id === 'description' ? this.newPostData[field.id] = this.newPostForm.nativeElement.querySelector("#" + field.id).value.replace('\n','&#x0A;') : this.newPostData[field.id] = this.newPostForm.nativeElement.querySelector("#" + field.id).value;
     });
 
-    this.HttpService.newPost(newPostData).subscribe(data=>console.log(data));
+    this.HttpService.newPost(newPostData).subscribe(data => {
+      this.getTopics();
+      window.scroll(0, 0)
+    });
   }
 
   ngOnInit(): void {
@@ -121,9 +123,10 @@ export class HomeComponent implements OnInit {
           //js normal 
           this.topics = value;
           this.topics.forEach((element: any) => {
-            if (element.media.slice(-3) === 'mp4') {
+            if (element.media && element.media.slice(-3) === 'mp4') {
               element.type = 'video';
             };
+            element.content = element.content.split('&#x0A;')
           });
           this.isLoaded = true;
         })

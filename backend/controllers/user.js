@@ -1,6 +1,8 @@
 const bcrypt = require('bcrypt');
 const models = require('../models');
 const jwt = require('jsonwebtoken');
+
+const fs = require('fs');
 const usersTest = require('../models/models/users.json');
 
 require('dotenv').config();
@@ -83,11 +85,31 @@ exports.login = (req, res, next) => {
 exports.getOne = (req, res, next) => {
     models.User.findOne({
         where: { id: req.params.id },
-        include: { model: models.UserMessages, include: models.Message }
+        include: { model: models.UserMessages, include: models.Message },
     })
         .then((user) => {
+            for (let [key, value] of Object.entries(user.dataValues)) { value === null ? user[key] = undefined : '' }
             user.password = undefined;
             !user.showEmail ? user.email = undefined : "";
+            user.showEmail = undefined;
+            res.status(200).json(user);
+        })
+        .catch(error => res.status(400).json({ error: error.message }))
+};
+
+exports.refreshToken = (req, res, next) => {
+
+};
+
+//   GET ONE USER
+exports.getOneToEdit = (req, res, next) => {
+    models.User.findOne({
+        where: { id: req.params.id },
+        include: { model: models.UserMessages, include: models.Message },
+    })
+        .then((user) => {
+            for (let [key, value] of Object.entries(user.dataValues)) { value === null ? user[key] = undefined : '' }
+            user.password = undefined;
             res.status(200).json(user);
         })
         .catch(error => res.status(400).json({ error: error.message }))
@@ -99,37 +121,52 @@ exports.refreshToken = (req, res, next) => {
 
 //     EDIT USER
 exports.editOne = (req, res, next) => {
-    if (req.file) {
-        models.User.findByPk(req.params.id)
-            //Topic.findById(req.params.id)
-            .then(user => {
-                const filename = user.avatar.split('/avatars/')[1];
-                fs.unlink(`avatars/${filename}`, () => { console.log("Avatar supprimé") });
-            });
-    }
     let user = { ...req.body };
+    user.avatar === '' ? delete user.avatar : '';
+    user.birthday === '' ? delete user.birthday : '';
     if (req.file) {
-        avatar = `${req.protocol}://${req.get('host')}/avatars/${req.file.filename}`;
-    } else {
-        models.User.update(user, { where: { id: user.id } })
-            .then(res.status(201).json({ message: 'Utilisateur modifié avec succés !' }))
-            .catch((error) => { res.status(400).json({ error: error.message }) })
+        user.avatar = `${req.protocol}://${req.get('host')}/medias/avatars/${req.file.filename}`;
     }
-
+    models.User.update(user, { where: { id: req.params.id } })
+        .then(r => res.status(201).json(r))
+        .catch((error) => { res.status(400).json({ error: error.message }) })
 };
 
 //    DELETE USER
 exports.deleteOne = (req, res, next) => {
+
+    //TRANSFERT MESSAGES TO INVITE
     models.User.findByPk(req.params.id)
         .then(user => {
-            const filename = user.avatar.split('/medias/')[1];
-            fs.unlink(`medias/${filename}`, () => {
-                models.User.destroy({ where: { id: req.params.id } })
-                    .then(() => res.status(200).json({ message: 'Topic supprimée !' }))
-                    .catch(error => res.status(400).json({ error }));
-            });
+            if (user.avatar) {
+                const filename = user.avatar.split('/avatars/')[1];
+                fs.unlink(`medias/avatars/${filename}`, () => { })
+            }
         })
-        .catch(error => res.status(500).json({ error }));
+        .then(
+            models.UserMessages.findAll({ where: { UserId: req.params.id } })
+                .then((result) => {
+                    if (result) {
+                        result.forEach(element => {
+                            // Result is array because we have used findAll. We can use findOne as well if you want one row and update that.
+                            element.set({ UserId: 9 });
+                            element.save(); // This is a promise
+                        });
+
+                    }
+                })
+                .then(
+                    models.User.destroy({ where: { id: req.params.id } })
+                        .then(r => res.status(200).json({ message: 'user deleted' }))
+
+                )
+        )
+
+}
+
+//    DELETE DATA FOR ONE USER
+exports.deleteDataOne = (req, res, next) => {
+
 }
 
 //   GET ALL USERS

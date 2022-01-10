@@ -1,22 +1,24 @@
 <header>
-    <h2>Profil de {{user?.nickname}}</h2>
+    <h2>Profil de {{user?.username}}</h2>
     <p *ngIf="user?.service">{{user?.service}}</p>
 </header>
 <div class="container">
 
     <aside class="profile">
-        <img *ngIf="user?.avatar" src="{{user?.avatar}}" alt="Avatar de {{user?.nickname}}">
+        <img *ngIf="user?.avatar" src="{{user?.avatar}}" alt="Avatar de {{user?.username}}">
         <h3>A propos</h3>
-        <ng-container *ngFor="let field of user|keyvalue">
-            <p *ngIf="field.key!='nickname'&&field.key!='avatar'&&field.key!='service'&&field.key!='favorites'&&(field.key!='lvl'&&field.value!=1)&&field.key!='userId'&&field.key!='brief'&&field.value!=''&&field.key!='stats'"
-                id="{{field.key}}">{{field.key}} : {{field.value}}</p>
-        </ng-container>
-        <app-button [config]="btnEdit" *ngIf="'toto'==='toto'" (whenIsClicked)="edit(user?.userId)">Editer</app-button>
+        <p *ngIf='user?.level===9' style="color:red">Admin</p>
+        <p *ngIf='user?.birthday'>Anniversaire : {{user?.birthday|date: 'd/MM'}}</p>
+        <p *ngIf='user?.email'>email : {{user?.email}}</p>
+        <p *ngIf='user?.createdAt'>Nous a rejoint le {{user?.createdAt|date: 'd/MM/YYYY'}}</p>
+        <app-button [config]="btnEdit" *ngIf="'toto'==='toto'" (whenIsClicked)="edit(user?.id)">Editer</app-button>
     </aside>
     <main>
         <div id="in-short">
-            <div *ngIf="user?.brief!=''" id="user-brief"><p *ngFor="let paragraph of user?.brief">{{paragraph}}</p></div>
-            <p>Following : {{user?.stats.following}} - Followers : {{user?.stats.followed}}</p>
+            <div *ngIf="user?.brief&&user?.brief!=''" id="user-brief">
+                <p *ngFor="let paragraph of user?.brief">{{paragraph}}</p>
+            </div>
+            <p>Following : {{user?.stats?.following}} - Followers : {{user?.stats?.followed}}</p>
         </div>
         <app-resume [data]="posts" [isLoaded]="isLoaded"></app-resume>
     </main>

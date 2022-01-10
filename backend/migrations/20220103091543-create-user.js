@@ -22,7 +22,7 @@ module.exports = {
       username: {
         type: Sequelize.STRING,
         allowNull:false,
-        unique : true
+        unique:true
       },
       password: {
         type: Sequelize.STRING,

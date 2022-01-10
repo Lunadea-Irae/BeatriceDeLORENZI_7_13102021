@@ -6,22 +6,24 @@ const getMediaDimensions = require('get-media-dimensions');
 
 //get
 exports.getAllTopics = (req, res, next) => {
-    res.status(200).json(topicTest);
-    /*
-    models.Message.findAll({ include: { model: models.UserMessages, include: models.User} }).then(topics => {
-        //console.log(topics);
+    //    res.status(200).json(topicTest);
+
+    models.Message.findAll({ include: { model: models.UserMessages, include: models.User } }).then(topics => {
         res.status(200).json(topics);
     })
         .catch((error) => { res.status(400).json({ error: error }); });
-        */
+
 };
 
 //get/:id
 exports.getOneTopic = (req, res, next) => {
 
+    models.Message.findByPk(req.params.id, { include: { model: models.UserMessages, include: models.User } })
+        .then(topic => {
+            res.status(200).json(topic);
+        })
+        .catch((error) => { res.status(400).json({ error: error }); });
 
-    topic = topicTest.filter(data => data.id === Number(req.params.id));
-    res.status(200).json(topic);
 };
 //post
 exports.createTopic = (req, res, next) => {
@@ -32,46 +34,36 @@ exports.createTopic = (req, res, next) => {
             .then(dimensions => {
                 topic.mediaHeight = dimensions.height;
                 topic.mediaWidth = dimensions.width;
-                //    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                //    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                //    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                //    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                //    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                models.UserMessages.create({ userId: 2, messageId: topic }, {
-                    include: models.User
-                })
-                    .then(res.status(201).json({ message: 'Topic enregistrée avec succés !' }))
+                models.Message.create(topic)
+                    .then((r) => {
+                        let topic2 = { UserId: 8, MessageId: r.dataValues.id };
+                        models.UserMessages.create(topic2)
+                            .then(r => res.status(201).json({ message: 'Topic Créé !!' }))
+                            .catch(error => res.status(400).json({ error: error.message }))
+
+
+                    })
                     .catch(error => { res.status(400).json({ error: error.message }) })
             })
             .catch(e => { console.error(e); });
     } else {
         models.Message.create(topic)
-            //    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-            //    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-            //    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-            //    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-            //    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-
-
             .then((r) => {
-                r.setUser(2, { save: false });
-                console.log(r.dataValues.id);
-                models.UserMessages.create({ userId: 2, messageId: r.dataValues.id })
-                    .then(rep =>
-                        res.status(201).json({ message: 'Topic enregistrée avec succés !' })
-                            .catch(error => { res.status(400).json({ error: error.message }) }))
+                let topic2 = { UserId: 8, MessageId: r.dataValues.id };
+                models.UserMessages.create(topic2)
+                    .then(r => res.status(201).json({ message: 'Topic Créé !!' }))
+                    .catch(error => res.status(400).json({ error: error.message }))
             })
             .catch(error => { res.status(400).json({ error: error.message }) })
     }
-
 }
+
 
 
 //put/:id
 exports.modifyTopic = (req, res, next) => {
     if (req.file) {
         models.Message.findByPk(req.params.id)
-            //Topic.findById(req.params.id)
             .then(topic => {
                 const filename = topic.imageUrl.split('/medias/')[1];
                 fs.unlink(`medias/${filename}`, () => { console.log("image supprimée") });
@@ -100,13 +92,16 @@ exports.modifyTopic = (req, res, next) => {
 exports.deleteTopic = (req, res, next) => {
     models.Message.findByPk(req.params.id)
         .then(topic => {
-            const filename = topic.imageUrl.split('/medias/')[1];
-            fs.unlink(`medias/${filename}`, () => {
-                models.Message.destroy({ where: { id: req.params.id } })
-                    .then(() => res.status(200).json({ message: 'Topic supprimée !' }))
-                    .catch(error => res.status(400).json({ error }));
-            });
+            if (topic.media) {
+                const filename = topic.media.split('/medias/')[1];
+                fs.unlink(`medias/${filename}`, () => { })
+            }
+            models.UserMessages.destroy({where :{ messageId : req.params.id}});
+            models.Message.destroy({ where: { id: req.params.id },})
+                .then(() => res.status(200).json({ message: 'Topic supprimée !' }))
+                .catch(error => res.status(400).json({ error }));
         })
+
         .catch(error => res.status(500).json({ error }));
 };
 
