@@ -17,27 +17,33 @@
         <div *ngIf="topic?.media">
             <p *ngFor="let paragraph of topic?.content">{{paragraph}}</p>
         </div>
-        <p class="topic-footer"><span>❤️ {{topic?.like}}</span><span>💬 <!-- ========== {{countComments()}} ========== --></span>
-            <mat-icon class="save">star</mat-icon>
+        <p class="topic-footer"><span (click)="like()"><mat-icon [ngStyle]="{'color': isLiked ? 'red' : ''}">favorite</mat-icon> {{topic?.Likes.length}}</span><span><mat-icon>comment</mat-icon> {{topic?.Comments.length}}</span>
+            <mat-icon>star</mat-icon>
         </p>
         <div>
-            <app-button [config]="iconSuppr" (whenIsClicked)="deleteTopic(topic?.id)">Supprimer</app-button>
+            <app-button [config]="iconSuppr" (whenIsClicked)="deleteTopic()">Supprimer</app-button>
             <app-button [config]="iconEdit" (whenIsClicked)="edition=true;">Editer</app-button>
         </div>
-        <form id="postComment" #postComment><label for="commentThis">Commenter</label><input type="text" placeholder="Commenter ce post"
-                name="commentThis">
-            <app-button [config]="iconSend">Envoyer</app-button>
+        <form id="postComment" #postComment ngNativeValidate enctype="multipart/form-data"><label for="commentThis">Commenter</label>
+            <app-form [config]="comment"></app-form>
+            <app-button [config]="iconSend" (whenIsClicked)="sendComment()">Envoyer</app-button>
         </form>
-
-        <ng-container *ngFor="let comment of topic?.comment">
-            <app-comment [comment]="comment"></app-comment>
+<!-- ==========
+    ========== -->
+    <ng-container *ngFor="let comment of topic?.Comments">
+            <app-comment [comment]="comment" (onDelete)="deletedComment()"></app-comment>
         </ng-container>
+        
+        
+        
+
+
     </div>
     <div class="suggests">
         <app-resume (whenSuggestIsClicked)="getOnePost()" [data]="topics" [isLoaded]="isLoaded"></app-resume>
     </div>
 </div>
-<form id="editPostForm" *ngIf="edition" (click)="this.edition=false" #editPostForm ngNativeValidate enctype="multipart/form-data">
+<form id="editPostForm" *ngIf="edition" (click)="this.edition=false" #editPostForm ngNativeValidate>
     <h3>Editer le post</h3>
     <app-form *ngFor="let field of forms" [config]="field" (click)="onTarget($event)"></app-form>
     <app-button (whenIsClicked)="editTopic()" [config]="sendBtn"></app-button>

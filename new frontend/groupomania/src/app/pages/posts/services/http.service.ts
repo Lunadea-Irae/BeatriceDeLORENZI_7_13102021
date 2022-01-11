@@ -19,18 +19,31 @@ export class HttpService {
   }
 
   getAllPosts() {
-    return this.http.get(this.url);
+    return this.http.get(this.url, this.httpHeader);
   }
   getOnePost(id: number) {
-    return this.http.get(this.url + "/" + id)
+    return this.http.get(this.url + "/" + id, this.httpHeader)
   }
   newPost(data: FormData) {
     return this.http.post(this.url + "/", data,this.httpHeader)
   }
-  editPost(id: number, data: object) {
-    return this.http.put<any>(this.url + "/" + id, JSON.stringify(data))
+  editPost(id: number, data: FormData) {
+    return this.http.put(this.url + "/" + id, data, this.httpHeader)
   }
   deletePost(id: number) {
-    return this.http.delete(this.url + "/" + id)
+    return this.http.delete(this.url + "/" + id, this.httpHeader)
+  }
+  newComment(id : number, data : string){
+    return this.http.post(this.url + "/comment/" + id, {comment : data}, this.httpHeader)
+  }
+  editComment(id : number, data : string){
+    return this.http.put(this.url + "/comment/" + id, {comment : data}, this.httpHeader)
+  }
+  deleteComment(id : number){
+    return this.http.delete(this.url + "/comment/" + id, this.httpHeader)
+  }
+
+  likeOrNot(id : number){
+    return this.http.post(this.url + "/like/" + id, this.httpHeader)
   }
 }

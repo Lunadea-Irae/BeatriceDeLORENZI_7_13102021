@@ -12,8 +12,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.Hashtag.belongsToMany(models.User, { through: 'UserHashtag'}),
-        models.Hashtag.belongsToMany(models.Message, { through: 'MessageHashtag'  })
+      models.Hashtag.belongsToMany(models.User, { through: 'UserHashtag' }),
+      models.Hashtag.belongsToMany(models.Message, { through: 'MessageHashtag' })
     }
   };
 

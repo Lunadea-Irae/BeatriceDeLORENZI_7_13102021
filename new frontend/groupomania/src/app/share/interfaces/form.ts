@@ -5,4 +5,5 @@ export interface Form {
     value?:unknown;
     required?:boolean;
     accept?:string;
+    rows?:number
 }

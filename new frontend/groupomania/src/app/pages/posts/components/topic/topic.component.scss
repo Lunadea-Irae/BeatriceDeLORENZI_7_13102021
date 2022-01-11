@@ -5,9 +5,9 @@
     grid-template-columns: auto auto;
     margin: 0 auto;
     grid-template-areas: "title title" "media desc" "sug sug";
-&--comment{
-    grid-template-areas: "title title" "media desc" "sug desc";
-}
+    &--comment {
+        grid-template-areas: "title title" "media desc" "sug desc";
+    }
     @media screen and (max-width: 640px) {
         grid-template-areas: "title" "media" "desc" "sug";
         grid-template-columns: 100%;
@@ -28,8 +28,7 @@
             padding-top: 40px;
         }
     }
-    #medias{
-        
+    #medias {
         grid-area: media;
     }
     img.image-topic,
@@ -95,6 +94,10 @@
             margin-bottom: 10px;
             .save {
                 color: map-get($map: $colors, $key: secondary);
+            }
+            mat-icon {
+                color: map-get($map: $colors, $key: tertiary);
+                vertical-align: bottom;
             }
         }
     }

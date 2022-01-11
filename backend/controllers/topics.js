@@ -3,22 +3,29 @@ const models = require('../models');
 const topicTest = require('../models/models/groupomaniaTopics.json');
 const fs = require('fs');
 const getMediaDimensions = require('get-media-dimensions');
+const User = require('../models/User');
 
 //get
 exports.getAllTopics = (req, res, next) => {
     //    res.status(200).json(topicTest);
-
-    models.Message.findAll({ include: { model: models.UserMessages, include: models.User } }).then(topics => {
+    models.Message.findAll({ include: [{ model: models.UserMessages, include: models.User},{model: models.Like }] }).then(topics => {
         res.status(200).json(topics);
     })
         .catch((error) => { res.status(400).json({ error: error }); });
 
 };
 
+
+
+
+
+// ############ TOPIC
+
+
 //get/:id
 exports.getOneTopic = (req, res, next) => {
 
-    models.Message.findByPk(req.params.id, { include: { model: models.UserMessages, include: models.User } })
+    models.Message.findByPk(req.params.id, { include: [{ model: models.UserMessages, include: models.User }, { model: models.Comment, include: models.User }, {model : models.Like}] })
         .then(topic => {
             res.status(200).json(topic);
         })
@@ -82,7 +89,8 @@ exports.modifyTopic = (req, res, next) => {
             })
             .catch(e => { console.error(e); });
     } else {
-        models.Message.update(topic, { where: { id: topic.id } })
+        console.log(topic);
+        models.Message.update(topic, { where: { id: req.params.id } })
             .then(res.status(201).json({ message: 'Topic enregistrée avec succés !' }))
             .catch((error) => { res.status(400).json({ error: error.message }) })
     }
@@ -96,8 +104,9 @@ exports.deleteTopic = (req, res, next) => {
                 const filename = topic.media.split('/medias/')[1];
                 fs.unlink(`medias/${filename}`, () => { })
             }
-            models.Comment.destroy({where : {messageId : req.params.id}});
-            models.UserMessages.destroy({where :{ messageId : req.params.id}});
+            models.Like.destroy({ where: { messageId: req.params.id } });
+            models.Comment.destroy({ where: { messageId: req.params.id } });
+            models.UserMessages.destroy({ where: { messageId: req.params.id } });
             models.Message.destroy({ where: { id: req.params.id }, })
                 .then(() => res.status(200).json({ message: 'Topic supprimée !' }))
                 .catch(error => res.status(400).json({ error }));
@@ -108,20 +117,56 @@ exports.deleteTopic = (req, res, next) => {
 
 
 
+
+// ############ LIKES
+
+
 //post/:id/like
 exports.addLikeToTopic = (req, res, next) => {
-
-    //si like = 1 => add to [usersLiked], if =0 => remove in arrays, if =-1 => add to [usersDisliked]
-    //foreach [usersLiked]=> +1 to likes & foreach [usersDisliked]=> +1 to dislikes
-    Topic.findById(req.params.id).then(topic => {
-
-
-
-        Topic.findByIdAndUpdate(req.params.id, { ...topic })
-            .then(() => res.status(201).json({ message: 'Votre vote a bien été enregistré !' }))
-            .catch(error => res.status(400).json({ error }));
-    })
-        .catch(error => res.status(500).json({ error }));
-
-
+    models.Like.findOne({ where: { UserId: 1, MessageId: req.params.id } })
+        .then(r => {
+            if (!r) {
+                models.Like.create({ UserId: 1, MessageId: req.params.id })
+                .then(res.status(200).json({like : true}))
+                .catch(error => res.status(400).json({error :error.message}))
+            } else {
+                r.destroy()
+                .then(res.status(200).json({like : false}))
+                .catch(error => res.status(400).json({error :error.message}))
+            }
+        })
+        .catch(error => {
+            console.log('erreur');
+            res.status(400).json({ error: error.message })
+        })
 };
+
+
+
+// ############ COMMENTS
+
+
+//add comment to topic
+exports.newComment = (req, res, next) => {
+
+    let comment = { content: req.body.comment, UserId: 1, MessageId: req.params.id };
+    //, include : [{model : models.User, as : 'User', id : 6}] 
+    models.Comment.findOrCreate({ where: comment })
+        .then(r => { res.status(201).json({ message: "Votre commentaire a été enregistré." }) })
+        .catch((error) => res.status(400).json({ error: error.message }))
+
+}
+
+
+exports.editComment = (req, res, next) => {
+    let comment = { content: req.body.comment };
+    models.Comment.update(comment, { where: { id: req.params.id } })
+        .then(r => { res.status(200).json({ message: "Votre commentaire a bien été modifié" }) })
+        .catch(error => { res.status(400).json({ error: error.message }) })
+}
+
+exports.deleteComment = (req, res, next) => {
+    models.Comment.destroy({ where: { id: req.params.id } })
+        .then(r => { res.status(200).json({ message: "Votre commentaire a bien été supprimé" }) })
+        .catch(error => { res.status(400).json({ error: error.message }) })
+}

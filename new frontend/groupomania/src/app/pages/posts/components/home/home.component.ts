@@ -35,7 +35,8 @@ export class HomeComponent implements OnInit {
       label: "Message",
       type: 'textarea',
       id: 'description',
-      required: true
+      required: true,
+      rows : 20
     }
   ];
 
@@ -85,7 +86,7 @@ export class HomeComponent implements OnInit {
     this.forms.forEach(field => {
       switch (field.id) {
         case 'description':
-          newPostData.append('content', this.newPostForm.nativeElement.querySelector("#" + field.id).value.replace('\n', '&#x0A;'));
+          newPostData.append('content', this.newPostForm.nativeElement.querySelector("#" + field.id).value.replace(/\n/gi, '&#x0A;'));
           break;
         case 'media':
 
@@ -121,7 +122,6 @@ export class HomeComponent implements OnInit {
     this.sub.add(this.HttpService.getAllPosts()
       .pipe(
         map(value => {
-          //js normal 
           this.topics = value;
           this.topics.forEach((element: any) => {
             if (element.media && element.media.slice(-3) === 'mp4') {

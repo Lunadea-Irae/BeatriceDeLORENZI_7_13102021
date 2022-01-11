@@ -1,4 +1,5 @@
 
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { Component, OnDestroy, OnInit, Output, ViewChild, ElementRef, ViewChildren, QueryList, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, Subscription } from 'rxjs';
@@ -18,8 +19,12 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild("description", { static: false }) desc!: ElementRef;
   @ViewChild("medias", { static: false }) medias!: ElementRef;
 
+  @ViewChild("postComment", { static: false }) postComment!: ElementRef;
+  @ViewChild("editPostForm") editPostForm!: ElementRef;
+
   @Output() public topics!: Topic | any;
   @Output() public isLoaded: boolean | undefined;
+  public isLiked: boolean = false;
   public topic: Topic | any;
   public edition: boolean = false;
 
@@ -47,11 +52,11 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
   ];
 
   public comment = {
-    label: "commentThis", 
-    type: "text", 
-    placeholder: "Commenter ce post",
-    name: "commentThis", 
-    id: "commentThis"
+    label: "Commenter ce poste",
+    type: "textarea",
+    name: "commentThis",
+    id: "commentThis",
+    row: 1
   }
 
   public iconSuppr = {
@@ -84,9 +89,18 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
     event.stopPropagation();
   }
 
+  public like() {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.HttpService.likeOrNot(id).subscribe((data: any) => {
+      console.log(data);
+      this.isLiked = data.like;
+      data.like ? this.topic.Likes.push("Liked") : this.topic.Likes.splice(0, 1);
+    })
+  }
 
+  public deleteTopic() {
 
-  public deleteTopic(id: number) {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
     this.HttpService.deletePost(id).subscribe(data => {
       this.router.navigateByUrl(`/`);
       window.scroll(0, 0)
@@ -94,6 +108,35 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   public editTopic() {
+
+    const editPostData: FormData = new FormData();
+
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    for (let field of this.editPostForm.nativeElement) {
+      if (field.value !== '') {
+        field.id === 'media' ? editPostData.append('file', field.files[0]) : editPostData.append(field.id, field.value.replace(/\n/gi, '&#x0A;'));
+      }
+    }
+
+    this.HttpService.editPost(id, editPostData).subscribe(data => {
+      console.log(data);
+      this.getOnePost();
+
+    })
+  }
+
+  public sendComment() {
+    event?.preventDefault();
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.HttpService.newComment(id, this.postComment.nativeElement[0].value.replace(/\n/gi, '&#x0A;')).subscribe(data => {
+      console.log(data);
+      this.getOnePost();
+    });
+
+  }
+
+  public deletedComment() {
+    this.getOnePost();
   }
 
 
@@ -108,6 +151,7 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
     this.sub.add(this.HttpService.getOnePost(id)
       .pipe(
         map((value: any) => {
+          console.log(value);
           this.topic = value;
           if (this.topic.media && this.topic.media.slice(-3) === 'mp4') {
             this.topic.type = 'video';
@@ -115,7 +159,6 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
           this.forms.forEach(field => {
             switch (field.id) {
               case 'media':
-                console.log(this.topic[field.id])
                 break;
               case 'content':
                 field.value = this.topic[field.id].replace(/&#x0A;/gi, '\n')
@@ -127,7 +170,7 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
 
           })
           this.topic.content = this.topic.content.split('&#x0A;');
-
+          this.topic.Likes.find((liked: any) => liked.MessageId === id && liked.UserId === 1) ? this.isLiked=true : '';
           this.isLoaded = true;
 
         })

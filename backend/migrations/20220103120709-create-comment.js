@@ -20,7 +20,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
-      makerId:{
+     userId:{
         allowNull:false,
         type:Sequelize.INTEGER,
         references:{
