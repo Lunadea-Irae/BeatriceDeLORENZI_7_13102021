@@ -7,7 +7,7 @@ const keywords = require('../middleware/keywords');
 //get
 exports.getAllTopics = (req, res, next) => {
     //    res.status(200).json(topicTest);
-    models.Message.findAll({ include: [{ model: models.UserMessages, include: models.User }, { model: models.Like }, { model: models.Comment }] }).then(topics => {
+    models.Message.findAll({ include: [{ model: models.UserMessages, include: models.User }, { model: models.Like }, { model: models.Comment }, {model : models.Hashtag}] }).then(topics => {
         res.status(200).json(topics);
     })
         .catch((error) => { res.status(400).json({ error: error }); });
@@ -60,7 +60,7 @@ exports.createTopic = (req, res, next) => {
                 console.log(r.id)
                 let topic2 = { UserId: 8, MessageId: r.dataValues.id };
                 models.UserMessages.create(topic2)
-                .then(keywords(topic.content, r.id))
+                .then(keywords(topic.content, r))
                     .then(r => res.status(201).json({ message: 'Topic Créé !!' }))
                     .catch(error => res.status(400).json({ error: error.message }))
             })

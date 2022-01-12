@@ -127,6 +127,7 @@ export class HomeComponent implements OnInit {
     this.sub.add(this.HttpService.getAllPosts()
       .pipe(
         map(value => {
+          console.log(value);
           this.topics = value;
           this.topics.forEach((element: any) => {
             if (element.media && element.media.slice(-3) === 'mp4') {
