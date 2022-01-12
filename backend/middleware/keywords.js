@@ -4,7 +4,6 @@ const models = require('../models');
 module.exports = (thisContent, msgId) => {
     !thisContent.match(/\#[A-z0-9]+/gi) ? "" : thisContent.match(/\#[A-z0-9]+/gi).forEach(element => {
         const test = element.replace(/([A-Z])/g, '$1').trim().replace('#', '').toUpperCase();
-        console.log(test)
 
 
         //Synonymes
@@ -23,7 +22,7 @@ module.exports = (thisContent, msgId) => {
                     .then(h => h.forEach(ms => ms.addHashtag(r[0].id)))
                     .catch(err => console.error(err.message))
             })
-            .catch(err => console.log(err.message))
+            .catch(err => console.error(err.message))
 
     });
     return;

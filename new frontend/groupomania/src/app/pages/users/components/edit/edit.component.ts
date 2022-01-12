@@ -4,6 +4,7 @@ import { HttpService } from '../../services/http.service';
 import { map, Subscription } from 'rxjs';
 import { Service } from 'src/app/enum/service';
 import { Button } from 'src/app/share/interfaces/button';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-edit',
@@ -58,6 +59,7 @@ export class EditComponent implements OnInit {
     this.sub.add(this.HttpService.getToEdit(id)
       .pipe(map((value: any) => {
         this.user = value;
+        this.user.avatar ? '' : this.user.avatar = environment.images + "/avatars/no-avatar.png";
       }
       )
       )

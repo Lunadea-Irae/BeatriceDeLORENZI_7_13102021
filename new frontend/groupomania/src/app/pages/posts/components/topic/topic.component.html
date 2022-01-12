@@ -38,7 +38,7 @@
 
     </div>
     <div class="suggests">
-        <app-resume (whenSuggestIsClicked)="getOnePost()" [data]="topics" [isLoaded]="isLoaded"></app-resume>
+        <app-resume (whenSuggestIsClicked)="getOnePost()" (whenIsLiked)="likeAPost($event)" [data]="topics" [isLoaded]="isLoaded"></app-resume>
     </div>
 </div>
 <form id="editPostForm" *ngIf="edition" (click)="this.edition=false" #editPostForm ngNativeValidate>

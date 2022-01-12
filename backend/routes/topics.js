@@ -11,6 +11,7 @@ const topicCtrl = require('../controllers/topics');
 const keywords = require('../middleware/keywords');
 
 router.get('/', topicCtrl.getAllTopics);
+router.get('/filter/:id', topicCtrl.getFilteredTopics);
 
 //ONE POST
 router.get('/:id', topicCtrl.getOneTopic);

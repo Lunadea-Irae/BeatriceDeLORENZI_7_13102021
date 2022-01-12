@@ -25,7 +25,7 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
   @Output() public topics!: Topic | any;
   @Output() public isLoaded: boolean | undefined;
   public isLiked: boolean = false;
-  public topic: Topic | any;
+  public topic: Topic[] |any;
   public edition: boolean = false;
 
   public forms = [
@@ -92,9 +92,12 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
   public like() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.HttpService.likeOrNot(id).subscribe((data: any) => {
-      console.log(data);
       this.isLiked = data.like;
       data.like ? this.topic.Likes.push("Liked") : this.topic.Likes.splice(0, 1);
+    })
+  }
+ public likeAPost(event: number){
+    this.HttpService.likeOrNot(event).subscribe(data=>{
     })
   }
 
@@ -194,21 +197,40 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private getSuggests() {
     this.isLoaded = false;
-    this.sub.add(this.HttpService.getAllPosts()
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+
+    this.sub.add(this.HttpService.getFilteredPosts(id)
       .pipe(
-        map(value => {
-          this.topics = value;
-          this.topics.forEach((element: any) => {
-            if (element.media && element.media.slice(-3) === 'mp4') {
-              element.type = 'video';
-            };
-            element.content = element.content.split('&#x0A;');
-            element.UserMessage.User.avatar ? '' : element.UserMessage.User.avatar = environment.images + "/avatars/no-avatar.png";
+        map((value:any) => {
+          if (value) {
+            this.topics = value;
+            this.topics.forEach((element: any) => {
+              if (element.media && element.media.slice(-3) === 'mp4') {
+                element.type = 'video';
+              };
+              element.content = element.content.split('&#x0A;');
+              element.UserMessage.User.avatar ? '' : element.UserMessage.User.avatar = environment.images + "/avatars/no-avatar.png";
 
-            element.Likes.find((liked: any) => liked.MessageId === element.id && liked.UserId === 1) ? element.isLiked = true : '';
-
-            console.log(element);
-          });
+              element.Likes.find((liked: any) => liked.MessageId === element.id && liked.UserId === 1) ? element.isLiked = true : '';
+            });
+          } else {
+            this.sub.add(this.HttpService.getAllPosts()
+              .pipe(
+                map(value => {
+                  this.topics = value;
+                  this.topics.forEach((element: any) => {
+                    if (element.media && element.media.slice(-3) === 'mp4') {
+                      element.type = 'video';
+                    };
+                    element.content = element.content.split('&#x0A;');
+                    element.UserMessage.User.avatar ? '' : element.UserMessage.User.avatar = environment.images + "/avatars/no-avatar.png";
+                    element.Likes.find((liked: any) => liked.MessageId === element.id && liked.UserId === 1) ? element.isLiked = true : '';
+                  });
+                  this.isLoaded = true;
+                })
+              )
+              .subscribe());
+          }
           this.isLoaded = true;
         })
       )

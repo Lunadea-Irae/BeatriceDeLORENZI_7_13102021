@@ -4,15 +4,30 @@ const fs = require('fs');
 const getMediaDimensions = require('get-media-dimensions');
 const keywords = require('../middleware/keywords');
 
+
 //get
 exports.getAllTopics = (req, res, next) => {
-    //    res.status(200).json(topicTest);
     models.Message.findAll({ include: [{ model: models.UserMessages, include: models.User }, { model: models.Like }, { model: models.Comment }] }).then(topics => {
+        
         res.status(200).json(topics);
     })
         .catch((error) => { res.status(400).json({ error: error }); });
 
 };
+
+
+
+exports.getFilteredTopics = (req, res, next) => {
+
+    models.Message.findByPk(req.params.id, { include: { model: models.Hashtag, include: { model: models.Message, include: [{ model: models.UserMessages, include: models.User }, models.Like, models.Comment] } } })
+        .then(r => {
+            let topics = [];
+            r.Hashtags.forEach(ht => {
+                ht.Messages.forEach(mess => { mess.id == req.params.id ? '': topics.push(mess) })
+            }); res.status(200).json(topics)
+        })
+        .catch(error => res.status(400).json({ error: error.message }))
+}
 
 
 
