@@ -25,6 +25,7 @@ export class ResumeComponent implements OnInit {
 
 
   @Output() whenSuggestIsClicked: EventEmitter<unknown> = new EventEmitter();
+  @Output() whenIsLiked: EventEmitter<number> = new EventEmitter();
 
   constructor(private readonly router: Router) { }
 
@@ -40,8 +41,11 @@ export class ResumeComponent implements OnInit {
   goToUserPage(id: number) {
     this.router.navigateByUrl(`user/${id}`)
   }
-  like(id: number) {
-    console.log(id);
+  like(id:number) {
+    event?.stopPropagation();
+    this.data.find((e:any)=>e.id === id).isLiked ? this.data.find((e:any)=>e.id === id).Likes.splice(0,1) : this.data.find((e:any)=>e.id === id).Likes.push('liked');
+    this.data.find((e:any)=>e.id === id).isLiked ? this.data.find((e:any)=>e.id === id).isLiked=false : this.data.find((e:any)=>e.id === id).isLiked=true;
+    this.whenIsLiked.emit(id);
   }
   ngOnInit(): void {
   }

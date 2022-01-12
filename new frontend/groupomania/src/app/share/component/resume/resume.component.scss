@@ -63,20 +63,10 @@
         background-color: transparent;
         margin-bottom: 10px;
         padding: 10px;
-        .like{
-            cursor: pointer;
-            &::before {
-            content: "🤍 ";}
-            &:hover::before {
-                content: "❤️ ";
-            }
+        mat-icon{
+            color: map-get($map: $colors, $key: tertiary );
+            vertical-align: bottom;
         }
-        .save {
-            cursor: pointer;
-            //color: map-get($map: $colors, $key: light);
-        &:hover{
-            color:lighten($color: map-get($map: $colors, $key: secondary ), $amount: 10%);
-        }}
     }
 
     .maker {

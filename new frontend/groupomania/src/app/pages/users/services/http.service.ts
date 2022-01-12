@@ -29,7 +29,7 @@ export class HttpService {
   logIn(data: object) {
     return this.http.post(this.url + "/login", data)
   }
-  editUser(id: number, data: object) {
+  editUser(id: number, data: FormData) {
     return this.http.put(this.url + "/edit/" + id, data,this.httpHeader)
   }
   viewProfile(id: number) {
@@ -43,5 +43,8 @@ export class HttpService {
   }
   deleteDataUser(id: number) {
     return this.http.delete(this.url + "/data/" + id)
+  }
+  likeOrNot(id : number){
+    return this.http.post(this.url.replace('/users','/topics') + "/like/" + id, this.httpHeader)
   }
 }

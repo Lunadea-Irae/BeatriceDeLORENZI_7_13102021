@@ -8,6 +8,7 @@ const auth = require('../middleware/auth');
 const multer = require('../middleware/multer-config');
 const regExpValidator = require('../middleware/regex-validator');
 const topicCtrl = require('../controllers/topics');
+const keywords = require('../middleware/keywords');
 
 router.get('/', topicCtrl.getAllTopics);
 

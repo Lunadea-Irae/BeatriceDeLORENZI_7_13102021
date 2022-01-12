@@ -1,12 +1,13 @@
 <div class="grid-container">
-  <ngx-masonry *ngIf="isLoaded" [ordered]="true" [options]="masonryOptions">
+  <ngx-masonry *ngIf="isLoaded" [ordered]="true" [options]="masonryOptions" >
     <div ngxMasonryItem *ngFor="let item of data" class="grid-item masonry-item"
-      [class.grid-item--width2]="item.mediaSize==='horizontal'" #masonry>
+      [class.grid-item--width2]="item.mediaSize==='horizontal'" #masonry masonryLazy loading="lazy">
       <div class="card text-dark" role="link" (click)="goToTopicPage(item.id)">
-        <div *ngIf="item.UserMessage" class="maker " (click)="goToUserPage(item.UserMessage.User.id);$event.stopPropagation()"><img class="avatar"
+        <div *ngIf="item.UserMessage" class="maker "
+          (click)="goToUserPage(item.UserMessage.User.id);$event.stopPropagation()"><img class="avatar"
             src="{{item.UserMessage.User.avatar}}" alt="Avatar de {{item.UserMessage.User.username}}"><span
-            class="text-primary fw-bold">{{item.UserMessage.User.username}}</span><span
-            class="fst-italic">Posté le {{item.createdAt|date: 'dd/MM/yyyy, h:mm'}}</span></div>
+            class="text-primary fw-bold">{{item.UserMessage.User.username}}</span><span class="fst-italic">Posté le
+            {{item.createdAt|date: 'dd/MM/yyyy, h:mm'}}</span></div>
         <img *ngIf="item.media && !item.type" src="{{item.media}}" class="card-img-top" alt="image de {{item.title}}">
         <video *ngIf="item.type" controls controlsList="nodownload nofullscreen">
           <source src="{{item.media}}" type="video/mp4">
@@ -14,11 +15,15 @@
         </video>
         <div class="card-body">
           <h3 class="card-title">{{item.title}}</h3>
-          <div class="card-text" *ngIf="!item.media"><p *ngFor="let paragraph of item.content">{{paragraph}}</p></div>
-          <p class="card-footer"><span class="like"
-              (click)="like(item.id);$event.stopPropagation()">{{item.like}}</span><span>💬
-                <!-- ==========  {{item.comment.length}} ========== -->
-             </span>
+          <div class="card-text" *ngIf="!item.media">
+            <p *ngFor="let paragraph of item.content">{{paragraph}}</p>
+          </div>
+          <p class="card-footer"><span (click)="like(item.id)">
+              <mat-icon [ngStyle]="{'color': item?.isLiked ? 'red' : ''}">favorite</mat-icon> {{item?.Likes.length}}
+
+            </span><span>💬
+              {{item?.Comments.length}}
+            </span>
             <mat-icon class="save">star_border</mat-icon>
           </p>
         </div>

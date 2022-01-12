@@ -20,6 +20,6 @@
             </div>
             <p>Following : {{user?.stats?.following}} - Followers : {{user?.stats?.followed}}</p>
         </div>
-        <app-resume [data]="posts" [isLoaded]="isLoaded"></app-resume>
+        <app-resume [data]="posts" [isLoaded]="isLoaded"  (whenIsLiked)="like($event)"></app-resume>
     </main>
 </div>

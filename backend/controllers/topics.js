@@ -1,14 +1,13 @@
 
 const models = require('../models');
-const topicTest = require('../models/models/groupomaniaTopics.json');
 const fs = require('fs');
 const getMediaDimensions = require('get-media-dimensions');
-const User = require('../models/User');
+const keywords = require('../middleware/keywords');
 
 //get
 exports.getAllTopics = (req, res, next) => {
     //    res.status(200).json(topicTest);
-    models.Message.findAll({ include: [{ model: models.UserMessages, include: models.User},{model: models.Like }] }).then(topics => {
+    models.Message.findAll({ include: [{ model: models.UserMessages, include: models.User }, { model: models.Like }, { model: models.Comment }] }).then(topics => {
         res.status(200).json(topics);
     })
         .catch((error) => { res.status(400).json({ error: error }); });
@@ -25,7 +24,7 @@ exports.getAllTopics = (req, res, next) => {
 //get/:id
 exports.getOneTopic = (req, res, next) => {
 
-    models.Message.findByPk(req.params.id, { include: [{ model: models.UserMessages, include: models.User }, { model: models.Comment, include: models.User }, {model : models.Like}] })
+    models.Message.findByPk(req.params.id, { include: [{ model: models.UserMessages, include: models.User }, { model: models.Comment, include: models.User }, { model: models.Like }, {model : models.Hashtag}] })
         .then(topic => {
             res.status(200).json(topic);
         })
@@ -34,7 +33,9 @@ exports.getOneTopic = (req, res, next) => {
 };
 //post
 exports.createTopic = (req, res, next) => {
+
     let topic = { ...req.body };
+
     if (req.file) {
         topic.media = `${req.protocol}://${req.get('host')}/medias/${req.file.filename}`;
         getMediaDimensions(`${req.protocol}://${req.get('host')}/medias/${req.file.filename}`, req.file.mimetype.split('/')[0])
@@ -56,8 +57,10 @@ exports.createTopic = (req, res, next) => {
     } else {
         models.Message.create(topic)
             .then((r) => {
+                console.log(r.id)
                 let topic2 = { UserId: 8, MessageId: r.dataValues.id };
                 models.UserMessages.create(topic2)
+                .then(keywords(topic.content, r.id))
                     .then(r => res.status(201).json({ message: 'Topic Créé !!' }))
                     .catch(error => res.status(400).json({ error: error.message }))
             })
@@ -127,12 +130,12 @@ exports.addLikeToTopic = (req, res, next) => {
         .then(r => {
             if (!r) {
                 models.Like.create({ UserId: 1, MessageId: req.params.id })
-                .then(res.status(200).json({like : true}))
-                .catch(error => res.status(400).json({error :error.message}))
+                    .then(res.status(200).json({ like: true }))
+                    .catch(error => res.status(400).json({ error: error.message }))
             } else {
                 r.destroy()
-                .then(res.status(200).json({like : false}))
-                .catch(error => res.status(400).json({error :error.message}))
+                    .then(res.status(200).json({ like: false }))
+                    .catch(error => res.status(400).json({ error: error.message }))
             }
         })
         .catch(error => {

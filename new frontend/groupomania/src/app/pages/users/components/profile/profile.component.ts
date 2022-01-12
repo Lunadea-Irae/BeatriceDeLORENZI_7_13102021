@@ -6,6 +6,7 @@ import { NgxMasonryOptions } from 'ngx-masonry';
 import { Users } from 'src/app/interfaces/users';
 import { Topic } from 'src/app/interfaces/topic';
 import { Service } from 'src/app/enum/service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-profile',
@@ -14,7 +15,7 @@ import { Service } from 'src/app/enum/service';
 })
 export class ProfileComponent implements OnInit, OnDestroy {
   @ViewChildren('masonry') masonry!: QueryList<any>;
-  
+
   public services: any = Service;
 
   public isLoaded: boolean | undefined;
@@ -37,7 +38,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   @Output() whenSuggestIsClicked: EventEmitter<unknown> = new EventEmitter();
   @Output() public posts: Topic | any;
   user: Users | any;
-  
+
 
   constructor(private readonly router: Router, private readonly HttpService: HttpService, private route: ActivatedRoute) { }
 
@@ -54,22 +55,29 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   }
 
-  
-  like(id: number) {
+  public like(event: number){
+    this.HttpService.likeOrNot(event).subscribe(data=>{
+    })
   }
+
   public getOneUser() {
     this.isLoaded = false;
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.sub.add(this.HttpService.viewProfile(id)
       .pipe(map((value: object) => {
         this.user = value;
-        
-        this.user.service ? this.user.service = this.services[this.user.service] :'';
-        this.user.brief ? this.user.brief = this.user.brief.split('&#x0A;'):'';
+        this.user.service ? this.user.service = this.services[this.user.service] : '';
+        this.user.brief ? this.user.brief = this.user.brief.split('&#x0A;') : '';
+        this.user.avatar ? '' : this.user.avatar = environment.images + "/avatars/no-avatar.png";
         let messages: object[] = [];
         this.user.UserMessages.forEach((element: any) => {
-          element.Message.content = element.Message.content.split('&#x0A;');
-          messages.push(element.Message);
+          const data = element.Message;
+          if (data.media && data.media.slice(-3) === 'mp4') {
+            data.type = 'video';
+          };
+          data.content = data.content.split('&#x0A;');
+          data.Likes.find((liked: any) => liked.MessageId === data.id && liked.UserId === 1) ? data.isLiked = true : '';
+          messages.push(data);
         });
         this.posts = messages;
         this.user.stats = { following: 0, followed: 0 };

@@ -9,6 +9,6 @@
     <app-form *ngFor="let field of forms" [config]="field" (click)="onTarget($event)"></app-form>
     <app-button (whenIsClicked)="submitNew()" [config]="sendBtn"></app-button>
   </form>
-  <app-resume [data]="topics" [isLoaded]="isLoaded"></app-resume>
+  <app-resume [data]="topics" [isLoaded]="isLoaded" (whenIsLiked)="like($event)"></app-resume>
 </div>
 <div (click)="displayForm($event)" class="hidden" [ngClass]="{'new-post-icon':scrolled}"><mat-icon>add</mat-icon></div>

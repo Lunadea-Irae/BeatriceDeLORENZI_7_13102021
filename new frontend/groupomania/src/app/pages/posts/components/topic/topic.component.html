@@ -28,8 +28,6 @@
             <app-form [config]="comment"></app-form>
             <app-button [config]="iconSend" (whenIsClicked)="sendComment()">Envoyer</app-button>
         </form>
-<!-- ==========
-    ========== -->
     <ng-container *ngFor="let comment of topic?.Comments">
             <app-comment [comment]="comment" (onDelete)="deletedComment()"></app-comment>
         </ng-container>

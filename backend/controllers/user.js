@@ -85,7 +85,7 @@ exports.login = (req, res, next) => {
 exports.getOne = (req, res, next) => {
     models.User.findOne({
         where: { id: req.params.id },
-        include: { model: models.UserMessages, include: models.Message },
+        include: { model: models.UserMessages, include: {model : models.Message, include : [{model : models.Comment},{model :  models.Like}]} },
     })
         .then((user) => {
             for (let [key, value] of Object.entries(user.dataValues)) { value === null ? user[key] = undefined : '' }

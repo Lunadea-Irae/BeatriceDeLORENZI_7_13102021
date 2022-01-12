@@ -105,6 +105,11 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  public like(event: number){
+    this.HttpService.likeOrNot(event).subscribe(data=>{
+    })
+  }
+
   ngOnInit(): void {
     this.getTopics();
   }
@@ -129,6 +134,8 @@ export class HomeComponent implements OnInit {
             };
             element.content = element.content.split('&#x0A;');
             element.UserMessage.User.avatar ? '' : element.UserMessage.User.avatar = environment.images+"/avatars/no-avatar.png";
+            element.Likes.find((liked: any) => liked.MessageId === element.id && liked.UserId === 1) ? element.isLiked = true : '';
+
           });
           this.isLoaded = true;
         })
