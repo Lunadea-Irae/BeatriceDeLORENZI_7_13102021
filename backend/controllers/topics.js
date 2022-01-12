@@ -7,7 +7,7 @@ const keywords = require('../middleware/keywords');
 //get
 exports.getAllTopics = (req, res, next) => {
     //    res.status(200).json(topicTest);
-    models.Message.findAll({ include: [{ model: models.UserMessages, include: models.User }, { model: models.Like }, { model: models.Comment }, {model : models.Hashtag}] }).then(topics => {
+    models.Message.findAll({ include: [{ model: models.UserMessages, include: models.User }, { model: models.Like }, { model: models.Comment }] }).then(topics => {
         res.status(200).json(topics);
     })
         .catch((error) => { res.status(400).json({ error: error }); });
@@ -24,7 +24,7 @@ exports.getAllTopics = (req, res, next) => {
 //get/:id
 exports.getOneTopic = (req, res, next) => {
 
-    models.Message.findByPk(req.params.id, { include: [{ model: models.UserMessages, include: models.User }, { model: models.Comment, include: models.User }, { model: models.Like }, {model : models.Hashtag}] })
+    models.Message.findByPk(req.params.id, { include: [{ model: models.UserMessages, include: models.User }, { model: models.Comment, include: models.User }, { model: models.Like }, { model: models.Hashtag }] })
         .then(topic => {
             res.status(200).json(topic);
         })
@@ -46,6 +46,7 @@ exports.createTopic = (req, res, next) => {
                     .then((r) => {
                         let topic2 = { UserId: 8, MessageId: r.dataValues.id };
                         models.UserMessages.create(topic2)
+                            .then(keywords(topic.content, r))
                             .then(r => res.status(201).json({ message: 'Topic Créé !!' }))
                             .catch(error => res.status(400).json({ error: error.message }))
 
@@ -60,7 +61,7 @@ exports.createTopic = (req, res, next) => {
                 console.log(r.id)
                 let topic2 = { UserId: 8, MessageId: r.dataValues.id };
                 models.UserMessages.create(topic2)
-                .then(keywords(topic.content, r))
+                    .then(keywords(topic.content, r))
                     .then(r => res.status(201).json({ message: 'Topic Créé !!' }))
                     .catch(error => res.status(400).json({ error: error.message }))
             })
@@ -94,6 +95,7 @@ exports.modifyTopic = (req, res, next) => {
     } else {
         console.log(topic);
         models.Message.update(topic, { where: { id: req.params.id } })
+            .then(keywords(topic.content, r))
             .then(res.status(201).json({ message: 'Topic enregistrée avec succés !' }))
             .catch((error) => { res.status(400).json({ error: error.message }) })
     }

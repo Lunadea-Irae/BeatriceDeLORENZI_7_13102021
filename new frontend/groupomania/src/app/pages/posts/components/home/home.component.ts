@@ -127,7 +127,6 @@ export class HomeComponent implements OnInit {
     this.sub.add(this.HttpService.getAllPosts()
       .pipe(
         map(value => {
-          console.log(value);
           this.topics = value;
           this.topics.forEach((element: any) => {
             if (element.media && element.media.slice(-3) === 'mp4') {
@@ -136,7 +135,6 @@ export class HomeComponent implements OnInit {
             element.content = element.content.split('&#x0A;');
             element.UserMessage.User.avatar ? '' : element.UserMessage.User.avatar = environment.images+"/avatars/no-avatar.png";
             element.Likes.find((liked: any) => liked.MessageId === element.id && liked.UserId === 1) ? element.isLiked = true : '';
-
           });
           this.isLoaded = true;
         })
