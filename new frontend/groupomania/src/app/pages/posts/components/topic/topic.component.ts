@@ -1,9 +1,9 @@
 
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { Component, OnDestroy, OnInit, Output, ViewChild, ElementRef, ViewChildren, QueryList, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, Subscription } from 'rxjs';
 import { Topic } from 'src/app/interfaces/topic';
+import { Alert } from 'src/app/share/interfaces/alert';
 import { environment } from 'src/environments/environment';
 
 import { HttpService } from '../../services/http.service';
@@ -25,8 +25,13 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
   @Output() public topics!: Topic | any;
   @Output() public isLoaded: boolean | undefined;
   public isLiked: boolean = false;
-  public topic: Topic[] |any;
+  public topic: Topic[] | any;
   public edition: boolean = false;
+  public alert: boolean = false;
+  public alertConfig: Alert = {
+    message: "",
+    class: ''
+  }
 
   public forms = [
     {
@@ -47,7 +52,8 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
       type: 'textarea',
       id: 'content',
       value: '',
-      required: true
+      required: true,
+      rows: 20
     }
   ];
 
@@ -96,17 +102,32 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
       data.like ? this.topic.Likes.push("Liked") : this.topic.Likes.splice(0, 1);
     })
   }
- public likeAPost(event: number){
-    this.HttpService.likeOrNot(event).subscribe(data=>{
+  public likeAPost(event: number) {
+    this.HttpService.likeOrNot(event).subscribe(data => {
     })
   }
 
   public deleteTopic() {
 
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.HttpService.deletePost(id).subscribe(data => {
+    this.HttpService.deletePost(id).subscribe((data: any) => {
+      if (data.error) {
+        this.alertConfig = {
+          message: "Nous n'avons pas pu supprimer votre message pour les raisons suivantes : " + data.error.message,
+          class: 'failure'
+        }
+      } else {
+        this.alertConfig = {
+          message: "Votre message a bien été supprimé",
+          class: 'success'
+        }
+      }
       this.router.navigateByUrl(`/`);
-      window.scroll(0, 0)
+      window.scroll(0, 0);
+      this.alert = true;
+      setTimeout(() => {
+        this.alert = false;
+      }, 2000);
     });
   }
 
@@ -121,9 +142,23 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     }
 
-    this.HttpService.editPost(id, editPostData).subscribe(data => {
-      console.log(data);
+    this.HttpService.editPost(id, editPostData).subscribe((data: any) => {
+      if (data.error) {
+        this.alertConfig = {
+          message: "Nous n'avons pas pu enregistrer votre message pour les raisons suivantes : " + data.error.message,
+          class: 'failure'
+        }
+      } else {
+        this.alertConfig = {
+          message: "Votre message a bien été enregistré",
+          class: 'success'
+        }
+      }
       this.getOnePost();
+      this.alert = true;
+      setTimeout(() => {
+        this.alert = false;
+      }, 2000);
 
     })
   }
@@ -131,15 +166,51 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
   public sendComment() {
     event?.preventDefault();
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.HttpService.newComment(id, this.postComment.nativeElement[0].value.replace(/\n/gi, '&#x0A;')).subscribe(data => {
-      console.log(data);
+
+    this.HttpService.newComment(id, this.postComment.nativeElement[0].value.replace(/\n/gi, '&#x0A;')).subscribe((data: any) => {
+      console.log(data.error);
+      if (data.error) {
+        this.alertConfig = {
+          message: "Nous n'avons pas pu enregistrer votre commentaire pour les raisons suivantes : " + data.error.message,
+          class: 'failure'
+        }
+      } else {
+        this.alertConfig = {
+          message: "Votre commentaire a bien été enregistré",
+          class: 'success'
+        }
+      }
       this.getOnePost();
+      console.log("post getted")
+      this.alert = true;
+      setTimeout(() => {
+        this.alert = false;
+      }, 100);
+
+      console.log("fin")
     });
 
   }
 
-  public deletedComment() {
+  public deletedComment(event: any) {
+    console.log(event)
+    if (event.error) {
+      this.alertConfig = {
+        message: "Nous n'avons pas pu supprimer votre commentaire pour les raisons suivantes : " + event.error.message,
+        class: 'failure'
+      }
+    } else {
+      this.alertConfig = {
+        message: "Votre commentaire a bien été supprimé",
+        class: 'success'
+      }
+    }
     this.getOnePost();
+    this.alert = true;
+    setTimeout(() => {
+      this.alert = false;
+    }, 100);
+
   }
 
 
@@ -201,9 +272,9 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this.sub.add(this.HttpService.getFilteredPosts(id)
       .pipe(
-        map((value:any) => {
+        map((value: any) => {
           if (value) {
-            this.topics = value;
+            this.topics = value.reverse();
             this.topics.forEach((element: any) => {
               if (element.media && element.media.slice(-3) === 'mp4') {
                 element.type = 'video';
@@ -216,8 +287,8 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
           } else {
             this.sub.add(this.HttpService.getAllPosts()
               .pipe(
-                map(value => {
-                  this.topics = value;
+                map((value: any) => {
+                  this.topics = value.reverse();
                   this.topics.forEach((element: any) => {
                     if (element.media && element.media.slice(-3) === 'mp4') {
                       element.type = 'video';

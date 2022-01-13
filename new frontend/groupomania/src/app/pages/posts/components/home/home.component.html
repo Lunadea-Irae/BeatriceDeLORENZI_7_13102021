@@ -1,3 +1,4 @@
+
 <div class="container" (scroll)="onWindowScroll();">
   <h2>Bienvenue</h2>
   <div class="new-post">
@@ -12,3 +13,4 @@
   <app-resume [data]="topics" [isLoaded]="isLoaded" (whenIsLiked)="like($event)"></app-resume>
 </div>
 <div (click)="displayForm($event)" class="hidden" [ngClass]="{'new-post-icon':scrolled}"><mat-icon>add</mat-icon></div>
+<app-alert *ngIf="alert" [config]="alertConfig"></app-alert>

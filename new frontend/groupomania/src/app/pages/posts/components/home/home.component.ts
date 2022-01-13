@@ -1,6 +1,7 @@
 import { Component, ElementRef, HostListener, Input, OnInit, QueryList, ViewChild } from '@angular/core';
 import { map, Subscription } from 'rxjs';
 import { Topic } from 'src/app/interfaces/topic';
+import { Alert } from 'src/app/share/interfaces/alert';
 import { environment } from 'src/environments/environment';
 import { HttpService } from '../../services/http.service';
 
@@ -16,8 +17,15 @@ export class HomeComponent implements OnInit {
   public topics: Topic | any;
   public scrolled: boolean = false;
 
+  public alert: boolean = false;
 
   public shown: boolean = false;
+
+  public alertConfig : Alert = {
+    message: 'Votre message a bien été enregistré',
+    class: 'failure'
+  }
+
   public forms = [
     {
       label: "Titre",
@@ -36,7 +44,7 @@ export class HomeComponent implements OnInit {
       type: 'textarea',
       id: 'description',
       required: true,
-      rows : 20
+      rows: 20
     }
   ];
 
@@ -99,14 +107,29 @@ export class HomeComponent implements OnInit {
       }
     });
 
-    this.HttpService.newPost(newPostData).subscribe(data => {
+    this.HttpService.newPost(newPostData).subscribe((data: any) => {
+      if (data.error) {
+        this.alertConfig = {
+          message: "Nous n'avons pas pu enregistrer votre message pour les raisons suivantes : " + data.error.message,
+          class: 'failure'
+        }
+      } else {
+        this.alertConfig = {
+          message: "Votre message a bien été enregistré",
+          class: 'success'
+        }
+      }
       this.getTopics();
-      window.scroll(0, 0)
+      window.scroll(0, 0);
+      this.alert = true;
+      setTimeout(() => {
+        this.alert = false;
+      }, 2000);
     });
   }
 
-  public like(event: number){
-    this.HttpService.likeOrNot(event).subscribe(data=>{
+  public like(event: number) {
+    this.HttpService.likeOrNot(event).subscribe(data => {
     })
   }
 
@@ -126,14 +149,14 @@ export class HomeComponent implements OnInit {
     this.isLoaded = false;
     this.sub.add(this.HttpService.getAllPosts()
       .pipe(
-        map(value => {
-          this.topics = value;
+        map((value: any) => {
+          this.topics = value.reverse();
           this.topics.forEach((element: any) => {
             if (element.media && element.media.slice(-3) === 'mp4') {
               element.type = 'video';
             };
             element.content = element.content.split('&#x0A;');
-            element.UserMessage.User.avatar ? '' : element.UserMessage.User.avatar = environment.images+"/avatars/no-avatar.png";
+            element.UserMessage.User.avatar ? '' : element.UserMessage.User.avatar = environment.images + "/avatars/no-avatar.png";
             element.Likes.find((liked: any) => liked.MessageId === element.id && liked.UserId === 1) ? element.isLiked = true : '';
           });
           this.isLoaded = true;

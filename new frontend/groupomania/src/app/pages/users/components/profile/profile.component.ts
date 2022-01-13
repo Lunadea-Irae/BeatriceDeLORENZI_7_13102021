@@ -70,7 +70,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.user.brief ? this.user.brief = this.user.brief.split('&#x0A;') : '';
         this.user.avatar ? '' : this.user.avatar = environment.images + "/avatars/no-avatar.png";
         let messages: object[] = [];
-        this.user.UserMessages.forEach((element: any) => {
+        this.user.UserMessages.reverse().forEach((element: any) => {
           const data = element.Message;
           if (data.media && data.media.slice(-3) === 'mp4') {
             data.type = 'video';

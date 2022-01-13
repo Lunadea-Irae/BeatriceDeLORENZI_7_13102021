@@ -9,6 +9,7 @@ import { NgxMasonryModule } from 'ngx-masonry';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { ReactiveFormsModule } from '@angular/forms';
 import { IconsComponent } from './component/icons/icons.component';
+import { AlertComponent } from './component/alert/alert.component';
 
 
 
@@ -19,6 +20,7 @@ import { IconsComponent } from './component/icons/icons.component';
     FormComponent,
     ResumeComponent,
     IconsComponent,
+    AlertComponent,
 
   ],
   imports: [
@@ -31,7 +33,8 @@ import { IconsComponent } from './component/icons/icons.component';
   exports: [
     ButtonComponent,
     FormComponent,
-    ResumeComponent
+    ResumeComponent,
+    AlertComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

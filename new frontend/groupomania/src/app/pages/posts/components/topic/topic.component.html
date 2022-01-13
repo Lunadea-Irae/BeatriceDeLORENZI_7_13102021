@@ -29,7 +29,7 @@
             <app-button [config]="iconSend" (whenIsClicked)="sendComment()">Envoyer</app-button>
         </form>
     <ng-container *ngFor="let comment of topic?.Comments">
-            <app-comment [comment]="comment" (onDelete)="deletedComment()"></app-comment>
+            <app-comment [comment]="comment" (onDelete)="deletedComment($event)"></app-comment>
         </ng-container>
         
         
@@ -46,3 +46,5 @@
     <app-form *ngFor="let field of forms" [config]="field" (click)="onTarget($event)"></app-form>
     <app-button (whenIsClicked)="editTopic()" [config]="sendBtn"></app-button>
   </form>
+
+  <app-alert *ngIf="alert" [config]="alertConfig"></app-alert>

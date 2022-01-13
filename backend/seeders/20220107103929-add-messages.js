@@ -3,7 +3,7 @@
 module.exports = {
   up: async (queryInterface) => queryInterface.bulkInsert('Messages', [
     //&#x0A;
-    {
+   /* {
       id: 1,
       title: "Un cadeau d'anniversaire",
       content: "Voila le cadeau d'anniversaire de mon fils... Qu'il vienne pas me dire qu'il n'est pas gâté !",
@@ -35,7 +35,7 @@ module.exports = {
 
       createdAt: new Date(),
       updatedAt: new Date()
-    },
+    },*/
   ], {}),
 
   down: async (queryInterface) => {
