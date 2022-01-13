@@ -8,7 +8,7 @@ const keywords = require('../middleware/keywords');
 //get
 exports.getAllTopics = (req, res, next) => {
     models.Message.findAll({ include: [{ model: models.UserMessages, include: models.User }, { model: models.Like }, { model: models.Comment }] }).then(topics => {
-        
+
         res.status(200).json(topics);
     })
         .catch((error) => { res.status(400).json({ error: error }); });
@@ -23,8 +23,18 @@ exports.getFilteredTopics = (req, res, next) => {
         .then(r => {
             let topics = [];
             r.Hashtags.forEach(ht => {
-                ht.Messages.forEach(mess => { mess.id == req.params.id ? '': topics.push(mess) })
-            }); res.status(200).json(topics)
+                ht.Messages.forEach(mess => { mess.id == req.params.id ? '' : topics.push(mess) })
+            });
+            if (topics.length===0) {
+                models.Message.findAll({ include: [{ model: models.UserMessages, include: models.User }, { model: models.Like }, { model: models.Comment }] }).then(topics => {
+
+                    res.status(200).json(topics);
+                })
+                    .catch((error) => { res.status(400).json({ error: error }); });
+            } else {
+
+                res.status(200).json(topics)
+            }
         })
         .catch(error => res.status(400).json({ error: error.message }))
 }

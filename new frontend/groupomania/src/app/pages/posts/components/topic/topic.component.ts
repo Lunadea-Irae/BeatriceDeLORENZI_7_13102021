@@ -246,6 +246,7 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
           this.topic.Likes.find((liked: any) => liked.MessageId === id && liked.UserId === 1) ? this.isLiked = true : '';
           this.isLoaded = true;
 
+          this.getSuggests();
         })
       )
       .subscribe());
@@ -266,14 +267,13 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
     }, 30);
   }
 
-  private getSuggests() {
+  public getSuggests() {
     this.isLoaded = false;
-    const id = Number(this.route.snapshot.paramMap.get('id'));
 
+    const id = Number(this.route.snapshot.paramMap.get('id'));
     this.sub.add(this.HttpService.getFilteredPosts(id)
       .pipe(
         map((value: any) => {
-          if (value) {
             this.topics = value.reverse();
             this.topics.forEach((element: any) => {
               if (element.media && element.media.slice(-3) === 'mp4') {
@@ -284,24 +284,6 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
 
               element.Likes.find((liked: any) => liked.MessageId === element.id && liked.UserId === 1) ? element.isLiked = true : '';
             });
-          } else {
-            this.sub.add(this.HttpService.getAllPosts()
-              .pipe(
-                map((value: any) => {
-                  this.topics = value.reverse();
-                  this.topics.forEach((element: any) => {
-                    if (element.media && element.media.slice(-3) === 'mp4') {
-                      element.type = 'video';
-                    };
-                    element.content = element.content.split('&#x0A;');
-                    element.UserMessage.User.avatar ? '' : element.UserMessage.User.avatar = environment.images + "/avatars/no-avatar.png";
-                    element.Likes.find((liked: any) => liked.MessageId === element.id && liked.UserId === 1) ? element.isLiked = true : '';
-                  });
-                  this.isLoaded = true;
-                })
-              )
-              .subscribe());
-          }
           this.isLoaded = true;
         })
       )
@@ -309,8 +291,8 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit(): void {
+    
     this.getOnePost();
-    this.getSuggests();
   }
 
   ngAfterViewInit(): void {
