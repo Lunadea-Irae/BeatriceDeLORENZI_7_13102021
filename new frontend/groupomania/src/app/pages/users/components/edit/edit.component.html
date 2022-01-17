@@ -18,6 +18,7 @@
                         <mat-icon>photo_camera</mat-icon> Changer d'avatar
                     </p><img src="{{user?.avatar}}" alt="avatar de {{user?.username}}" style="background-color: black;">
                 </label><input type="file" id="avatar"></div>
+                <p>Supprimer l'avatar : <button type="button" (click)="deleteAvatar()">X</button></p>
             <p><label for="username">Pseudo* : </label><input id="username" type="text" value="{{user?.username}}"
                     required> </p>
             <p><label for="service">Service : </label><select id="service">

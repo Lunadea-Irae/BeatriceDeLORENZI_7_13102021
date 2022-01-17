@@ -44,6 +44,9 @@ export class HttpService {
   deleteDataUser(id: number) {
     return this.http.delete(this.url + "/data/" + id)
   }
+  deleteAvatar(id:number){
+    return this.http.delete(this.url+"/avatar/"+id,this.httpHeader)
+  }
   likeOrNot(id : number){
     return this.http.post(this.url.replace('/users','/topics') + "/like/" + id, this.httpHeader)
   }

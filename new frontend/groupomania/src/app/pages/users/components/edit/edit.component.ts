@@ -28,6 +28,12 @@ export class EditComponent implements OnInit {
 
   constructor(private readonly router: Router, private readonly HttpService: HttpService, private route: ActivatedRoute) { }
 
+public deleteAvatar(){
+  const id = Number(this.route.snapshot.paramMap.get('id'));
+  this.HttpService.deleteAvatar(id).subscribe(data => {console.log(data);
+    this.getOneUser()});
+}
+
   public save() {
 
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -46,7 +52,7 @@ export class EditComponent implements OnInit {
           newPostData.append(element.id, element.value)
         };
       }
-      this.HttpService.editUser(id, newPostData).subscribe(data => console.log(data));
+      this.HttpService.editUser(id, newPostData).subscribe(data => {console.log(data);this.getOneUser()});
     }
 
   }

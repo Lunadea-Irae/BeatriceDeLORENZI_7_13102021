@@ -3,7 +3,6 @@ const models = require('../models');
 const jwt = require('jsonwebtoken');
 
 const fs = require('fs');
-const usersTest = require('../models/models/users.json');
 
 require('dotenv').config();
 
@@ -85,7 +84,7 @@ exports.login = (req, res, next) => {
 exports.getOne = (req, res, next) => {
     models.User.findOne({
         where: { id: req.params.id },
-        include: { model: models.UserMessages, include: {model : models.Message, include : [{model : models.Comment},{model :  models.Like}]} },
+        include: { model: models.UserMessages, include: { model: models.Message, include: [{ model: models.Comment }, { model: models.Like }] } },
     })
         .then((user) => {
             for (let [key, value] of Object.entries(user.dataValues)) { value === null ? user[key] = undefined : '' }
@@ -122,28 +121,27 @@ exports.refreshToken = (req, res, next) => {
 //     EDIT USER
 exports.editOne = (req, res, next) => {
     if (req.body.password && req.body.password != '') {
-        console.log('il y a un pass');
         models.User.findByPk(req.params.id, { attributes: ['email', 'password'] })
             .then(user => {
                 bcrypt.compare(req.body.password, user.password)
                     .then(valid => {
                         if (!valid) {
                             return res.status(401).json({ error: 'Mot de passe incorrect !' });
-                        }else if (req.body.newPassword1!==req.body.newPassword2){
-                            return res.status(401).json({error : 'Les deux nouveaux mots de passe de correspondent pas'})
+                        } else if (req.body.newPassword1 !== req.body.newPassword2) {
+                            return res.status(401).json({ error: 'Les deux nouveaux mots de passe de correspondent pas' })
                         }
                         bcrypt.hash(req.body.password, 10)
                             .then(hash => {
-                                models.User.update({email:req.body.email,password : hash},{where : {id : req.params.id}})
-                                .then(res.status(201).json({message : 'Modifications enregistrées'}))
-                                .catch(error=>res.status(401).json({error : error.message}))
+                                models.User.update({ email: req.body.email, password: hash }, { where: { id: req.params.id } })
+                                    .then(res.status(201).json({ message: 'Modifications enregistrées' }))
+                                    .catch(error => res.status(401).json({ error: error.message }))
                             })
 
                     })
             })
     } else {
         let user = { ...req.body };
-        user.password ==='' ? delete user.password : '';
+        user.password === '' ? delete user.password : '';
         user.avatar === '' ? delete user.avatar : '';
         user.birthday === '' ? delete user.birthday : '';
         if (req.file) {
@@ -191,6 +189,20 @@ exports.deleteOne = (req, res, next) => {
 //    DELETE DATA FOR ONE USER
 exports.deleteDataOne = (req, res, next) => {
 
+}
+
+exports.deleteAvatar = (req, res, next) => {
+    console.log(req.params.id)
+    models.User.findByPk(req.params.id)
+        .then(user => {
+            if (user.avatar) {
+                const filename = user.avatar.split('/avatars/')[1];
+                fs.unlink(`medias/avatars/${filename}`, () => { })
+                models.User.update({ avatar: null }, { where: { id: req.params.id } })
+            }
+        })
+        .then(res.status(200).json({ message: "avatar supprimé" }))
+        .catch(e => res.status(400).json({ error: e.message }))
 }
 
 //   GET ALL USERS
@@ -258,4 +270,10 @@ exports.test = (req, res, next) => {
         }
 
     }
+}
+
+
+exports.hashPass = (req, res, next) => {
+
+    bcrypt.hash(req.body.password, 10).then(hash => res.status(200).json({ password: req.body.password, hashed: hash }))
 }

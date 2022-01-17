@@ -1,16 +1,20 @@
-
 <div class="container" (scroll)="onWindowScroll();">
   <h2>Bienvenue</h2>
   <div class="new-post">
-    <app-button (whenIsClicked)="displayForm($event)" [config]="defaultConfig"  >
+    <app-button (whenIsClicked)="displayForm($event)" [config]="defaultConfig">
     </app-button>
   </div>
   <form *ngIf="shown" (click)="this.shown=false" #newPostForm ngNativeValidate enctype="multipart/form-data">
     <h3>Nouveau post</h3>
-    <app-form *ngFor="let field of forms" [config]="field" (click)="onTarget($event)"></app-form>
+    <app-form [config]="forms[0]" (click)="onTarget($event)"></app-form>
+    <app-form [config]="forms[1]" (click)="onTarget($event)" (change)=changePreview()></app-form>
+    <img src="postImage?" alt="">
+    <app-form [config]="forms[2]" (click)="onTarget($event)"></app-form>
     <app-button (whenIsClicked)="submitNew()" [config]="sendBtn"></app-button>
   </form>
   <app-resume [data]="topics" [isLoaded]="isLoaded" (whenIsLiked)="like($event)"></app-resume>
 </div>
-<div (click)="displayForm($event)" class="hidden" [ngClass]="{'new-post-icon':scrolled}"><mat-icon>add</mat-icon></div>
+<div (click)="displayForm($event)" class="hidden" [ngClass]="{'new-post-icon':scrolled}">
+  <mat-icon>add</mat-icon>
+</div>
 <app-alert *ngIf="alert" [config]="alertConfig"></app-alert>

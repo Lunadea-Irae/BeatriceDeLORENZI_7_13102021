@@ -18,10 +18,11 @@ export class HomeComponent implements OnInit {
   public scrolled: boolean = false;
 
   public alert: boolean = false;
+  public postImage!: ProgressEvent<FileReader>;
 
   public shown: boolean = false;
 
-  public alertConfig : Alert = {
+  public alertConfig: Alert = {
     message: 'Votre message a bien été enregistré',
     class: 'failure'
   }
@@ -37,7 +38,7 @@ export class HomeComponent implements OnInit {
       label: "Image",
       type: 'file',
       id: "media",
-      accept: ".jpg, .jpeg, .png, .mp4, .mov"
+      accept: ".jpg, .jpeg, .png, .mp4, .mov, .webp"
     },
     {
       label: "Message",
@@ -78,6 +79,13 @@ export class HomeComponent implements OnInit {
 
   constructor(private readonly HttpService: HttpService) { }
 
+  public changePreview() {
+    if (this.newPostForm.nativeElement[1].files[0]) {
+      const reader = new FileReader();
+      reader.addEventListener('load', (result) => { this.postImage = result;console.log(result) }
+      )
+    }
+  }
 
   public displayForm(event: unknown) {
     this.shown = true;
@@ -152,6 +160,7 @@ export class HomeComponent implements OnInit {
         map((value: any) => {
           this.topics = value.reverse();
           this.topics.forEach((element: any) => {
+            element.UserMessage ? '' : console.log(element);
             if (element.media && element.media.slice(-3) === 'mp4') {
               element.type = 'video';
             };

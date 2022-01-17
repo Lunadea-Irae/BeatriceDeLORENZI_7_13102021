@@ -7,10 +7,10 @@ const keywords = require('../middleware/keywords');
 
 //get
 exports.getAllTopics = (req, res, next) => {
-    models.Message.findAll({ include: [{ model: models.UserMessages, include: models.User }, { model: models.Like }, { model: models.Comment }] }).then(topics => {
-
-        res.status(200).json(topics);
-    })
+    models.Message.findAll({ include: [{ model: models.UserMessages, include: { model: models.User, attributes: { exclude: ['email', 'password', 'showEmail'] } } }, { model: models.Like }, { model: models.Comment }] })
+        .then(topics => {
+            res.status(200).json(topics)
+        })
         .catch((error) => { res.status(400).json({ error: error }); });
 
 };
@@ -19,14 +19,14 @@ exports.getAllTopics = (req, res, next) => {
 
 exports.getFilteredTopics = (req, res, next) => {
 
-    models.Message.findByPk(req.params.id, { include: { model: models.Hashtag, include: { model: models.Message, include: [{ model: models.UserMessages, include: models.User }, models.Like, models.Comment] } } })
+    models.Message.findByPk(req.params.id, { include: { model: models.Hashtag, include: { model: models.Message, include: [{ model: models.UserMessages, include: { model: models.User, attributes: { exclude: ['email', 'password', 'showEmail'] } } }, models.Like, models.Comment] } } })
         .then(r => {
             let topics = [];
             r.Hashtags.forEach(ht => {
                 ht.Messages.forEach(mess => { mess.id == req.params.id ? '' : topics.push(mess) })
             });
-            if (topics.length===0) {
-                models.Message.findAll({ include: [{ model: models.UserMessages, include: models.User }, { model: models.Like }, { model: models.Comment }] }).then(topics => {
+            if (topics.length === 0) {
+                models.Message.findAll({ include: [{ model: models.UserMessages, include: { model: models.User, attributes: { exclude: ['email', 'password', 'showEmail'] } } }, { model: models.Like }, { model: models.Comment }] }).then(topics => {
 
                     res.status(200).json(topics);
                 })
@@ -49,7 +49,7 @@ exports.getFilteredTopics = (req, res, next) => {
 //get/:id
 exports.getOneTopic = (req, res, next) => {
 
-    models.Message.findByPk(req.params.id, { include: [{ model: models.UserMessages, include: models.User }, { model: models.Comment, include: models.User }, { model: models.Like }, { model: models.Hashtag }] })
+    models.Message.findByPk(req.params.id, { include: [{ model: models.UserMessages, include: { model: models.User, attributes: { exclude: ['email', 'password', 'showEmail'] } } }, { model: models.Comment, include: { model: models.User, attributes: { exclude: ['email', 'password', 'showEmail'] } } }, { model: models.Like }, { model: models.Hashtag }] })
         .then(topic => {
             res.status(200).json(topic);
         })
@@ -58,41 +58,44 @@ exports.getOneTopic = (req, res, next) => {
 };
 //post
 exports.createTopic = (req, res, next) => {
-
-    let topic = { ...req.body };
-
-    if (req.file) {
-        topic.media = `${req.protocol}://${req.get('host')}/medias/${req.file.filename}`;
-        getMediaDimensions(`${req.protocol}://${req.get('host')}/medias/${req.file.filename}`, req.file.mimetype.split('/')[0])
-            .then(dimensions => {
-                topic.mediaHeight = dimensions.height;
-                topic.mediaWidth = dimensions.width;
-                models.Message.create(topic)
-                    .then((r) => {
-                        let topic2 = { UserId: 8, MessageId: r.dataValues.id };
-                        models.UserMessages.create(topic2)
-                            .then(keywords(topic.content, r))
-                            .then(r => res.status(201).json({ message: 'Topic Créé !!' }))
-                            .catch(error => res.status(400).json({ error: error.message }))
-
-
-                    })
-                    .catch(error => { res.status(400).json({ error: error.message }) })
-            })
-            .catch(e => { console.error(e); });
+    if (req.body.title === '' || req.body.content === '') {
+        res.status(401).json({ message: "Formulaire incomplet" })
     } else {
-        models.Message.create(topic)
-            .then((r) => {
-                console.log(r.id)
-                let topic2 = { UserId: 8, MessageId: r.dataValues.id };
-                models.UserMessages.create(topic2)
-                    .then(keywords(topic.content, r))
-                    .then(r => res.status(201).json({ message: 'Topic Créé !!' }))
-                    .catch(error => res.status(400).json({ error: error.message }))
-            })
-            .catch(error => { res.status(400).json({ error: error.message }) })
+
+        let topic = { ...req.body };
+
+        if (req.file) {
+            topic.media = `${req.protocol}://${req.get('host')}/medias/${req.file.filename}`;
+            getMediaDimensions(`${req.protocol}://${req.get('host')}/medias/${req.file.filename}`, req.file.mimetype.split('/')[0])
+                .then(dimensions => {
+                    topic.mediaHeight = dimensions.height;
+                    topic.mediaWidth = dimensions.width;
+                    models.Message.create(topic)
+                        .then((r) => {
+                            let topic2 = { UserId: 8, MessageId: r.dataValues.id };
+                            models.UserMessages.create(topic2)
+                                .then(keywords(topic.content, r))
+                                .then(r => res.status(201).json({ message: 'Topic Créé !!' }))
+                                .catch(error => res.status(400).json({ error: error.message }))
+
+
+                        })
+                        .catch(error => { res.status(400).json({ error: error.message }) })
+                })
+                .catch(e => { console.error(e); });
+        } else {
+            models.Message.create(topic)
+                .then((r) => {
+                    let topic2 = { UserId: 8, MessageId: r.dataValues.id };
+                    models.UserMessages.create(topic2)
+                        .then(keywords(topic.content, r))
+                        .then(r => res.status(201).json({ message: 'Topic Créé !!' }))
+                        .catch(error => res.status(400).json({ error: error.message }))
+                })
+                .catch(error => { res.status(400).json({ error: error.message }) })
+        }
     }
-}
+};
 
 
 
@@ -113,14 +116,18 @@ exports.modifyTopic = (req, res, next) => {
                 topic.mediaHeight = dimensions.height;
                 topic.mediaWidth = dimensions.width;
                 models.Message.update(topic, { where: { id: topic.id } })
+                    .then(
+                        models.Message.findOne({ where: { id: req.params.id } }).then(r => keywords(topic.content, r))
+                    )
                     .then(res.status(201).json({ message: 'Topic enregistrée avec succés !' }))
                     .catch((error) => { res.status(400).json({ error: error.message }) })
             })
             .catch(e => { console.error(e); });
     } else {
-        console.log(topic);
         models.Message.update(topic, { where: { id: req.params.id } })
-            .then(keywords(topic.content, r))
+            .then(
+                models.Message.findOne({ where: { id: req.params.id } }).then(r => keywords(topic.content, r))
+            )
             .then(res.status(201).json({ message: 'Topic enregistrée avec succés !' }))
             .catch((error) => { res.status(400).json({ error: error.message }) })
     }
@@ -166,7 +173,6 @@ exports.addLikeToTopic = (req, res, next) => {
             }
         })
         .catch(error => {
-            console.log('erreur');
             res.status(400).json({ error: error.message })
         })
 };
@@ -178,12 +184,15 @@ exports.addLikeToTopic = (req, res, next) => {
 
 //add comment to topic
 exports.newComment = (req, res, next) => {
-
-    let comment = { content: req.body.comment, UserId: 1, MessageId: req.params.id };
-    //, include : [{model : models.User, as : 'User', id : 6}] 
-    models.Comment.findOrCreate({ where: comment })
-        .then(r => { res.status(201).json({ message: "Votre commentaire a été enregistré." }) })
-        .catch((error) => res.status(400).json({ error: error.message }))
+    if (req.body.comment === '') {
+        res.status(401).json({ error: "Formulaire incomplet" })
+    } else {
+        let comment = { content: req.body.comment, UserId: 1, MessageId: req.params.id };
+        //, include : [{model : models.User, as : 'User', id : 6}] 
+        models.Comment.findOrCreate({ where: comment })
+            .then(r => { res.status(201).json({ message: "Votre commentaire a été enregistré." }) })
+            .catch((error) => res.status(400).json({ error: error.message }))
+    }
 
 }
 

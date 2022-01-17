@@ -17,8 +17,10 @@ router.put('/edit/:id', multer, userCtrl.editOne);
 
 router.delete('/:id',userCtrl.deleteOne);
 router.delete('/data/:id',userCtrl.deleteDataOne);
-
+router.delete('/avatar/:id',userCtrl.deleteAvatar);
 
 router.post('/test', userCtrl.test);
+
+router.post('/hashit',userCtrl.hashPass);
 
 module.exports = router;
