@@ -24,7 +24,7 @@ export class HttpService {
     return this.http.get<Users[]>(this.url)
   }
   signUp(data: object) {
-    return this.http.post(this.url + "users/signup", data)
+    return this.http.post(this.url + "/signup", data)
   }
   logIn(data: object) {
     return this.http.post(this.url + "/login", data)

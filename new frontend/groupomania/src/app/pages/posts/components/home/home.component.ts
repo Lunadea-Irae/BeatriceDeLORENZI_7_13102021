@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   public scrolled: boolean = false;
 
   public alert: boolean = false;
-  public postImage!: ProgressEvent<FileReader>;
+  public imageSrc: string|ArrayBuffer|null=null;
 
   public shown: boolean = false;
 
@@ -79,11 +79,17 @@ export class HomeComponent implements OnInit {
 
   constructor(private readonly HttpService: HttpService) { }
 
-  public changePreview() {
-    if (this.newPostForm.nativeElement[1].files[0]) {
+  public readURL(event: any){
+    
+    if (event && event.target.files[0]) {
+      const file = event.target.files[0];
+
       const reader = new FileReader();
-      reader.addEventListener('load', (result) => { this.postImage = result;console.log(result) }
-      )
+      reader.onload = e =>  this.imageSrc= reader.result;
+
+      reader.readAsDataURL(file);
+    } else {
+      this.imageSrc = null
     }
   }
 

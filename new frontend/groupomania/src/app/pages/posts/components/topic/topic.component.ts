@@ -28,6 +28,8 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
   public topic: Topic[] | any;
   public edition: boolean = false;
   public alert: boolean = false;
+
+  public imageSrc: string|ArrayBuffer|null=null;
   public alertConfig: Alert = {
     message: "",
     class: ''
@@ -90,7 +92,20 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(private readonly router: Router, private readonly HttpService: HttpService, private route: ActivatedRoute, private cdr: ChangeDetectorRef) { }
 
+  public readURL(event: any){
+    
+    if (event && event.target.files[0]) {
+      const file = event.target.files[0];
 
+      const reader = new FileReader();
+      reader.onload = e =>  this.imageSrc= reader.result;
+
+      reader.readAsDataURL(file);
+    } else {
+      this.imageSrc = null
+    }
+  }
+  
   public onTarget(event: any) {
     event.stopPropagation();
   }

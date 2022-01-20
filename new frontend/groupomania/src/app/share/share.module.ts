@@ -10,6 +10,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { ReactiveFormsModule } from '@angular/forms';
 import { IconsComponent } from './component/icons/icons.component';
 import { AlertComponent } from './component/alert/alert.component';
+import { NotfoundComponent } from './component/notfound/notfound.component';
 
 
 
@@ -21,6 +22,7 @@ import { AlertComponent } from './component/alert/alert.component';
     ResumeComponent,
     IconsComponent,
     AlertComponent,
+    NotfoundComponent,
 
   ],
   imports: [

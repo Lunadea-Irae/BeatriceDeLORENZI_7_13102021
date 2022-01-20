@@ -7,8 +7,8 @@
   <form *ngIf="shown" (click)="this.shown=false" #newPostForm ngNativeValidate enctype="multipart/form-data">
     <h3>Nouveau post</h3>
     <app-form [config]="forms[0]" (click)="onTarget($event)"></app-form>
-    <app-form [config]="forms[1]" (click)="onTarget($event)" (change)=changePreview()></app-form>
-    <img src="postImage?" alt="">
+    <app-form [config]="forms[1]" (click)="onTarget($event)" (change)="readURL($event);"></app-form>
+    <img  *ngIf="imageSrc" [src]="imageSrc" alt="your image" />
     <app-form [config]="forms[2]" (click)="onTarget($event)"></app-form>
     <app-button (whenIsClicked)="submitNew()" [config]="sendBtn"></app-button>
   </form>

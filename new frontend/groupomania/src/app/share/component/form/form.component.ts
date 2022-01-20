@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Form } from '../../interfaces/form';
 
 
@@ -8,7 +8,7 @@ import { Form } from '../../interfaces/form';
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
-  
+
   @Input() public config!: Form;
 
 

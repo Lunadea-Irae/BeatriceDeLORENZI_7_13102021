@@ -43,7 +43,10 @@
 </div>
 <form id="editPostForm" *ngIf="edition" (click)="this.edition=false" #editPostForm ngNativeValidate>
     <h3>Editer le post</h3>
-    <app-form *ngFor="let field of forms" [config]="field" (click)="onTarget($event)"></app-form>
+    <app-form [config]="forms[0]" (click)="onTarget($event)"></app-form>
+    <app-form [config]="forms[1]" (click)="onTarget($event)" (change)="readURL($event);"></app-form>
+    <img  *ngIf="imageSrc||topic?.media" [src]="imageSrc||topic?.media" alt="your image" />
+    <app-form [config]="forms[2]" (click)="onTarget($event)"></app-form>
     <app-button (whenIsClicked)="editTopic()" [config]="sendBtn"></app-button>
   </form>
 

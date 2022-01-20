@@ -6,6 +6,7 @@ const topicRoutes = require('./routes/topics');
 const userRoutes = require('./routes/user');
 const path = require('path');
 const { Sequelize } = require('sequelize');
+const { REPL_MODE_SLOPPY } = require('repl');
 require('dotenv').config();
 
 

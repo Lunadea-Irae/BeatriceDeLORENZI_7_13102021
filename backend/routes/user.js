@@ -21,6 +21,7 @@ router.delete('/avatar/:id',userCtrl.deleteAvatar);
 
 router.post('/test', userCtrl.test);
 
-router.post('/hashit',userCtrl.hashPass);
+
+router.put('/changepsw',userCtrl.changePssW)
 
 module.exports = router;

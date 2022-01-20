@@ -1,0 +1,34 @@
+<div class="container">
+    <div>
+        <form #loginForm>
+            <p>
+                <label for="username-or-email">Pseudo ou email</label>
+                <input type="text" required placeholder="Pseudo ou email" id="username-or-email">
+            </p>
+            <p><label for="password-to-log">Mot de passe</label><input type="password" required
+                    placeholder="Mot de passe" id="password-to-log"></p>
+            <p class="alert" *ngIf="loginAlert">{{loginAlert}}</p>
+            <app-button [config]="login" (whenIsClicked)="onLogginIn()">Login</app-button>
+        </form>
+    </div>
+
+    <div>
+        <form #signUpForm>
+            <p>
+                <label for="username">Pseudo</label>
+                <input type="text" required placeholder="Pseudo" id="username">
+            </p>
+            <p><label for="email">Email</label>
+                <input type="email" name="email" id="email" required placeholder="Email">
+            </p>
+            <p><label for="password">Mot de passe</label><input type="password" required placeholder="Mot de passe"
+                    id="password" (input)="passwordSecurity($event)"></p>
+            <div class="securizedPassword">
+                <div class="evol" [style.transform]="'scaleX('+securityLevel+')'"
+                    [ngStyle]="{'background-color' : this.colorLvl}"></div>
+            </div>
+            <p class="alert" *ngIf="signUpAlert&&signUpAlert!=''">{{signUpAlert}}</p>
+            <app-button [config]="signup" (whenIsClicked)="onSignUp()">Login</app-button>
+        </form>
+    </div>
+</div>

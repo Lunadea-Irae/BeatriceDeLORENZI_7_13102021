@@ -141,6 +141,18 @@ form#editPostForm {
 
         left: 5vw;
     }
+    app-form:nth-child(5) {
+        flex: 1;
+    }
+    img {
+        width: 25%;
+        object-fit: contain;
+    }
+    app-button {
+        width: 100%;
+
+        text-align: center;
+    }
     &::before {
         content: "";
         position: fixed;

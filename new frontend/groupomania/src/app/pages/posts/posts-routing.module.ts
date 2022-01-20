@@ -6,6 +6,7 @@ import { TopicComponent } from './components/topic/topic.component';
 const routes: Routes = [
   {path:'',  component:HomeComponent},
   {path:':id', component:TopicComponent}
+  
 ];
 
 @NgModule({

@@ -1,0 +1,54 @@
+.container {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    div {
+        //width: fit-content;
+        padding: 0 40px;
+        &:nth-child(1) {
+            border-right: black 2px solid;
+        }
+        form {
+            label {
+                display: none;
+            }
+            margin: 0 auto;
+            p {
+                display: flex;
+                input {
+                    margin-left: 4px;
+                    flex: 1;
+                }
+            }
+            .alert {
+                border-radius: 12px;
+                background-color: lighten($color: red, $amount: 40%);
+                border: 4px solid red;
+                padding: 4px;
+                justify-content: center;
+            }
+            app-button {
+                margin: 0 50%;
+            }
+        }
+    }
+}
+
+.securizedPassword {
+    position: relative;
+    height: 12px;
+    border: 1px black solid;
+    border-radius: 12px;
+    background-color: white;
+    .evol {
+        border-radius: 12px;
+        position: absolute;
+        left: 0;
+        height: 12px;
+        background-color: firebrick;
+        top: 0;
+        width: -webkit-fill-available;
+        transform-origin: left;
+        transition: transform 1s ease-in-out;
+    }
+}

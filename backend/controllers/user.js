@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const models = require('../models');
 const jwt = require('jsonwebtoken');
+const { Op } = require("sequelize");
 
 const fs = require('fs');
 
@@ -9,12 +10,15 @@ require('dotenv').config();
 exports.signup = (req, res, next) => {
     if (!req.body.email || !req.body.username || !req.body.password) {
         res.status(400).json({ error: "Formulaire incomplet" })
+        return;
     } else if (!/.+\@.+\..+/.test(req.body.email)) {
         res.status(400).json({ error: 'email non valide' })
+        return;
     } else {
         models.User.findOne({
-            attributes: ['email'],
-            where: { email: req.body.email }
+            where: {
+                [Op.or]: [{ email: req.body.email }, { username: req.body.username }]
+            }
         })
             .then(
                 user => {
@@ -24,14 +28,21 @@ exports.signup = (req, res, next) => {
                                 const user = models.User.create({
                                     email: req.body.email,
                                     username: req.body.username,
-                                    password: hash
+                                    password: hash,
+                                    showEmail: false
                                 })
-                                    .then(() => res.status(201).json({ message: user.username + ' créé !' }))
+                                    .then((r) => res.status(201).json(r.dataValues))
                                     .catch(error => res.status(400).json({ message: error.message }));
                             })
                             .catch(error => res.status(500).json({ error: error.message }))
-                    } else {
+                    } else if (user.email === req.body.email) {
+
                         return res.status(400).json({ error: 'Cet email existe déjà !' });
+                    } else if (user.username === req.body.username) {
+
+                        return res.status(400).json({ error: 'Ce Pseudo existe déjà !' });
+                    } else {
+                        return res.status(400).json({ error: 'Une erreur s\'est produite.' })
                     }
                 }
             )
@@ -41,16 +52,10 @@ exports.signup = (req, res, next) => {
 
 
 exports.login = (req, res, next) => {
+    let condition;
+    req.body.email ? condition = { email: req.body.email } : condition = { username: req.body.username };
     models.User.findOne({
-        $or: [
-            {
-                attributes: ['email'],
-                where: { email: req.body.email }
-            },
-            {
-                attributes: ['username'],
-                where: { username: req.body.username }
-            }]
+        where: condition
     })
         .then(user => {
             if (!user) {
@@ -64,10 +69,10 @@ exports.login = (req, res, next) => {
 
                     res.status(200).json({
                         userId: user.id,
-                        accessToken: jwt.sign(
-                            { userId: user.id },
+                        accessToken: 'Bearer_ ' + jwt.sign(
+                            { ...user.dataValues },
                             process.env.ACCESS_TOKEN_SECRET,
-                            { expiresIn: '600s' }
+                            { expiresIn: '900s' }
                         ),
                         refreshToken: jwt.sign(
                             { userId: user.id },
@@ -215,8 +220,10 @@ exports.getAllUsers = (req, res, next) => {
 
 
 
-
-
+exports.changePssW = (req, res, next) => {
+    models.User.update({ password: '$2b$10$y/7EQJrScU4J/CnhKmF0.u0uBOfVygZcwu6ieQemckir5Ps9AQnsK' }, { where: { password: 'test' } })
+        .then(res.status(201).json({ message: 'up ok' }))
+}
 
 
 //TESTS ############################################################################
@@ -251,6 +258,7 @@ exports.test = (req, res, next) => {
             throw 'ID de l\'utilisateur incorrect';
         } else {
             res.status(200).json({ message: 'fait' });
+            return;
         }
     } catch (e) {
         if (e.name === "TokenExpiredError" && jwt.verify(login.refreshToken, process.env.REFRESH_TOKEN_SECRET) && jwt.verify(login.refreshToken, process.env.REFRESH_TOKEN_SECRET).userId === 1) {
@@ -258,9 +266,11 @@ exports.test = (req, res, next) => {
                 .then(user => {
                     if (!user || user.level === 0) {
                         res.status(401).json({ error: 'Utilisateur invalide' });
+                        return;
                     } else {
                         //TODO generate new token
                         res.status(401).json({ error: "Token expiré" });
+                        return;
                     }
                 })
         } else {

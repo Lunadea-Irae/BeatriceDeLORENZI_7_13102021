@@ -22,6 +22,7 @@ export interface TopicProfile {
   avatar?: string;
 }
 
+
 interface Favorite {
   posts: Topic[];
   hastag: string[];

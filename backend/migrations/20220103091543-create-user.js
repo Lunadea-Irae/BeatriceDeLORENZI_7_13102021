@@ -17,7 +17,8 @@ module.exports = {
       },
       showEmail: {
         type: Sequelize.BOOLEAN,
-        allowNull:false
+        allowNull:false,
+        defaultValue : false
       },
       username: {
         type: Sequelize.STRING,

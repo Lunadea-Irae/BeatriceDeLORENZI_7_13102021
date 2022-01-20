@@ -29,11 +29,17 @@ exports.getFilteredTopics = (req, res, next) => {
                 models.Message.findAll({ include: [{ model: models.UserMessages, include: { model: models.User, attributes: { exclude: ['email', 'password', 'showEmail'] } } }, { model: models.Like }, { model: models.Comment }] }).then(topics => {
 
                     res.status(200).json(topics);
+
+                    return;
                 })
-                    .catch((error) => { res.status(400).json({ error: error }); });
+                    .catch((error) => {
+                        res.status(400).json({ error: error });
+                        return;
+                    });
             } else {
 
                 res.status(200).json(topics)
+                return;
             }
         })
         .catch(error => res.status(400).json({ error: error.message }))
@@ -59,7 +65,9 @@ exports.getOneTopic = (req, res, next) => {
 //post
 exports.createTopic = (req, res, next) => {
     if (req.body.title === '' || req.body.content === '') {
-        res.status(401).json({ message: "Formulaire incomplet" })
+        res.status(401).json({ message: "Formulaire incomplet" });
+
+        return;
     } else {
 
         let topic = { ...req.body };
@@ -75,22 +83,40 @@ exports.createTopic = (req, res, next) => {
                             let topic2 = { UserId: 8, MessageId: r.dataValues.id };
                             models.UserMessages.create(topic2)
                                 .then(keywords(topic.content, r))
-                                .then(r => res.status(201).json({ message: 'Topic Créé !!' }))
-                                .catch(error => res.status(400).json({ error: error.message }))
+                                .then(r => {
+                                    res.status(201).json({ message: 'Topic Créé !!' });
+                                    return;
+                                })
+                                .catch(error => {
+                                    res.status(400).json({ error: error.message });
+                                    return;
+                                })
 
 
                         })
-                        .catch(error => { res.status(400).json({ error: error.message }) })
+                        .catch(error => {
+                            res.status(400).json({ error: error.message });
+                            return;
+                        })
                 })
-                .catch(e => { console.error(e); });
+                .catch(e => {
+                    console.error(e);
+                    return;
+                });
         } else {
             models.Message.create(topic)
                 .then((r) => {
                     let topic2 = { UserId: 8, MessageId: r.dataValues.id };
                     models.UserMessages.create(topic2)
                         .then(keywords(topic.content, r))
-                        .then(r => res.status(201).json({ message: 'Topic Créé !!' }))
-                        .catch(error => res.status(400).json({ error: error.message }))
+                        .then(r => {
+                            res.status(201).json({ message: 'Topic Créé !!' });
+                            return;
+                        })
+                        .catch(error => {
+                            res.status(400).json({ error: error.message });
+                            return;
+                        })
                 })
                 .catch(error => { res.status(400).json({ error: error.message }) })
         }
@@ -104,8 +130,10 @@ exports.modifyTopic = (req, res, next) => {
     if (req.file) {
         models.Message.findByPk(req.params.id)
             .then(topic => {
-                const filename = topic.imageUrl.split('/medias/')[1];
-                fs.unlink(`medias/${filename}`, () => { console.log("image supprimée") });
+                if (topic.imageUrl) {
+                    const filename = topic.imageUrl.split('/medias/')[1];
+                    fs.unlink(`medias/${filename}`, () => { console.log("image supprimée") });
+                }
             });
     }
     let topic = { ...req.body };
@@ -119,10 +147,19 @@ exports.modifyTopic = (req, res, next) => {
                     .then(
                         models.Message.findOne({ where: { id: req.params.id } }).then(r => keywords(topic.content, r))
                     )
-                    .then(res.status(201).json({ message: 'Topic enregistrée avec succés !' }))
-                    .catch((error) => { res.status(400).json({ error: error.message }) })
+                    .then(r => {
+                        res.status(201).json({ message: 'Topic enregistrée avec succés !' });
+                        return;
+                    })
+                    .catch((error) => {
+                        res.status(400).json({ error: error.message });
+                        return;
+                    })
             })
-            .catch(e => { console.error(e); });
+            .catch(e => {
+                console.error(e);
+                return;
+            });
     } else {
         models.Message.update(topic, { where: { id: req.params.id } })
             .then(
@@ -145,8 +182,14 @@ exports.deleteTopic = (req, res, next) => {
             models.Comment.destroy({ where: { messageId: req.params.id } });
             models.UserMessages.destroy({ where: { messageId: req.params.id } });
             models.Message.destroy({ where: { id: req.params.id }, })
-                .then(() => res.status(200).json({ message: 'Topic supprimée !' }))
-                .catch(error => res.status(400).json({ error }));
+                .then(() => {
+                    res.status(200).json({ message: 'Topic supprimée !' });
+                    return;
+                })
+                .catch(error => {
+                    res.status(400).json({ error });
+                    return;
+                });
         })
 
         .catch(error => res.status(500).json({ error }));
@@ -164,12 +207,24 @@ exports.addLikeToTopic = (req, res, next) => {
         .then(r => {
             if (!r) {
                 models.Like.create({ UserId: 1, MessageId: req.params.id })
-                    .then(res.status(200).json({ like: true }))
-                    .catch(error => res.status(400).json({ error: error.message }))
+                    .then(() => {
+                        res.status(200).json({ like: true });
+                        return;
+                    })
+                    .catch(error => {
+                        res.status(400).json({ error: error.message });
+                        return;
+                    })
             } else {
                 r.destroy()
-                    .then(res.status(200).json({ like: false }))
-                    .catch(error => res.status(400).json({ error: error.message }))
+                    .then(() => {
+                        res.status(200).json({ like: false });
+                        return;
+                    })
+                    .catch(error => {
+                        res.status(400).json({ error: error.message });
+                        return;
+                    })
             }
         })
         .catch(error => {
@@ -185,7 +240,8 @@ exports.addLikeToTopic = (req, res, next) => {
 //add comment to topic
 exports.newComment = (req, res, next) => {
     if (req.body.comment === '') {
-        res.status(401).json({ error: "Formulaire incomplet" })
+        res.status(401).json({ error: "Formulaire incomplet" });
+        return;
     } else {
         let comment = { content: req.body.comment, UserId: 1, MessageId: req.params.id };
         //, include : [{model : models.User, as : 'User', id : 6}] 
