@@ -67,10 +67,13 @@ exports.login = (req, res, next) => {
                         return res.status(401).json({ error: 'Mot de passe incorrect !' });
                     }
 
+                    userData={ ...user.dataValues };
+                    delete userData.password;
+                    
                     res.status(200).json({
                         userId: user.id,
                         accessToken: 'Bearer_ ' + jwt.sign(
-                            { ...user.dataValues },
+                            { ...userData },
                             process.env.ACCESS_TOKEN_SECRET,
                             { expiresIn: '900s' }
                         ),

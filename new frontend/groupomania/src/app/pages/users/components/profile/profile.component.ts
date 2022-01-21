@@ -89,6 +89,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    
     this.getOneUser();
   }
 

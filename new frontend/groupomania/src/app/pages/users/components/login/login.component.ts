@@ -1,5 +1,6 @@
 
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { Button } from 'src/app/share/interfaces/button';
 import { HttpService } from '../../services/http.service';
 
@@ -27,7 +28,7 @@ export class LoginComponent implements OnInit {
     icon: 'settings_power',
     isBtnIcon: false
   };
-  constructor(private readonly HttpService: HttpService,) { }
+  constructor(private readonly HttpService: HttpService,private readonly router: Router) { }
   public onLogginIn() {
     event?.preventDefault();
     if (!this.loginForm.nativeElement[0].value || !this.loginForm.nativeElement[1].value) {
@@ -41,6 +42,8 @@ export class LoginComponent implements OnInit {
           localStorage.setItem(key, JSON.stringify(value))
         }
         //TODO isAuth=true
+        
+        this.router.navigateByUrl(`/`);
       },
         error => {
           this.loginAlert = error.error.error
@@ -75,8 +78,9 @@ export class LoginComponent implements OnInit {
         this.HttpService.logIn({ email: data.email, password: user.password }).subscribe((data: any) => {
           for (let [key, value] of Object.entries(data)) {
             localStorage.setItem(key, JSON.stringify(value))
-          }
+          };
           //TODO isAuth=true
+          this.router.navigateByUrl(`/`);
         },
           error => {console.log(error)
           })

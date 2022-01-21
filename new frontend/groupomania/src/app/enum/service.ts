@@ -3,6 +3,7 @@ export enum Service {
     administration= 'Administration',
     tech='Support Technique',
     logistique='Logistique',
-    rh='Ressources Humaines'
+    rh='Ressources Humaines',
+    commercial='Service commercial'
   }
   
