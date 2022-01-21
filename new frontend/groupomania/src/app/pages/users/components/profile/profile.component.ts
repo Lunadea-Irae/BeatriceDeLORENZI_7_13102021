@@ -8,6 +8,8 @@ import { Topic } from 'src/app/interfaces/topic';
 import { Service } from 'src/app/enum/service';
 import { environment } from 'src/environments/environment';
 
+import { AuthServiceService } from '../../../../services/auth-service.service';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -17,6 +19,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   @ViewChildren('masonry') masonry!: QueryList<any>;
 
   public services: any = Service;
+  public canEdit: boolean = false;
 
   public isLoaded: boolean | undefined;
 
@@ -40,7 +43,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   user: Users | any;
 
 
-  constructor(private readonly router: Router, private readonly HttpService: HttpService, private route: ActivatedRoute) { }
+  constructor(private readonly router: Router, private readonly HttpService: HttpService, private route: ActivatedRoute, public auth: AuthServiceService) { }
 
   public edit(id: number) {
     this.router.navigateByUrl(`user/${id}/edit`)
@@ -55,8 +58,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   }
 
-  public like(event: number){
-    this.HttpService.likeOrNot(event).subscribe(data=>{
+  public like(event: number) {
+    this.HttpService.likeOrNot(event).subscribe(data => {
     })
   }
 
@@ -89,7 +92,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    
+    this.canEdit = this.auth.canEdit(Number(this.route.snapshot.paramMap.get('id')))
     this.getOneUser();
   }
 

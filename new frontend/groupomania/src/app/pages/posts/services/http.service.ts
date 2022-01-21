@@ -21,8 +21,6 @@ export class HttpService {
   getAllPosts() {
     return this.http.get(this.url, this.httpHeader);
   }
-
-
   getFilteredPosts(id: number) {
     return this.http.get(this.url + "/filter/"+id, this.httpHeader);
   }

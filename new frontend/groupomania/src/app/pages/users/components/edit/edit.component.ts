@@ -5,6 +5,7 @@ import { map, Subscription } from 'rxjs';
 import { Service } from 'src/app/enum/service';
 import { Button } from 'src/app/share/interfaces/button';
 import { environment } from 'src/environments/environment';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-edit',
@@ -13,6 +14,7 @@ import { environment } from 'src/environments/environment';
 })
 export class EditComponent implements OnInit {
   public temp: any;
+  public isAdmin: boolean = false;
   public user: any;
   public services: object = Service;
   public btnSave: Button = {
@@ -26,7 +28,7 @@ export class EditComponent implements OnInit {
   private sub: Subscription = new Subscription();
 
 
-  constructor(private readonly router: Router, private readonly HttpService: HttpService, private route: ActivatedRoute) { }
+  constructor(private readonly router: Router, private readonly HttpService: HttpService, private route: ActivatedRoute, public jwtHelper: JwtHelperService) { }
 
   public deleteAvatar() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -76,6 +78,11 @@ export class EditComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    const token = localStorage.getItem('accessToken');
+    let user;
+    token ? user = this.jwtHelper.decodeToken(token) : "";
+    user.level >= 9 ? this.isAdmin = true : this.isAdmin = false;
     this.getOneUser();
   }
 

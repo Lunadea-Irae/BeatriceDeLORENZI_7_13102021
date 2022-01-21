@@ -1,5 +1,6 @@
 
-import { Component, HostListener} from '@angular/core';
+import { Component, HostListener } from '@angular/core';
+
 
 @Component({
   selector: 'app-root',
@@ -8,21 +9,21 @@ import { Component, HostListener} from '@angular/core';
 })
 export class AppComponent {
   title = 'Groupomania';
-  isAuth: boolean | undefined = true;
+  isAuth: boolean = true;
   scrolled: boolean = false;
 
 
   constructor() { }
   @HostListener('window:scroll', ['$event'])
 
-public onWindowScroll(e: any) {
+  public onWindowScroll(e: any) {
   }
-  public logout(){
+  public logout() {
     localStorage.clear();
-    this.isAuth=false;
+    this.isAuth = false;
   }
   ngOnInit() {
     window.scrollY != 0 ? this.scrolled = true : this.scrolled = false;
+
   }
-  
 }

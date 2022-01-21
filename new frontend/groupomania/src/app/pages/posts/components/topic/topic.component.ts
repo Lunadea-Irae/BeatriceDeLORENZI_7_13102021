@@ -7,6 +7,7 @@ import { Alert } from 'src/app/share/interfaces/alert';
 import { environment } from 'src/environments/environment';
 
 import { HttpService } from '../../services/http.service';
+import { AuthServiceService } from '../../../../services/auth-service.service';
 
 @Component({
   selector: 'app-topic',
@@ -24,6 +25,7 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @Output() public topics!: Topic | any;
   @Output() public isLoaded: boolean | undefined;
+  public canEdit:boolean = false;
   public isLiked: boolean = false;
   public topic: Topic[] | any;
   public edition: boolean = false;
@@ -90,7 +92,7 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private sub: Subscription = new Subscription();
 
-  constructor(private readonly router: Router, private readonly HttpService: HttpService, private route: ActivatedRoute, private cdr: ChangeDetectorRef) { }
+  constructor(private readonly router: Router, private readonly HttpService: HttpService, private route: ActivatedRoute, private cdr: ChangeDetectorRef, public auth: AuthServiceService) { }
 
   public readURL(event: any){
     
@@ -183,7 +185,6 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
     this.HttpService.newComment(id, this.postComment.nativeElement[0].value.replace(/\n/gi, '&#x0A;')).subscribe((data: any) => {
-      console.log(data.error);
       if (data.error) {
         this.alertConfig = {
           message: "Nous n'avons pas pu enregistrer votre commentaire pour les raisons suivantes : " + data.error.message,
@@ -259,6 +260,7 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
           })
           this.topic.content = this.topic.content.split('&#x0A;');
           this.topic.Likes.find((liked: any) => liked.MessageId === id && liked.UserId === 1) ? this.isLiked = true : '';
+          this.canEdit = this.auth.canEdit(this.topic.User.id);
           this.isLoaded = true;
 
           this.getSuggests();
@@ -306,7 +308,6 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit(): void {
-    
     this.getOnePost();
   }
 

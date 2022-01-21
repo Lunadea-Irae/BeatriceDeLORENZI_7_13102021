@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { HttpService } from '../../services/http.service';
 
+import { AuthServiceService } from '../../../../services/auth-service.service';
+
 @Component({
   selector: 'app-comment',
   templateUrl: './comment.component.html',
@@ -17,6 +19,7 @@ export class CommentComponent implements OnInit {
 
   public showReply: boolean = false;
   public edition:boolean = false;
+  public canEdit:boolean=false;
 
   public editionField ={
     label: "Editer",
@@ -53,7 +56,7 @@ export class CommentComponent implements OnInit {
   ]
 
 
-  constructor(private readonly router: Router, private readonly HttpService: HttpService) { }
+  constructor(private readonly router: Router, private readonly HttpService: HttpService, public auth: AuthServiceService) { }
 
   public paraf() {
     return this.comment.content.split('&#x0A;')
@@ -79,6 +82,7 @@ export class CommentComponent implements OnInit {
     this.router.navigateByUrl(`user/${id}`)
   }
   ngOnInit(): void {
+    this.canEdit = this.auth.canEdit(this.comment.User.id);
     this.editionField.value = this.comment.content;
     this.comment.User.avatar ? '' : this.comment.User.avatar = environment.images + "/avatars/no-avatar.png";
   }

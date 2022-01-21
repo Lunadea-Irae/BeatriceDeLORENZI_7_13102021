@@ -9,7 +9,7 @@ const userCtrl = require('../controllers/user');
 
 router.post('/signup', userCtrl.signup);
 router.post('/login', userCtrl.login);
-router.post('/refresh',multer, userCtrl.refreshToken);
+router.post('/refresh',userCtrl.refreshToken);
 router.get('/:id',userCtrl.getOne)
 router.get('/edit/:id',userCtrl.getOneToEdit)
 

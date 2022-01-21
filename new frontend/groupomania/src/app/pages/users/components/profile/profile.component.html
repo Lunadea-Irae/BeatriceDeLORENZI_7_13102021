@@ -11,7 +11,7 @@
         <p *ngIf='user?.birthday'>Anniversaire : {{user?.birthday|date: 'd/MM'}}</p>
         <p *ngIf='user?.email'>email : {{user?.email}}</p>
         <p *ngIf='user?.createdAt'>Nous a rejoint le {{user?.createdAt|date: 'd/MM/YYYY'}}</p>
-        <app-button [config]="btnEdit" *ngIf="'toto'==='toto'" (whenIsClicked)="edit(user?.id)">Editer</app-button>
+        <app-button [config]="btnEdit" *ngIf="canEdit" (whenIsClicked)="edit(user?.id)">Editer</app-button>
     </aside>
     <main>
         <div id="in-short">

@@ -3,10 +3,10 @@
     <aside>
         <ul>
             <li (click)="switchTemp(public)">Profil public</li>
-            <li (click)="switchTemp(connexion)">Connexion</li>
+            <li (click)="switchTemp(connexion)" *ngIf="!isAdmin">Connexion</li>
             <li (click)="switchTemp(favourites)">Préférences</li>
             <li (click)="switchTemp(delete)">Suppression</li>
-            <li (click)="switchTemp(administration)">Administration</li>
+            <li (click)="switchTemp(administration)" *ngIf="isAdmin">Administration</li>
         </ul>
     </aside>
     <main>
@@ -33,7 +33,7 @@
 
 
 
-        <ng-template #connexion>
+        <ng-template #connexion >
             <h3>Informations de connexion</h3>
             <p><label for="email">email* : </label><input id="email" type="email" value="{{user?.email}}" required></p>
             <p><label for="password">Mot de passe actuel : </label><input id="password" type="password"> </p>
