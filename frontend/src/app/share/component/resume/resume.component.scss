@@ -1,0 +1,120 @@
+@import "../../../../assets/variables.scss";
+
+.grid-container {
+    text-align: -webkit-center;
+}
+.grid-item {
+    width: 300px;
+    margin: 8px auto;
+    @media screen and (max-width: 640px) {
+        width: 300px;
+    }
+}
+
+.grid-item--width2 {
+    width: 300px;
+    @media screen and (max-width: 640px) {
+        width: 300px;
+    }
+}
+.card {
+    position: relative;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    background: map-get($map: $colors, $key: light);
+    width: 100%;
+    &:hover {
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.4), 0 10px 10px rgba(0, 0, 0, 0.4);
+        position: relative;
+        .card-img-top,
+        .card-text {
+            opacity: 0.5;
+        }
+    }
+    * {
+        padding-bottom: 0;
+    }
+    img,
+    video {
+        border-radius: 15px;
+        width: 100%;
+        object-fit: contain;
+        margin-bottom: -10px;
+        cursor: pointer;
+    }
+    .card-title {
+        margin-top: 0;
+        padding-top: 24px;
+        cursor: pointer;
+    }
+
+    .card-text {
+        max-height: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    .card-footer {
+        display: flex;
+        justify-content: space-between;
+        background-color: transparent;
+        margin-bottom: 10px;
+        padding: 10px;
+        mat-icon {
+            color: map-get($map: $colors, $key: tertiary);
+            vertical-align: bottom;
+        }
+    }
+
+    .maker {
+        display: none;
+        cursor: pointer;
+    }
+    @media screen and (min-width: 640px) {
+        &:hover {
+            .maker {
+                position: absolute;
+                opacity: 1;
+                z-index: 1;
+                top: 0;
+                left: 0;
+                height: 50px;
+                background-color: transparentize($color: map-get($map: $colors, $key: primary), $amount: 0.2);
+                color: map-get($map: $colors, $key: light);
+                display: grid;
+                width: 100%;
+                border-radius: 15px 15px 0 0;
+                padding: 5px 0;
+                box-shadow: 1px 1px 5px black;
+                text-align: left;
+                grid-template-columns: 50px auto;
+                grid-template-rows: 25px 25px;
+                grid-template-areas:
+                    "avatar name"
+                    "avatar date";
+
+                span {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    &:nth-child(2) {
+                        grid-area: name;
+                    }
+                    &:nth-child(3) {
+                        grid-area: date;
+                        font-size: 11px;
+                    }
+                }
+            }
+            .card-footer {
+                background-color: transparentize($color: map-get($map: $colors, $key: primary), $amount: 0.2);
+                color: map-get($map: $colors, $key: light);
+                border-radius: 0 0 15px 15px;
+                box-shadow: 1px 1px 5px black;
+            }
+        }
+    }
+}

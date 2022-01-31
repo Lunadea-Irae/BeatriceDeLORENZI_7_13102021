@@ -1,0 +1,176 @@
+@import "../../../../../assets/variables.scss";
+
+.container {
+    display: grid;
+    grid-template-columns: auto auto;
+    margin: 0 auto;
+    grid-template-areas: "title title" "media desc" "sug sug";
+    &--comment {
+        grid-template-areas: "title title" "media desc" "sug desc";
+    }
+    @media screen and (max-width: 640px) {
+        grid-template-areas: "title" "media" "desc" "sug";
+        grid-template-columns: 100%;
+    }
+    h2 {
+        position: relative;
+        grid-area: title;
+        text-align: center;
+        margin: 0;
+        text-decoration: overline underline map-get($map: $colors, $key: secondary) 4px;
+        font-size: 28px;
+        padding: 20px;
+        border-radius: 0 0 50% 50%;
+        background-color: transparentize($color: map-get($colors, primary), $amount: 0.3);
+        color: map-get($map: $colors, $key: light);
+        margin-bottom: 12px;
+        @media screen and (max-width: 640px) {
+            padding-top: 40px;
+        }
+    }
+    #medias {
+        grid-area: media;
+        margin: 0 auto;
+    }
+    img.image-topic,
+    video {
+        justify-self: right;
+        max-height: calc(100vh - 180px);
+        object-fit: contain;
+        background-color: transparentize($color: map-get($colors, light), $amount: 0.3);
+        @media screen and(max-width:640px) {
+            justify-self: center;
+            max-width: 100%;
+        }
+    }
+    div.no-media {
+        margin: 40px;
+        padding: 40px;
+        font-size: 20px;
+        border: darken($color: map-get($map: $colors, $key: tertiary), $amount: 0) double 4px;
+        height: min-content;
+        background-color: transparentize($color: map-get($colors, light), $amount: 0.3);
+        &:first-letter {
+            font-size: 60px;
+            background-color: map-get($map: $colors, $key: primary);
+            color: map-get($map: $colors, $key: light);
+            text-transform: uppercase;
+            padding: 5px;
+        }
+        @media screen and (max-width: 640px) {
+            margin: 10px;
+            padding: 10px;
+        }
+    }
+    .maker {
+        color: black;
+        width: 100%;
+        display: flex;
+        justify-content: start;
+        padding: 5px;
+        align-self: end;
+        align-items: center;
+        border-radius: 30px 30px 0 0;
+        cursor: pointer;
+        span:nth-child(2) {
+            padding-left: 10px;
+            flex-grow: 1;
+        }
+        span:nth-child(3) {
+            font-size: 0.8rem;
+        }
+    }
+    .description {
+        background-color: transparentize($color: map-get($colors, light), $amount: 0.3);
+        grid-area: desc;
+        color: black;
+        padding: 20px;
+        margin: 0 50px;
+        height: min-content;
+        @media screen and (max-width: 640px) {
+            margin: 0;
+        }
+        .topic-footer {
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+            background-color: transparent;
+            margin-bottom: 10px;
+            .save {
+                color: map-get($map: $colors, $key: secondary);
+            }
+            mat-icon {
+                color: map-get($map: $colors, $key: tertiary);
+                vertical-align: bottom;
+            }
+        }
+    }
+
+    .comments {
+        color: black;
+        width: 100%;
+    }
+    .suggests {
+        grid-area: sug;
+        align-self: flex-start;
+        margin-top: 100px;
+    }
+}
+label {
+    display: none;
+}
+app-form {
+    width: 100%;
+}
+form#editPostForm {
+    z-index: 1;
+    position: fixed;
+    background-color: map-get($map: $colors, $key: light);
+    padding: 5vh 5vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-items: stretch;
+    width: 60vw;
+    height: 60vh;
+    top: 15vh;
+    left: 15vw;
+    border-radius: 20px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.4), 0 10px 10px rgba(0, 0, 0, 0.4);
+    @media screen and (max-width: 640px) {
+        width: 80vw;
+        height: 80vh;
+        top: 5vh;
+
+        left: 5vw;
+    }
+    app-form:nth-child(5) {
+        flex: 1;
+    }
+    img {
+        width: 25%;
+        object-fit: contain;
+    }
+    app-button {
+        width: 100%;
+
+        text-align: center;
+    }
+    &::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100vw;
+        height: 100vh;
+        background-color: transparentize($color: #000000, $amount: 0.6);
+    }
+    h3 {
+        flex: 100%;
+        text-align: center;
+    }
+    input {
+        flex: 1;
+    }
+}

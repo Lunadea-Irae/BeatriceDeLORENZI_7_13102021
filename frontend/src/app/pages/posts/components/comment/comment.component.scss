@@ -1,0 +1,29 @@
+@import "../../../../../assets/variables.scss";
+.container {
+    margin-left: 40px;
+    margin-bottom: 5px;
+    border-bottom: 1px grey solid;
+}
+label {
+    display: none;
+}
+
+.maker {
+    background-color: transparentize($color: map-get($colors, primary), $amount: 0.7);
+    border-radius: 5px;
+    color: black;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    padding: 5px;
+    align-self: end;
+    align-items: center;
+    cursor: pointer;
+    span:nth-child(2) {
+        padding-left: 10px;
+        flex-grow: 1;
+    }
+    span:nth-child(3) {
+        font-size: 0.8rem;
+    }
+}

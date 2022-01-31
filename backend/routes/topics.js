@@ -8,30 +8,27 @@ const auth = require('../middleware/auth');
 const multer = require('../middleware/multer-config');
 const regExpValidator = require('../middleware/regex-validator');
 const topicCtrl = require('../controllers/topics');
-const keywords = require('../middleware/keywords');
 
-router.get('/', topicCtrl.getAllTopics);
-router.get('/filter/:id', topicCtrl.getFilteredTopics);
+
+//SEED
+router.get('/seed',topicCtrl.seedDataBase);
+
+//GLOBAL
+router.get('/', auth,topicCtrl.getAllTopics);
+router.get('/filter/:id', auth,topicCtrl.getFilteredTopics);
 
 //ONE POST
-router.get('/:id', topicCtrl.getOneTopic);
-router.post('/', multer, topicCtrl.createTopic);
-router.put('/:id', multer, topicCtrl.modifyTopic);
-router.delete('/:id',topicCtrl.deleteTopic);
+router.get('/:id',auth, topicCtrl.getOneTopic);
+router.post('/',auth, multer, topicCtrl.createTopic);
+router.put('/:id',auth, multer, topicCtrl.modifyTopic);
+router.delete('/:id',auth,topicCtrl.deleteTopic);
 
 //COMMENTS
-router.post('/comment/:id', topicCtrl.newComment);
-router.put('/comment/:id', topicCtrl.editComment);
-router.delete('/comment/:id', topicCtrl.deleteComment);
+router.post('/comment/:id',auth, topicCtrl.newComment);
+router.put('/comment/:id',auth, topicCtrl.editComment);
+router.delete('/comment/:id',auth, topicCtrl.deleteComment);
 
 //LIKES
-router.post('/like/:id', topicCtrl.addLikeToTopic);
-
-/*router.get('/', auth, topicCtrl.getAllTopics);
-router.get('/:id', auth, topicCtrl.getOneTopic);
-router.post('/', auth, multer, regExpValidator, topicCtrl.createTopic);
-router.put('/:id', auth, multer, regExpValidator, topicCtrl.modifyTopic);
-router.delete('/:id', auth, topicCtrl.deleteTopic);
-router.post('/:id/like', auth, topicCtrl.addLikeToTopic);*/
+router.post('/like/:id',auth, topicCtrl.addLikeToTopic);
 
 module.exports = router;

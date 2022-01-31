@@ -1,0 +1,10 @@
+<nav (scroll)="onWindowScroll($event);" >
+<ul id="navbar" [ngClass]="{'stick' : scrolled}">
+    <li class="brand" routerLink=""><img src="../assets/images/icon.svg" alt="icone Groupomania"><h1>Groupomania</h1></li>
+    <li [hidden]="!isAuth"><a class="nav-link active link-light" aria-current="page" routerLink="/" ><mat-icon *ngIf="scrolled">home</mat-icon><span *ngIf="!scrolled">Accueil</span></a></li>
+    <li [hidden]="!isAuth"><a class="nav-link link-light" routerLink="user/{{userId}}"><mat-icon *ngIf="scrolled">account_circle</mat-icon><span *ngIf="!scrolled">Profil</span></a></li>
+    <li [hidden]="!isAuth"><a class="nav-link link-light" routerLink="login"(click)="logout()"><mat-icon *ngIf="scrolled">settings_power</mat-icon><span *ngIf="!scrolled">Se déconnecter</span></a></li>
+    </ul>
+</nav>
+<router-outlet></router-outlet>
+<footer class="footer"><ul><li>Powered by ©CONNECT-E</li></ul></footer>

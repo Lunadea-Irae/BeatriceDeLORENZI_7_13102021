@@ -1,7 +1,6 @@
 
 require('dotenv').config();
 'use strict';
-const port = normalizePort(process.env.PORT || '3000')
 
 module.exports = {
   up: async (queryInterface) => queryInterface.bulkInsert('Users', [
@@ -29,7 +28,7 @@ module.exports = {
       password: '$2b$10$GwDbr7SzKIaZ.nwr/CqWPeWE/t3XWPZSpMfpbnxjZFdpB6GhL8r9e',
       brief: 'Je suis la nuit, je suis... Batman',
       level: 9,
-      avatar: 'http://localhost:'+port+'/medias/avatars/1.png',
+      avatar: 'http://localhost:3000/medias/avatars/1.png',
       createdAt:new Date(2021,10,11),
       updatedAt:new Date(2022,01,17)
     },{

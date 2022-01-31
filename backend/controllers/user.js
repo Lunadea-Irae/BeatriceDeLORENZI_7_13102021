@@ -32,9 +32,9 @@ exports.signup = (req, res, next) => {
                                     showEmail: false
                                 })
                                     .then((r) => res.status(201).json(r.dataValues))
-                                    .catch(error => res.status(400).json({ message: error.message }));
+                                    .catch(error => res.status(520).json({ message: error.message }));
                             })
-                            .catch(error => res.status(500).json({ error: error.message }))
+                            .catch(error => res.status(520).json({ error: error.message }))
                     } else if (user.email === req.body.email) {
 
                         return res.status(400).json({ error: 'Cet email existe déjà !' });
@@ -42,11 +42,11 @@ exports.signup = (req, res, next) => {
 
                         return res.status(400).json({ error: 'Ce Pseudo existe déjà !' });
                     } else {
-                        return res.status(400).json({ error: 'Une erreur s\'est produite.' })
+                        return res.status(520).json({ error: 'Une erreur s\'est produite.' })
                     }
                 }
             )
-            .catch(error => res.status(500).json({ error: error.message }));
+            .catch(error => res.status(520).json({ error: error.message }));
     }
 }
 
@@ -59,17 +59,16 @@ exports.login = (req, res, next) => {
     })
         .then(user => {
             if (!user) {
-                return res.status(401).json({ error: 'Utilisateur non trouvé !' });
+                return res.status(400).json({ error: 'Utilisateur non trouvé !' });
             }
             bcrypt.compare(req.body.password, user.password)
                 .then(valid => {
                     if (!valid) {
-                        return res.status(401).json({ error: 'Mot de passe incorrect !' });
+                        return res.status(400).json({ error: 'Mot de passe incorrect !' });
                     }
 
                     userData = { ...user.dataValues };
                     delete userData.password;
-
                     res.status(200).json({
                         userId: user.id,
                         accessToken: 'Bearer_ ' + jwt.sign(
@@ -83,10 +82,46 @@ exports.login = (req, res, next) => {
                         ),
                     });
                 })
-                .catch(error => res.status(500).json({ error: error.message + " ligne 84" }));
+                .catch(error => res.status(520).json({ error: error.message + " ligne 84" }));
         })
-        .catch(error => res.status(500).json({ error: error.message + " ligne 86" }));
+        .catch(error => res.status(520).json({ error: error.message + " ligne 86" }));
 };
+
+
+
+// REFRESH TOKEN
+
+exports.refreshToken = (req, res, next) => {
+
+    const accessToken = jwt.decode(req.headers.accesstoken.split(' ')[1]);
+    const refreshToken = jwt.decode(req.headers.refreshtoken);
+    if (accessToken.id === refreshToken.userId) {
+        const userId = accessToken.id;
+        models.User.findByPk(userId)
+            .then(user => {
+                if (!user) {
+                    return res.status(400).json({ error: 'Utilisateur non trouvé' });
+                } else if (user.level === 0) {
+                    return res.status(401).json({ error: 'Utilisateur désactivé' });
+                } else {
+                    userData = { ...user.dataValues };
+                    delete userData.password;
+                    return res.status(200).json({
+                        accessToken: 'Bearer_ ' + jwt.sign(
+                            { ...userData },
+                            process.env.ACCESS_TOKEN_SECRET,
+                            { expiresIn: '900s' }
+                        )
+                    });
+                }
+            })
+    } else {
+        return res.status(401).json({ error: "AccessToken et RefreshToken incompatibles." })
+    }
+
+};
+
+
 
 //   GET ONE USER
 exports.getOne = (req, res, next) => {
@@ -95,20 +130,21 @@ exports.getOne = (req, res, next) => {
         include: { model: models.UserMessages, include: { model: models.Message, include: [{ model: models.Comment }, { model: models.Like }] } },
     })
         .then((user) => {
-            for (let [key, value] of Object.entries(user.dataValues)) { value === null ? user[key] = undefined : '' }
-            user.password = undefined;
-            !user.showEmail ? user.email = undefined : "";
-            user.showEmail = undefined;
-            res.status(200).json(user);
+            if (user) {
+                for (let [key, value] of Object.entries(user.dataValues)) { value === null ? user[key] = undefined : '' }
+                user.password = undefined;
+                !user.showEmail ? user.email = undefined : "";
+                user.showEmail = undefined;
+                return res.status(200).json(user);
+            } else {
+                return res.status(404).json({ error: "Page non trouvée" })
+            }
         })
-        .catch(error => res.status(400).json({ error: error.message }))
+        .catch(error => res.status(520).json({ error: error.message }))
 };
 
-exports.refreshToken = (req, res, next) => {
-    console.log("req.body", req.body);
-    res.status(200).json({ message: 'ok' });
 
-};
+
 
 //   GET ONE USER TO EDIT
 exports.getOneToEdit = (req, res, next) => {
@@ -117,16 +153,17 @@ exports.getOneToEdit = (req, res, next) => {
         include: { model: models.UserMessages, include: models.Message },
     })
         .then((user) => {
-            for (let [key, value] of Object.entries(user.dataValues)) { value === null ? user[key] = undefined : '' }
-            user.password = undefined;
-            res.status(200).json(user);
+            if (user) {
+                for (let [key, value] of Object.entries(user.dataValues)) { value === null ? user[key] = undefined : '' }
+                user.password = undefined;
+                return res.status(200).json(user);
+            } else {
+                return res.status(404).json({error : "Page non trouvée"})
+            }
         })
-        .catch(error => res.status(400).json({ error: error.message }))
+        .catch(error => res.status(520).json({ error: error.message }))
 };
 
-exports.refreshToken = (req, res, next) => {
-
-};
 
 //     EDIT USER
 exports.editOne = (req, res, next) => {
@@ -136,15 +173,15 @@ exports.editOne = (req, res, next) => {
                 bcrypt.compare(req.body.password, user.password)
                     .then(valid => {
                         if (!valid) {
-                            return res.status(401).json({ error: 'Mot de passe incorrect !' });
+                            return res.status(400).json({ error: 'Mot de passe incorrect !' });
                         } else if (req.body.newPassword1 !== req.body.newPassword2) {
-                            return res.status(401).json({ error: 'Les deux nouveaux mots de passe de correspondent pas' })
+                            return res.status(400).json({ error: 'Les deux nouveaux mots de passe de correspondent pas' })
                         }
                         bcrypt.hash(req.body.password, 10)
                             .then(hash => {
                                 models.User.update({ email: req.body.email, password: hash }, { where: { id: req.params.id } })
-                                    .then(res.status(201).json({ message: 'Modifications enregistrées' }))
-                                    .catch(error => res.status(401).json({ error: error.message }))
+                                    .then(res.status(204).json({ message: 'Modifications enregistrées' }))
+                                    .catch(error => res.status(520).json({ error: error.message }))
                             })
 
                     })
@@ -158,8 +195,8 @@ exports.editOne = (req, res, next) => {
             user.avatar = `${req.protocol}://${req.get('host')}/medias/avatars/${req.file.filename}`;
         }
         models.User.update(user, { where: { id: req.params.id } })
-            .then(r => res.status(201).json(r))
-            .catch((error) => { res.status(400).json({ error: error.message }) })
+            .then(r => res.status(204).json(r))
+            .catch((error) => { res.status(520).json({ error: error.message }) })
     };
 
 }
@@ -189,7 +226,7 @@ exports.deleteOne = (req, res, next) => {
                 })
                 .then(
                     models.User.destroy({ where: { id: req.params.id } })
-                        .then(r => res.status(200).json({ message: 'user deleted' }))
+                        .then(r => res.status(204).json({ message: 'user deleted' }))
 
                 )
         )
@@ -202,7 +239,6 @@ exports.deleteDataOne = (req, res, next) => {
 }
 
 exports.deleteAvatar = (req, res, next) => {
-    console.log(req.params.id)
     models.User.findByPk(req.params.id)
         .then(user => {
             if (user.avatar) {
@@ -211,84 +247,13 @@ exports.deleteAvatar = (req, res, next) => {
                 models.User.update({ avatar: null }, { where: { id: req.params.id } })
             }
         })
-        .then(res.status(200).json({ message: "avatar supprimé" }))
-        .catch(e => res.status(400).json({ error: e.message }))
+        .then(res.status(204).json({ message: "avatar supprimé" }))
+        .catch(e => res.status(520).json({ error: e.message }))
 }
 
 //   GET ALL USERS
 exports.getAllUsers = (req, res, next) => {
     models.User.findAll({ attributes: ['id', 'username', 'service', 'avatar'] })
         .then(userDatas => res.status(200).json(userDatas))
-        .catch(error => res.status(400).json({ error: error.message }))
-}
-
-
-
-
-exports.changePssW = (req, res, next) => {
-    models.User.update({ password: '$2b$10$y/7EQJrScU4J/CnhKmF0.u0uBOfVygZcwu6ieQemckir5Ps9AQnsK' }, { where: { password: 'test' } })
-        .then(res.status(201).json({ message: 'up ok' }))
-}
-
-
-//TESTS ############################################################################
-//TESTS ############################################################################
-//TESTS ############################################################################
-//TESTS ############################################################################
-//TESTS ############################################################################
-//TESTS ############################################################################
-//TESTS ############################################################################
-//TESTS ############################################################################
-
-
-
-exports.test = (req, res, next) => {
-    const login = {
-        userId: 1,
-        accessToken: jwt.sign(
-            { userId: 1 },
-            process.env.ACCESS_TOKEN_SECRET,
-            { expiresIn: '-10s' }
-        ),
-        refreshToken: jwt.sign(
-            { userId: 1 },
-            process.env.REFRESH_TOKEN_SECRET
-        ),
-    };
-    try {
-        let accessToken = login.accessToken;
-        let decodedToken = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
-        const userId = decodedToken.userId;
-        if (1 !== userId) {
-            throw 'ID de l\'utilisateur incorrect';
-        } else {
-            res.status(200).json({ message: 'fait' });
-            return;
-        }
-    } catch (e) {
-        if (e.name === "TokenExpiredError" && jwt.verify(login.refreshToken, process.env.REFRESH_TOKEN_SECRET) && jwt.verify(login.refreshToken, process.env.REFRESH_TOKEN_SECRET).userId === 1) {
-            models.User.findByPk(login.userId)
-                .then(user => {
-                    if (!user || user.level === 0) {
-                        res.status(401).json({ error: 'Utilisateur invalide' });
-                        return;
-                    } else {
-                        //TODO generate new token
-                        res.status(401).json({ error: "Token expiré" });
-                        return;
-                    }
-                })
-        } else {
-            res.status(401).json({
-                error: e.message
-            });
-        }
-
-    }
-}
-
-
-exports.hashPass = (req, res, next) => {
-
-    bcrypt.hash(req.body.password, 10).then(hash => res.status(200).json({ password: req.body.password, hashed: hash }))
+        .catch(error => res.status(520).json({ error: error.message }))
 }

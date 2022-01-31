@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="maker" (click)="goToUserPage(comment.User.id)">
+        <img class="avatar" src="{{comment.User.avatar}}" alt="Avatar de {{comment.User.username}}">
+        <span>{{comment.User.username}}</span> <span>Posté le {{comment?.createdAt|date: 'd/MM/yyyy, h:mm'}}</span>
+    </div>
+    <div class="comment" *ngIf="!edition">
+        <p *ngFor="let paragraph of paraf()">{{paragraph}}</p>
+        <p>
+            <app-button *ngIf="canEdit" [config]="iconSuppr" (whenIsClicked)="deleteComment()">Supprimer</app-button>
+            <app-button *ngIf="canEdit" [config]="iconEdit" (whenIsClicked)="edition=true;">Editer</app-button>
+            
+        </p>
+        <!-- ========== <form *ngIf="this.showReply" #reply><label for="commentThis">Répondre</label><input type="text" placeholder="Répondre"
+                name="commentThis"><button>Réponde</button></form>
+        <app-comment *ngFor="let reply of comment.reply" [comment]="reply"></app-comment>
+    </div> ========== -->
+    <form *ngIf="edition" #edit> <app-form [config]="editionField"></app-form><app-button [config]="iconReply" (whenIsClicked)="editComment()">Editer</app-button></form>
+</div>
