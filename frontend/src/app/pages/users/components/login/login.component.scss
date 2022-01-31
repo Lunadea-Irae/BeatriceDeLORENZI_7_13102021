@@ -9,6 +9,7 @@
             border-right: black 2px solid;
         }
         form {
+            text-align: center;
             label {
                 display: none;
             }
@@ -27,8 +28,15 @@
                 padding: 4px;
                 justify-content: center;
             }
-            app-button {
-                margin: 0 50%;
+        }
+    }
+    @media screen and (max-width: 460px) {
+        flex-direction: column;
+        div {
+            padding : 40px 0;
+            &:nth-child(1) {
+                border-right: none;
+                border-bottom: black 2px solid;
             }
         }
     }

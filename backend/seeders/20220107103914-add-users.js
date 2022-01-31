@@ -25,7 +25,7 @@ module.exports = {
       email: 'admin@groupomania.com',
       showEmail: true,
       username: 'Admin',
-      password: '$2b$10$GwDbr7SzKIaZ.nwr/CqWPeWE/t3XWPZSpMfpbnxjZFdpB6GhL8r9e',
+      password: '$2b$10$gDU7nFoOoyc0F94xlXXIJ.JtsQzEUqqiCUiemW2b6nxvT5UgZ5pgu',
       brief: 'Je suis la nuit, je suis... Batman',
       level: 9,
       avatar: 'http://localhost:3000/medias/avatars/1.png',

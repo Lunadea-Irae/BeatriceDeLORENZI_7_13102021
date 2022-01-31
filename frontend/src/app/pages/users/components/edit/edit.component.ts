@@ -77,11 +77,11 @@ export class EditComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+    const id = Number(this.route.snapshot.paramMap.get('id'));
     const token = localStorage.getItem('accessToken');
     let user;
     token ? user = this.jwtHelper.decodeToken(token) : "";
-    user.level >= 9 ? this.isAdmin = true : this.isAdmin = false;
+    user.level >= 9&&user.id!=id ? this.isAdmin = true : this.isAdmin = false;
     this.getOneUser();
   }
 

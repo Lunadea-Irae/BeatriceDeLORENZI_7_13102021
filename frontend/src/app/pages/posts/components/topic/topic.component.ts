@@ -243,6 +243,7 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
           if (this.topic.media && this.topic.media.slice(-3) === 'mp4') {
             this.topic.type = 'video';
           };
+          if(!this.topic.UserMessage.User.avatar){this.topic.UserMessage.User.avatar=environment.images+"/avatars/no-avatar.png"};
           this.forms.forEach(field => {
             switch (field.id) {
               case 'media':

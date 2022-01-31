@@ -18,7 +18,12 @@ export class AppComponent {
   constructor(private readonly HttpService: HttpService) { }
   @HostListener('window:scroll', ['$event'])
 
-  public onWindowScroll(e: any) {
+  public onWindowScroll(e: any): void {
+
+    // do some stuff here when the window is scrolled
+    const verticalOffset = window.pageYOffset;
+    verticalOffset === 0 ? this.scrolled = false : this.scrolled = true;
+
   }
   public logout() {
     localStorage.clear();
@@ -32,7 +37,8 @@ export class AppComponent {
         localStorage.length !== 0 ? this.HttpService.refreshToken().subscribe(
           (data: any) => {
             console.log(data.accessToken);
-            data.accessToken ? localStorage.setItem('accessToken', data.accessToken) : ''},
+            data.accessToken ? localStorage.setItem('accessToken', data.accessToken) : ''
+          },
           (error: any) => console.error(error.error.error)) : '';
       })
     window.scrollY != 0 ? this.scrolled = true : this.scrolled = false;

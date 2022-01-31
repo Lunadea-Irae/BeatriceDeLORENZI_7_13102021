@@ -1,4 +1,7 @@
 'use strict';
+
+const { sequelize } = require("../models");
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('UserMessages', {
@@ -33,6 +36,7 @@ module.exports = {
         type: Sequelize.DATE
       }
     });
+    await sequelize.sync();
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('UserMessages');

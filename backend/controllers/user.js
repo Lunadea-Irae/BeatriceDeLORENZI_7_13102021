@@ -132,6 +132,7 @@ exports.getOne = (req, res, next) => {
         .then((user) => {
             if (user) {
                 for (let [key, value] of Object.entries(user.dataValues)) { value === null ? user[key] = undefined : '' }
+                console.log(user.password);
                 user.password = undefined;
                 !user.showEmail ? user.email = undefined : "";
                 user.showEmail = undefined;
