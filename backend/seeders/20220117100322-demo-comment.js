@@ -22,7 +22,7 @@ module.exports = {
   },
   {
       id: 3,
-      content:"Certains disent que c'est des mensonges.&#x0A;&#x0A;https://www.youtube.com/watch?v=tFOVWwEUuPE&t=66s&#x0A;&#x0A;Après, aucun d'entre nous n'était là à l'époque du coup difficile de faire son Morandini 🤣" ,
+      content:"Certains disent que c'est des mensonges.&#x0A;&#x0A;https://www.youtube.com/watch?v=tFOVWwEUuPE&t=66s&#x0A;&#x0A;Après, aucun d'entre nous n'était là à l'époque du coup difficile de faire son Bourdin 🤣" ,
       createdAt: new Date(),
       updatedAt: new Date(),
       userId: 4,
