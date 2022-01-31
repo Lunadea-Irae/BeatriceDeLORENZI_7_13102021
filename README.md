@@ -47,11 +47,17 @@ Firstly, you have to download this project to try it.
     for futher launches, just copypast :
     ```bash
     cd ./backend/
-    npm run create
+    npm start
     ```
 
 4. Install the frontend
     open another terminal and copypast this command :
+    ```bash
+    cd ./frontend/
+    npm start
+    ```
+
+    for futher launches, just copypast :
     ```bash
     cd ./frontend/
     npm start
