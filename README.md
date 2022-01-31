@@ -23,20 +23,20 @@ To run this project you will need :
 
 ## Developments
 
-* Currently implemented : 
-** Sign Up & Login
-** refresh Token
-** Home page
-** Topic page
-** Comments
-** Can edit, delete
-** profil page
-** edit or delete profil
-** User ranks
-** administrator rights
+### Currently implemented : 
+* Sign Up & Login
+* refresh Token
+* Home page
+* Topic page
+* Comments
+* Can edit, delete
+* profil page
+* edit or delete profil
+* User ranks
+* administrator rights
 
-* Possible evolutions
-** Reply to a comment
-** Like a comment
-** Save a topic
-** follow an user
+### Possible evolutions
+* Reply to a comment
+* Like a comment
+* Save a topic
+* follow an user
