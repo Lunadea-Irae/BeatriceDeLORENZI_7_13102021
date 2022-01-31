@@ -58,8 +58,9 @@ Firstly, you have to download this project to try it.
     ```
 
 ## Launch & accesses
-    You can open the project in http://localhost:4200
-    if it do not work, verify that your ports 3000 (for the api) and 4200 (for the frontend) are not used by another service.
+
+You can open the project in http://localhost:4200
+if it do not work, verify that your ports 3000 (for the api) and 4200 (for the frontend) are not used by another service.
 
 | | Username | Password |
 | - | :-----------: | :--------------------------- |
