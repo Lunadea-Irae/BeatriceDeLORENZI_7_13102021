@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { IconsComponent } from './component/icons/icons.component';
 import { AlertComponent } from './component/alert/alert.component';
 import { NotfoundComponent } from './component/notfound/notfound.component';
+import { LoadingComponent } from './component/loading/loading.component';
 
 
 
@@ -23,6 +24,7 @@ import { NotfoundComponent } from './component/notfound/notfound.component';
     IconsComponent,
     AlertComponent,
     NotfoundComponent,
+    LoadingComponent,
 
   ],
   imports: [
@@ -38,6 +40,7 @@ import { NotfoundComponent } from './component/notfound/notfound.component';
     ResumeComponent,
     AlertComponent,
     NotfoundComponent,
+    LoadingComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

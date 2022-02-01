@@ -1,9 +1,9 @@
 import { Component, ElementRef, HostListener, Input, OnInit, QueryList, ViewChild } from '@angular/core';
-import { map, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Topic } from 'src/app/interfaces/topic';
 import { Alert } from 'src/app/share/interfaces/alert';
-import { environment } from 'src/environments/environment';
 import { HttpService } from '../../services/http.service';
+import { UtilsService } from '../../services/utils.service';
 
 @Component({
   selector: 'app-home',
@@ -22,9 +22,9 @@ export class HomeComponent implements OnInit {
 
   public shown: boolean = false;
 
-  public alertConfig: Alert = {
+  public alertConfig: Alert | any = {
     message: 'Votre message a bien été enregistré',
-    class: 'failure'
+    class: 'sucess'
   }
 
   public forms = [
@@ -77,10 +77,9 @@ export class HomeComponent implements OnInit {
 
 
 
-  constructor(private readonly HttpService: HttpService) { }
+  constructor(private readonly HttpService: HttpService, private readonly UtilsService: UtilsService) { }
 
   public readURL(event: any) {
-
     if (event && event.target.files[0]) {
       const file = event.target.files[0];
 
@@ -102,53 +101,23 @@ export class HomeComponent implements OnInit {
   }
 
   public submitNew() {
-
-    const newPostData: FormData = new FormData();
-
-    this.forms.forEach(field => {
-      switch (field.id) {
-        case 'description':
-          newPostData.append('content', this.newPostForm.nativeElement.querySelector("#" + field.id).value.replace(/\n/gi, '&#x0A;'));
-          break;
-        case 'media':
-
-          const file: File = this.newPostForm.nativeElement.querySelector("#" + field.id).files[0];
-          newPostData.append('file', file);
-          break;
-        default:
-          newPostData.append(field.id, this.newPostForm.nativeElement.querySelector("#" + field.id).value);
-          break;
-      }
-    });
-
-    this.HttpService.newPost(newPostData).subscribe((data: any) => {
-      if (data.error) {
-        this.alertConfig = {
-          message: "Nous n'avons pas pu enregistrer votre message pour les raisons suivantes : " + data.error.message,
-          class: 'failure'
-        }
-      } else {
-        this.alertConfig = {
-          message: "Votre message a bien été enregistré",
-          class: 'success'
-        }
-      }
-      this.getTopics();
-      window.scroll(0, 0);
-      this.alert = true;
-      setTimeout(() => {
-        this.alert = false;
-      }, 2000);
-    });
+    const submitNew = this.UtilsService.submitNew(this.forms, this.newPostForm.nativeElement);
+    this.topics = submitNew[1];
+    this.alertConfig = submitNew[0];
+    this.alert = true;
+    setTimeout(() => {
+      this.alert = false;
+    }, 2000);
   }
 
   public like(event: number) {
-    this.HttpService.likeOrNot(event).subscribe(data => {
-    })
+    this.HttpService.likeOrNot(event).subscribe()
   }
 
   ngOnInit(): void {
-    this.getTopics();
+    //this.getTopics();
+    this.topics = this.UtilsService.getTopics();
+    this.isLoaded = true;
   }
 
   ngOnDestroy(): void {
@@ -158,28 +127,6 @@ export class HomeComponent implements OnInit {
   public onWindowScroll() {
     window.scrollY != 0 ? this.scrolled = true : this.scrolled = false;
   }
-
-  private getTopics() {
-    this.isLoaded = false;
-    this.sub.add(this.HttpService.getAllPosts()
-      .pipe(
-        map((value: any) => {
-          this.topics = value.reverse();
-          this.topics.forEach((element: any) => {
-            if (element.media && element.media.slice(-3) === 'mp4') {
-              element.type = 'video';
-            };
-            element.content = element.content.split('&#x0A;');
-            element.UserMessage.User.avatar ? '' : element.UserMessage.User.avatar = environment.images + "/avatars/no-avatar.png";
-
-            element.Likes.find((liked: any) => {(liked.MessageId === element.id && liked.UserId == localStorage.getItem('userId')) ? element.isLiked = true : '' });
-          })
-          this.isLoaded = true;
-        }))
-      .subscribe());
-  }
-
-
 }
 
 

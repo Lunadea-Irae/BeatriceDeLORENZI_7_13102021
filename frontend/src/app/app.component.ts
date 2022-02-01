@@ -1,6 +1,7 @@
 
 import { Component, HostListener } from '@angular/core';
 import { interval, startWith } from 'rxjs';
+import { AppService } from './services/app.service';
 import { HttpService } from './services/http.service';
 
 
@@ -15,32 +16,18 @@ export class AppComponent {
   scrolled: boolean = false;
   userId: number = Number(localStorage.getItem('userId'));
 
-  constructor(private readonly HttpService: HttpService) { }
+  constructor(private readonly HttpService: HttpService, private readonly AppService : AppService) { }
   @HostListener('window:scroll', ['$event'])
 
   public onWindowScroll(e: any): void {
-
-    // do some stuff here when the window is scrolled
-    const verticalOffset = window.pageYOffset;
-    verticalOffset === 0 ? this.scrolled = false : this.scrolled = true;
-
+    window.pageYOffset === 0 ? this.scrolled = false : this.scrolled = true;
   }
   public logout() {
     localStorage.clear();
-    this.isAuth = true;
   }
   ngOnInit() {
     //Refresh token each 4min
-    interval(240000)
-      .pipe(startWith(0))
-      .subscribe(() => {
-        localStorage.length !== 0 ? this.HttpService.refreshToken().subscribe(
-          (data: any) => {
-            console.log(data.accessToken);
-            data.accessToken ? localStorage.setItem('accessToken', data.accessToken) : ''
-          },
-          (error: any) => console.error(error.error.error)) : '';
-      })
+    this.AppService.refreshToken()
     window.scrollY != 0 ? this.scrolled = true : this.scrolled = false;
 
   }

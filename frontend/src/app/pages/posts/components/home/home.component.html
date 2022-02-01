@@ -12,6 +12,7 @@
     <app-form [config]="forms[2]" (click)="onTarget($event)"></app-form>
     <app-button (whenIsClicked)="submitNew()" [config]="sendBtn"></app-button>
   </form>
+  <app-loading *ngIf="!isLoaded"></app-loading>
   <app-resume [data]="topics" [isLoaded]="isLoaded" (whenIsLiked)="like($event)"></app-resume>
 </div>
 <div (click)="displayForm($event)" class="hidden" [ngClass]="{'new-post-icon':scrolled}">
