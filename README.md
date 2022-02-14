@@ -13,7 +13,6 @@ This is an MVP Front and Backend social Network for Groupomania. I wanted it to 
 To run this project you will need :
 
 * Node.js
-* Angular-cli (version 13.0.2)
 * a MySQL server
 
 ## Installation

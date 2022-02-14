@@ -15,8 +15,6 @@ export class UtilsService {
 
   constructor(private readonly HttpService: HttpService) { }
 
-
-
   public submitNew(forms: any, newPostForm: any) {
 
     const newPostData: FormData = new FormData();
@@ -53,7 +51,7 @@ export class UtilsService {
       }
       window.scroll(0, 0);
     });
-    return [alertConfig,this.getTopics()];
+    return [alertConfig, this.getTopics()];
   }
 
   public like(event: number) {
