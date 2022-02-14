@@ -115,9 +115,16 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
   public like() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.HttpService.likeOrNot(id).subscribe((data: any) => {
-      this.isLiked = data.like;
-      data.like ? this.topic.Likes.push("Liked") : this.topic.Likes.splice(0, 1);
-    })
+      if (data) {
+        console.log("like " + data.like);
+        this.isLiked = data.like;
+        data.like ? this.topic.Likes.push("Liked") : this.topic.Likes.splice(0, 1);
+      } else {
+        this.isLiked = false;
+        this.topic.Likes.splice(0, 1);
+      }
+    }
+    )
   }
   public likeAPost(event: number) {
     this.HttpService.likeOrNot(event).subscribe(data => {
@@ -128,23 +135,8 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
 
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.HttpService.deletePost(id).subscribe((data: any) => {
-      if (data.error) {
-        this.alertConfig = {
-          message: "Nous n'avons pas pu supprimer votre message pour les raisons suivantes : " + data.error.message,
-          class: 'failure'
-        }
-      } else {
-        this.alertConfig = {
-          message: "Votre message a bien été supprimé",
-          class: 'success'
-        }
-      }
       this.router.navigateByUrl(`/`);
       window.scroll(0, 0);
-      this.alert = true;
-      setTimeout(() => {
-        this.alert = false;
-      }, 2000);
     });
   }
 
@@ -160,23 +152,7 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     this.HttpService.editPost(id, editPostData).subscribe((data: any) => {
-      if (data.error) {
-        this.alertConfig = {
-          message: "Nous n'avons pas pu enregistrer votre message pour les raisons suivantes : " + data.error.message,
-          class: 'failure'
-        }
-      } else {
-        this.alertConfig = {
-          message: "Votre message a bien été enregistré",
-          class: 'success'
-        }
-      }
       this.getOnePost();
-      this.alert = true;
-      setTimeout(() => {
-        this.alert = false;
-      }, 2000);
-
     })
   }
 
@@ -185,45 +161,13 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
     this.HttpService.newComment(id, this.postComment.nativeElement[0].value.replace(/\n/gi, '&#x0A;')).subscribe((data: any) => {
-      if (data.error) {
-        this.alertConfig = {
-          message: "Nous n'avons pas pu enregistrer votre commentaire pour les raisons suivantes : " + data.error.message,
-          class: 'failure'
-        }
-      } else {
-        this.alertConfig = {
-          message: "Votre commentaire a bien été enregistré",
-          class: 'success'
-        }
-      }
       this.getOnePost();
-      this.alert = true;
-      setTimeout(() => {
-        this.alert = false;
-      }, 100);
-
     });
 
   }
 
   public deletedComment(event: any) {
-    if (event.error) {
-      this.alertConfig = {
-        message: "Nous n'avons pas pu supprimer votre commentaire pour les raisons suivantes : " + event.error.message,
-        class: 'failure'
-      }
-    } else {
-      this.alertConfig = {
-        message: "Votre commentaire a bien été supprimé",
-        class: 'success'
-      }
-    }
     this.getOnePost();
-    this.alert = true;
-    setTimeout(() => {
-      this.alert = false;
-    }, 100);
-
   }
 
 
@@ -243,7 +187,7 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
           if (this.topic.media && this.topic.media.slice(-3) === 'mp4') {
             this.topic.type = 'video';
           };
-          if(!this.topic.UserMessage.User.avatar){this.topic.UserMessage.User.avatar=environment.images+"/avatars/no-avatar.png"};
+          if (!this.topic.UserMessage.User.avatar) { this.topic.UserMessage.User.avatar = environment.images + "/avatars/no-avatar.png" };
           this.forms.forEach(field => {
             switch (field.id) {
               case 'media':
@@ -259,67 +203,67 @@ export class TopicComponent implements OnInit, OnDestroy, AfterViewInit {
           })
           this.topic.content = this.topic.content.split('&#x0A;');
           this.topic.Likes.find((liked: any) => {
-            
-            (liked.MessageId === id && liked.UserId === 1) ? this.isLiked = true : this.isLiked = false;
-        });
-    this.canEdit = this.auth.canEdit(this.topic.UserMessage.User.id);
-    this.isLoaded = true;
 
-    this.getSuggests();
-  })
+            (liked.MessageId === id && liked.UserId === 1) ? this.isLiked = true : this.isLiked = false;
+          });
+          this.canEdit = this.auth.canEdit(this.topic.UserMessage.User.id);
+          this.isLoaded = true;
+
+          this.getSuggests();
+        })
       )
       .subscribe());
-}
+  }
 
 
   public getHeights() {
-  setTimeout(() => {
-    if (!this.desc || !this.medias || !this.medias.nativeElement.firstChild) {
-      return false;
-    } else {
-      if (this.desc.nativeElement.offsetHeight > this.medias.nativeElement.children[0].offsetHeight) {
-        return true;
-      } else {
+    setTimeout(() => {
+      if (!this.desc || !this.medias || !this.medias.nativeElement.firstChild) {
         return false;
+      } else {
+        if (this.desc.nativeElement.offsetHeight > this.medias.nativeElement.children[0].offsetHeight) {
+          return true;
+        } else {
+          return false;
+        }
       }
-    }
-  }, 30);
-}
+    }, 30);
+  }
 
   public getSuggests() {
-  this.isLoaded = false;
+    this.isLoaded = false;
 
-  const id = Number(this.route.snapshot.paramMap.get('id'));
-  this.sub.add(this.HttpService.getFilteredPosts(id)
-    .pipe(
-      map((value: any) => {
-        this.topics = value.reverse();
-        this.topics.forEach((element: any) => {
-          if (element.media && element.media.slice(-3) === 'mp4') {
-            element.type = 'video';
-          };
-          element.content = element.content.split('&#x0A;');
-          element.UserMessage.User.avatar ? '' : element.UserMessage.User.avatar = environment.images + "/avatars/no-avatar.png";
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.sub.add(this.HttpService.getFilteredPosts(id)
+      .pipe(
+        map((value: any) => {
+          this.topics = value.reverse();
+          this.topics.forEach((element: any) => {
+            if (element.media && element.media.slice(-3) === 'mp4') {
+              element.type = 'video';
+            };
+            element.content = element.content.split('&#x0A;');
+            element.UserMessage.User.avatar ? '' : element.UserMessage.User.avatar = environment.images + "/avatars/no-avatar.png";
 
-          element.Likes.find((liked: any) => liked.MessageId === element.id && liked.UserId == localStorage.getItem('userId')) ? element.isLiked = true : element.isLiked = false;
+            element.Likes.find((liked: any) => liked.MessageId === element.id && liked.UserId == localStorage.getItem('userId')) ? element.isLiked = true : element.isLiked = false;
 
-        });
-        this.isLoaded = true;
-      })
-    )
-    .subscribe());
-}
+          });
+          this.isLoaded = true;
+        })
+      )
+      .subscribe());
+  }
 
-ngOnInit(): void {
-  this.getOnePost();
-}
+  ngOnInit(): void {
+    this.getOnePost();
+  }
 
-ngAfterViewInit(): void {
-}
+  ngAfterViewInit(): void {
+  }
 
-ngOnDestroy(): void {
-  this.sub.unsubscribe();
-}
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
 
 
 }

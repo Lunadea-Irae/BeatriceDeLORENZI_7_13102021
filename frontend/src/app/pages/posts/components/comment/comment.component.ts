@@ -62,6 +62,7 @@ export class CommentComponent implements OnInit {
     return this.comment.content.split('&#x0A;')
   }
 
+
   public editComment() {
     const id: number = this.comment.id;
     this.HttpService.editComment(id, this.edit.nativeElement[0].value.replace(/\n/gi, '&#x0A;')).subscribe();

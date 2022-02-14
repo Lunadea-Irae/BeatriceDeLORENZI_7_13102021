@@ -22,7 +22,7 @@ import { NotfoundComponent } from './component/notfound/notfound.component';
     ResumeComponent,
     IconsComponent,
     AlertComponent,
-    NotfoundComponent,
+    NotfoundComponent
 
   ],
   imports: [
